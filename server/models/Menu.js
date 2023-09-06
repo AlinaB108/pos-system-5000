@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const Inventory = require('./Inventory')
 
 const menuSchema = new Schema({
     item: {
@@ -13,12 +12,26 @@ const menuSchema = new Schema({
         type: Number,
         required: true
     },
-    ingredients: [Inventory.schema],
+    ingredients: {
+        type: Array,
+        required: true
+    },
+    inStock: {
+        type: Boolean,
+        required: true
+    },
     quantity: {
         type: Number,
         required: true
-    }
+    },
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
+      }
 });
 
 const Menu = mongoose.model('Menu', menuSchema);
 module.exports = Menu; 
+
+// MAKE CATEGORIES

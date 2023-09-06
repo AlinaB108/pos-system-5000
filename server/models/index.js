@@ -1,7 +1,7 @@
 const Employee = require('./Employee');
-const Inventory = require('./Inventory');
 const Menu = require('./Menu');
-const Order = require('./Order');
+const Roles = require('./Roles');
+const Shift = require('./Shift');
 const Table = require('./Table');
 
-module.exports = { Employee, Inventory, Menu, Order, Table };
+module.exports = { Employee, Shift, Menu, Roles, Table };

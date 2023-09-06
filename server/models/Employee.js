@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Table = require('./Table'); 
+const Table = require('./Table')
+const Shift = require('./Shift')
+const Role = require('./Roles')
 
 const employeeSchema = new Schema({
     firstName: {
@@ -25,14 +27,9 @@ const employeeSchema = new Schema({
         required: true,
         minlength: 5
     },
-    role: {
-        type: String,
-        required: true
-    },
-    section: [Table.schema],
-    tips: {
-        type: Number
-    }
+    roles: [Role.schema],
+    tables: [Table.schema],
+    shifts: [Shift.schema]
 });
 
 // set up pre-save middleware to create password
