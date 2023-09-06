@@ -3,14 +3,15 @@ import { useQuery } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-import './Nav.css'
+import './About.css'
+// Something else
 
-function Nav() {
+function About() {
   return (
     <div>
-      <h2>Nav section</h2>
+      <h2>About us section</h2>
     </div>
   );
 }
 
-export default Nav;
+export default About;
