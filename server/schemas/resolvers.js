@@ -1,13 +1,52 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { Employee, Menu, Category, Roles, Shift, Table } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
+    // FIND ALL
+    employees: async () => {
+      return await Employee.find();
+    },
+    menuItems: async () => {
+      return await Menu.find();
+    },    
     categories: async () => {
       return await Category.find();
+    },    
+    roles: async () => {
+      return await Roles.find();
+    },    
+    shifts: async () => {
+      return await Shift.find();
+    },    
+    tables: async () => {
+      return await Table.find();
     },
+
+    // FIND ONE
+    employee: async (id) => {
+      return await Employee.findById(id);
+    },
+    menuItem: async (id) => {
+      return await Menu.findById(id);
+    },    
+    category: async (id) => {
+      return await Category.findById(id);
+    },    
+    role: async (id) => {
+      return await Roles.findById(id);
+    },    
+    shift: async (id) => {
+      return await Shift.findById(id);
+    },    
+    table: async (id) => {
+      return await Table.findById(id);
+    },
+
+    // TODO: ALL CODE BELOW IS REFERENCING ACTIVITY 26 vv
+
     products: async (parent, { category, name }) => {
       const params = {};
 
@@ -23,9 +62,11 @@ const resolvers = {
 
       return await Product.find(params).populate('category');
     },
+
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate('category');
     },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -40,6 +81,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -52,6 +94,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       const order = new Order({ products: args.products });
