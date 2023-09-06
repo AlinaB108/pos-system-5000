@@ -10,6 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import HomePage from './pages/HomePage/HomePage';
 import HomeLogin from './pages/HomeLogin/HomeLogin';
+import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch/NoMatch';
 // FRONT END WEBSITE ROUTES ^^
 
@@ -64,6 +65,10 @@ function App() {
               <Route
                 path="/home/login"
                 element={<HomeLogin />}
+              />
+              <Route 
+                path="/home/signup" 
+                element={<Signup />} 
               />
             </Route>
 
