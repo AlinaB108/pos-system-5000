@@ -1,9 +1,9 @@
-const Login = () => {
+const NoMatch = () => {
   return (
     <div className="container">
-      LOGIN ROUTE
+      404 ROUTE
     </div>
   );
 };
 
-export default Login;
+export default NoMatch;
