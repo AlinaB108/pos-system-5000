@@ -10,7 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import HomePage from './pages/HomePage/HomePage';
 import HomeLogin from './pages/HomeLogin/HomeLogin';
-import Signup from './pages/Signup/Signup';
+import Signup from './pages/HomeSignup/HomeSignup';
 import NoMatch from './pages/NoMatch/NoMatch';
 // FRONT END WEBSITE ROUTES ^^
 
@@ -51,49 +51,47 @@ function App() {
         <StoreProvider>
 
           <Routes>
-
+            {/* 404 ROUTE vv */}
             <Route
               path="*"
               element={<NoMatch />}
             />
 
-            <Route path="/home">
-              <Route
-                path="/home/"
-                element={<HomePage />}
-              />
-              <Route
-                path="/home/login"
-                element={<HomeLogin />}
-              />
-              <Route 
-                path="/home/signup" 
-                element={<Signup />} 
-              />
-            </Route>
+            {/* FRONTEND WEBSITE ROUTES vv */}
+            <Route
+              path="/"
+              element={<HomePage />}
+            />
+            <Route
+              path="/login/"
+              element={<HomeLogin />}
+            />
+            <Route
+              path="/signup/"
+              element={<Signup />}
+            />
 
-            <Route path="/pos">
-              <Route
-                path="/pos/"
-                element={<Login />}
-              />
-              <Route
-                path="/pos/profile"
-                element={<Profile />}
-              />
-              <Route
-                path="/pos/order"
-                element={<SingleOrder />}
-              />
-              <Route
-                path="/pos/orders"
-                element={<Orders />}
-              />
-              <Route
-                path="/pos/tips"
-                element={<Tips />}
-              />
-            </Route>
+            {/* BACKEND POS SYSTEM ROUTES vv */}
+            <Route
+              path="/pos/"
+              element={<Login />}
+            />
+            <Route
+              path="/pos/profile"
+              element={<Profile />}
+            />
+            <Route
+              path="/pos/order"
+              element={<SingleOrder />}
+            />
+            <Route
+              path="/pos/orders"
+              element={<Orders />}
+            />
+            <Route
+              path="/pos/tips"
+              element={<Tips />}
+            />
           </Routes>
         </StoreProvider>
       </Router>

@@ -14,7 +14,7 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="">
-            <a href="/home" onClick={() => Auth.logout()}>
+            <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
           </li>
@@ -24,12 +24,12 @@ function Nav() {
       return (
         <ul className="">
           <li className="">
-            <Link to="/home/signup">
+            <Link to="/signup">
               Signup
             </Link>
           </li>
           <li className="">
-            <Link to="/home/login">
+            <Link to="/login">
               Login
             </Link>
           </li>
@@ -41,7 +41,7 @@ function Nav() {
   return (
     <header className="">
       <h1>
-        <Link to="/home">
+        <Link to="/">
           Sapori D'Italia
         </Link>
       </h1>
