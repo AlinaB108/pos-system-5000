@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     // FIND ALL
     employees: async () => {
-      return await Employee.find();
+      return await Employee.find().populate('tables');
     },
     menuItems: async () => {
       return await Menu.find().populate('category');
@@ -30,7 +30,7 @@ const resolvers = {
       } catch (error) {
         throw new Error('Unable to fetch menu item');
       }
-
+    },
     table: async (_, { _id }) => {
       try {
         return await Table.findById(_id);
@@ -38,7 +38,6 @@ const resolvers = {
         throw new Error('Unable to fetch table');
       }
     },
-
   },
   Mutation: {
     updateTable: async(_, args) => {
@@ -61,6 +60,5 @@ const resolvers = {
     }
   }
 }
-    // TODO: ALL CODE BELOW IS REFERENCING ACTIVITY 26 vv
 
 module.exports = resolvers;
