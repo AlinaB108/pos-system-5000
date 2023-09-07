@@ -1,7 +1,7 @@
 const Tips = () => {
   return (
     <div className="container">
-      PROFILE ROUTE
+      TIPS ROUTE
     </div>
   );
 };
