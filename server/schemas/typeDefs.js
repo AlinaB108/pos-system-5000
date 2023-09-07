@@ -56,19 +56,19 @@ const typeDefs = gql`
     # Find All
     employees: [Employee]
     menuItems: [Menu]
-    categories: [Category]
-    roles: [Role]
-    shifts: [Shift]
     tables: [Table]
   
     # Find One
     employee(_id: ID!): Employee
     menuItem(_id: ID!): Menu
-    category(_id: ID!): Category
-    role(_id: ID!): Role
-    shift(_id: ID!): Shift
     table(_id: ID!): Table
   }  
+
+  type Mutation {
+    updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
+    addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String): Shift
+    updateShift(clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
+  }
 `;
 
 module.exports = typeDefs;

@@ -10,19 +10,16 @@ const resolvers = {
       return await Employee.find();
     },
     menuItems: async () => {
-      return await Menu.find();
-    },    
-    categories: async () => {
-      return await Category.find();
+      return await Menu.find().populate('category');
     },    
     roles: async () => {
       return await Role.find();
     },    
     shifts: async () => {
-      return await Shift.find();
+      return await Shift.find().populate('employees');
     },    
     tables: async () => {
-      return await Table.find();
+      return await Table.find().populate('employees');
     },
 
     // FIND ONE
