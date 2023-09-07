@@ -7,12 +7,12 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
-    roles: [Roles]
+    roles: [Role]
     tables: [Table]
     shifts: [Shift]
   }
 
-  type Roles {
+  type Role {
     _id: ID
     name: String
     hourlyRate: Float
@@ -27,16 +27,6 @@ const typeDefs = gql`
     breakEnd: String
   }
   
-  type Table {
-    _id: ID
-    tableNum: Int
-    order: [Menu]
-    orderStatus: Boolean
-    tip: Float
-    date: String
-    tableStatus: Boolean
-  }
-
   type Menu {
     _id: ID
     item: String
@@ -45,6 +35,16 @@ const typeDefs = gql`
     inStock: Boolean
     quantity: Int
     category: [Category]
+  }
+
+  type Table {
+    _id: ID
+    tableNum: Int
+    order: [Menu]
+    orderStatus: Boolean
+    tip: Float
+    date: String
+    tableStatus: Boolean
   }
 
   type Category {
@@ -56,19 +56,19 @@ const typeDefs = gql`
     # Find All
     employees: [Employee]
     menuItems: [Menu]
-    categories: [Category]
-    roles: [Roles]
-    shifts: [Shift]
     tables: [Table]
   
     # Find One
     employee(_id: ID!): Employee
     menuItem(_id: ID!): Menu
-    category(_id: ID!): Category
-    role(_id: ID!): Roles
-    shift(_id: ID!): Shift
     table(_id: ID!): Table
   }  
+
+  type Mutation {
+    updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
+    addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String): Shift
+    updateShift(clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
+  }
 `;
 
 module.exports = typeDefs;
