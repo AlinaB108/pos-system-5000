@@ -8,7 +8,6 @@ import Footer from "../../components/Footer/Footer.js";
 const HomePage = () => {
   return (
     <div className="container">
-      HOME PAGE ROUTE
       <Nav />
       <About />
       <Menu />
