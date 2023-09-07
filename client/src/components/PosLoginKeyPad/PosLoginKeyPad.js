@@ -5,15 +5,9 @@ import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
 import './PosLoginKeypad.css';
 
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Grid } from "@mui/material";
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { Typography, Button, Grid, Box, Paper } from '@mui/material';
 
 const PosLoginKeyPad = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');

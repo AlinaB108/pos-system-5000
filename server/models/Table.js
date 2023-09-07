@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const Menu = require('./Menu')
+
 
 const tableSchema = new Schema({
     tableNum: {
         type: Number,
         required: true
     },
-    order: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Menu'
-        },
-    ],
+    order: [Menu.schema],
     orderStatus: {
         type: Boolean,
         default: false,
