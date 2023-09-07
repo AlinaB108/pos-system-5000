@@ -46,7 +46,7 @@ db.once('open', async () => {
         },
         {
             item: 'Spaghetti Carbonara',
-            price: 12.99,
+            price: 24.99,
             ingredients: ['Spaghetti', 'Eggs', 'Pancetta', 'Parmesan cheese'],
             inStock: true,
             quantity: 50,
@@ -62,7 +62,7 @@ db.once('open', async () => {
         },
         {
             item: 'Wine',
-            price: 100.99,
+            price: 104.99,
             ingredients: ['Grapes'],
             inStock: true,
             quantity: 50,
@@ -99,12 +99,12 @@ db.once('open', async () => {
     await Table.deleteMany();
 
     const tables = await Table.insertMany([
-        { tableNum: 1, order: [], orderStatus: false, tip: 0, tableStatus: true },
-        { tableNum: 2, order: [], orderStatus: false, tip: 0, tableStatus: true },
-        { tableNum: 3, order: [menuItems[0], menuItems[1]], orderStatus: false, tip: 0, tableStatus: true },
-        { tableNum: 4, order: [], orderStatus: false, tip: 0, tableStatus: false },
-        { tableNum: 5, order: [], orderStatus: false, tip: 0, tableStatus: false },
-        { tableNum: 6, order: [], orderStatus: false, tip: 0, tableStatus: true },
+        { tableNum: 1, order: [menuItems[2], menuItems[0], menuItems[1], menuItems[6]], orderStatus: false, tip: 18, tableStatus: true },
+        { tableNum: 2, order: [menuItems[2], menuItems[1]], orderStatus: false, tip: 6, tableStatus: true },
+        { tableNum: 3, order: [menuItems[4], menuItems[1], menuItems[6]], orderStatus: false, tip: 16, tableStatus: true },
+        { tableNum: 4, order: [menuItems[3], menuItems[0], menuItems[1]], orderStatus: false, tip: 25, tableStatus: false },
+        { tableNum: 5, order: [menuItems[3], menuItems[0], menuItems[5]], orderStatus: false, tip: 30, tableStatus: false },
+        { tableNum: 6, order: [menuItems[2], menuItems[5]], orderStatus: false, tip: 8, tableStatus: true },
         // Add more tables as needed
     ]);
 
