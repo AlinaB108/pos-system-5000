@@ -65,7 +65,7 @@ const typeDefs = gql`
   }  
 
   type Mutation {
-    updateTable(_id: ID!, tableNum: Int, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
+    updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
     addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String): Shift
     updateShift(_id: ID!, clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
   }

@@ -9,7 +9,10 @@ const tableSchema = new Schema({
         type: Number,
         required: true
     },
-    order: [Menu.schema],
+    order: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Menu'
+    }],
     orderStatus: {
         type: Boolean,
         default: false,
