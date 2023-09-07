@@ -7,12 +7,12 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
-    roles: [Roles]
+    roles: [Role]
     tables: [Table]
     shifts: [Shift]
   }
 
-  type Roles {
+  type Role {
     _id: ID
     name: String
     hourlyRate: Float
@@ -27,16 +27,6 @@ const typeDefs = gql`
     breakEnd: String
   }
   
-  type Table {
-    _id: ID
-    tableNum: Int
-    order: [Menu]
-    orderStatus: Boolean
-    tip: Float
-    date: String
-    tableStatus: Boolean
-  }
-
   type Menu {
     _id: ID
     item: String
@@ -45,6 +35,16 @@ const typeDefs = gql`
     inStock: Boolean
     quantity: Int
     category: [Category]
+  }
+
+  type Table {
+    _id: ID
+    tableNum: Int
+    order: [Menu]
+    orderStatus: Boolean
+    tip: Float
+    date: String
+    tableStatus: Boolean
   }
 
   type Category {
