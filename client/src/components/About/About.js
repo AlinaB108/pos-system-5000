@@ -17,10 +17,10 @@ function About() {
     //   </p>
     // </div>
     <Grid container direction="row" style={{ marginTop: "50px" }}>
-      <Grid item xs={6}>
-        <img src={rest} width="600px" height="auto" alt="" style={{ marginLeft: "20px"}} />
+      <Grid container item xs={12} md={6} alignItems="center" justifyContent="center" sx={{ px: 2 }}>
+        <img src={rest} width='100%' height='auto' alt="A photo of a restaurant with black tables, floor and yellow ceiling" />
       </Grid>
-      <Grid item xs={6}>
+      <Grid container item xs={12} md={6} alignItems="center" justifyContent="center" sx={{ px: 2 }}>
         <div>
           <h2>About us</h2>
           <p>Welcome to Sapori D'Italia, where passion for authentic Italian cuisine meets a warm, inviting atmosphere. 
