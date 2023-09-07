@@ -28,7 +28,10 @@ const employeeSchema = new Schema({
         minlength: 5
     },
     roles: [Role.schema],
-    tables: [Table.schema],
+    tables: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Table'
+    }],
     shifts: [Shift.schema]
 });
 

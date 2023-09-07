@@ -119,7 +119,7 @@ db.once('open', async () => {
             email: 'john@example.com',
             password: 'password123',
             roles: [roles[1]],
-            tables: [tables[0], tables[1], tables[2],],
+            tables: [tables[0]._id, tables[1]._id, tables[2]._id],
             shifts: [shifts[1]],
         },
         {
@@ -128,7 +128,7 @@ db.once('open', async () => {
             email: 'jane@example.com',
             password: 'password456',
             roles: [roles[2], roles[0]],
-            tables: [tables[3], tables[4], tables[5],],
+            tables: [tables[3]._id, tables[4]._id, tables[5]._id],
             shifts: [shifts[0]],
             },
             // Add more employees as needed

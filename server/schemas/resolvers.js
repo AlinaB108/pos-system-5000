@@ -6,17 +6,12 @@ const resolvers = {
   Query: {
     // FIND ALL
     employees: async () => {
-      return await Employee.find();
+      return await Employee.find().populate('tables');
     },
     menuItems: async () => {
       return await Menu.find().populate('category');
     },    
-    // roles: async () => {
-    //   return await Role.find();
-    // },    
-    // shifts: async () => {
-    //   return await Shift.find().populate('employees');
-    // },    
+
     tables: async () => {
       return await Table.find();
     },
@@ -35,28 +30,7 @@ const resolvers = {
       } catch (error) {
         throw new Error('Unable to fetch menu item');
       }
-    },  
-    // category: async (_, { _id }) => {
-    //   try {
-    //     return await Category.findById(_id);
-    //   } catch (error) {
-    //     throw new Error('Unable to fetch category');
-    //   }
-    // }, 
-    // role: async (_, { _id }) => {
-    //   try {
-    //     return await Role.findById(_id);
-    //   } catch (error) {
-    //     throw new Error('Unable to fetch role');
-    //   }
-    // },   
-    // shift: async (_, { _id }) => {
-    //   try {
-    //     return await Shift.findById(_id);
-    //   } catch (error) {
-    //     throw new Error('Unable to fetch shift');
-    //   }
-    // },   
+    },
     table: async (_, { _id }) => {
       try {
         return await Table.findById(_id);
@@ -64,6 +38,27 @@ const resolvers = {
         throw new Error('Unable to fetch table');
       }
     },
-  }}
+  },
+  Mutation: {
+    updateTable: async(_, args) => {
+      const table = await Table.findByIdAndUpdate(args._id, args, {new: true });
+    },
+    addShift: async(_, args, context) => {
+      if(context.employee){
+        const shift = new Shift(args);
+
+        await Employee.findByIdAndUpdate(context.employee._id, { $push: {shifts: shift }});
+
+        return shift; 
+      }
+      throw new AuthenticationError('Not logged in')
+    },
+    updateShift: async(_, args, context)=>{
+      if(context.employee){
+        const updateShift = Shift.findByIdAndUpdate(args._id, args, {new: true });
+      }
+    }
+  }
+}
 
 module.exports = resolvers;
