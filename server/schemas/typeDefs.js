@@ -7,12 +7,12 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
-    roles: [Roles]
+    roles: [Role]
     tables: [Table]
     shifts: [Shift]
   }
 
-  type Roles {
+  type Role {
     _id: ID
     name: String
     hourlyRate: Float
@@ -27,16 +27,6 @@ const typeDefs = gql`
     breakEnd: String
   }
   
-  type Table {
-    _id: ID
-    tableNum: Int
-    order: [Menu]
-    orderStatus: Boolean
-    tip: Float
-    date: String
-    tableStatus: Boolean
-  }
-
   type Menu {
     _id: ID
     item: String
@@ -45,6 +35,16 @@ const typeDefs = gql`
     inStock: Boolean
     quantity: Int
     category: [Category]
+  }
+
+  type Table {
+    _id: ID
+    tableNum: Int
+    order: [Menu]
+    orderStatus: Boolean
+    tip: Float
+    date: String
+    tableStatus: Boolean
   }
 
   type Category {
@@ -57,7 +57,7 @@ const typeDefs = gql`
     employees: [Employee]
     menuItems: [Menu]
     categories: [Category]
-    roles: [Roles]
+    roles: [Role]
     shifts: [Shift]
     tables: [Table]
   
@@ -65,7 +65,7 @@ const typeDefs = gql`
     employee(_id: ID!): Employee
     menuItem(_id: ID!): Menu
     category(_id: ID!): Category
-    role(_id: ID!): Roles
+    role(_id: ID!): Role
     shift(_id: ID!): Shift
     table(_id: ID!): Table
   }  
