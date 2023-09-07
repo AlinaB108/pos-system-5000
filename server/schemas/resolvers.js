@@ -1,7 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Employee, Menu, Category, Role, Shift, Table } = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -12,6 +11,7 @@ const resolvers = {
     menuItems: async () => {
       return await Menu.find().populate('category');
     },    
+
     tables: async () => {
       return await Table.find();
     },
@@ -30,7 +30,7 @@ const resolvers = {
       } catch (error) {
         throw new Error('Unable to fetch menu item');
       }
-    },
+
     table: async (_, { _id }) => {
       try {
         return await Table.findById(_id);
@@ -38,6 +38,7 @@ const resolvers = {
         throw new Error('Unable to fetch table');
       }
     },
+
   },
   Mutation: {
     updateTable: async(_, args) => {
