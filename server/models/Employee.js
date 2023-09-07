@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Table = require('./Table')
 const Shift = require('./Shift')
-const Role = require('./Roles')
+const Role = require('./Role')
 
 const employeeSchema = new Schema({
     firstName: {
