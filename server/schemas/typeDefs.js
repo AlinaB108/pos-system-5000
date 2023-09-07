@@ -15,36 +15,35 @@ const typeDefs = gql`
   type Roles {
     _id: ID
     name: String
-    hourlyRate: Number
+    hourlyRate: Float
   }
   
   type Shift {
     _id: ID
-    date: Date
-    clockIn: Date
-    clockOut: Date
-    breakStart: Date
-    breakEnd: Date
+    date: String
+    clockIn: String
+    clockOut: String
+    breakStart: String
+    breakEnd: String
   }
   
   type Table {
     _id: ID
-    tableNum: Number
+    tableNum: Int
     order: [Menu]
     orderStatus: Boolean
-    tip: Number
-    date: Date
+    tip: Float
+    date: String
     tableStatus: Boolean
   }
-  
 
   type Menu {
     _id: ID
     item: String
-    price: Number
-    ingredients: Array
+    price: Float 
+    ingredients: [String] 
     inStock: Boolean
-    quantity: Number
+    quantity: Int
     category: [Category]
   }
 
@@ -54,21 +53,22 @@ const typeDefs = gql`
   }
 
   type Query {
+    # Find All
+    employees: [Employee]
+    menuItems: [Menu]
     categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
-  }
-
-  type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
-    login(email: String!, password: String!): Auth
-  }
+    roles: [Roles]
+    shifts: [Shift]
+    tables: [Table]
+  
+    # Find One
+    employee(_id: ID!): Employee
+    menuItem(_id: ID!): Menu
+    category(_id: ID!): Category
+    role(_id: ID!): Roles
+    shift(_id: ID!): Shift
+    table(_id: ID!): Table
+  }  
 `;
 
 module.exports = typeDefs;
