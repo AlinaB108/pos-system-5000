@@ -6,7 +6,15 @@ const resolvers = {
   Query: {
     // FIND ALL
     employees: async () => {
-      return await Employee.find().populate('tables');
+      return await Employee.find().populate({
+        path: 'tables', 
+        populate: {
+          path: 'order', 
+          model: 'Menu',
+          populate: {
+            path: 'category'
+          }
+        }}).populate({path: 'shifts'}).populate({path: 'roles'})
     },
     menuItems: async () => {
       return await Menu.find().populate('category');
@@ -41,22 +49,30 @@ const resolvers = {
   },
   Mutation: {
     updateTable: async(_, args) => {
-      const table = await Table.findByIdAndUpdate(args._id, args, {new: true });
+      const table = await Table.findOneAndUpdate({tableNum: args.tableNum}, args, {new: true }).populate({path: 'order', populate: {path: 'category'}});
+      return table; 
     },
     addShift: async(_, args, context) => {
       if(context.employee){
-        const shift = new Shift(args);
-
-        await Employee.findByIdAndUpdate(context.employee._id, { $push: {shifts: shift }});
-
-        return shift; 
+        const shift = await Shift.create(args);
+        
+        await Employee.findByIdAndUpdate(
+          context.employee._id, 
+          { $push: {shifts: shift }}, 
+          {new: true});
+          
+        return shift ; 
       }
+      
       throw new AuthenticationError('Not logged in')
     },
     updateShift: async(_, args, context)=>{
       if(context.employee){
-        const updateShift = Shift.findByIdAndUpdate(args._id, args, {new: true });
+        const updateShift = Shift.findByIdAndUpdate(args._id, args, {new: true });  
+      return updateShift
       }
+
+      throw new AuthenticationError('Not logged in')
     }
   }
 }
