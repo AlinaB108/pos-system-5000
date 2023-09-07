@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import { QUERY_CATEGORIES } from '../../utils/queries';
@@ -8,6 +8,36 @@ import { Link } from "react-router-dom";
 import './PosLoginKeypad.css';
 
 import { Typography, Button, Grid, Box, Paper } from '@mui/material';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#f2f4f3', // Change this to your desired primary color
+    },
+    secondary: {
+      main: '#f50057', // Change this to your desired secondary color
+    },
+  },
+});
+
+const Time = () => {
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date().toLocaleString());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <Typography variant="h6" sx={{ p: 3 }} style={{ color: 'white' }}>
+      {currentTime}
+    </Typography>
+  );
+};
 
 const PosLoginKeyPad = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');
@@ -26,6 +56,7 @@ const PosLoginKeyPad = () => {
   };
 
   return (
+    <ThemeProvider theme={theme}>
     <Grid container alignItems="center" justifyContent="center" sx={{ pt: 8 }}>
       <Grid item xs={12} md={8} lg={6}>
         <Box display="flex" flexDirection="column" alignItems="center">
@@ -75,9 +106,12 @@ const PosLoginKeyPad = () => {
               </Grid>
             </Box>
           </Paper>
+          {/* Added current time */}
+          <Time/>
         </Box>
       </Grid>
     </Grid>
+    </ThemeProvider>
   );
 };
 
