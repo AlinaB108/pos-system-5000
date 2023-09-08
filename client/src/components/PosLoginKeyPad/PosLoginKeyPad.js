@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { useStoreContext } from '../../utils/GlobalState';
-import { QUERY_CATEGORIES } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
+import { useMutation } from '@apollo/client';
+import { LOGIN_POS } from '../../utils/mutations';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import './PosLoginKeypad.css';
@@ -51,8 +49,11 @@ const PosLoginKeyPad = () => {
     setEmployeeNumber('');
   };
 
-  const loginAttempt = () => {
-    // add code to save to global state your id from loggin gin
+  const LoginAttempt = () => {
+    const { loading, data } = useMutation(LOGIN_POS);
+
+    console.log(data)
+    // FIX THE CODE HERE TO GRAB USER ID FROM LOGIN PARAMS
   };
 
   return (
@@ -101,7 +102,7 @@ const PosLoginKeyPad = () => {
                   <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('0')}>0</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" color="success" onClick={loginAttempt}>GO</Button>
+                  <Button variant="contained" size="large" className="padBtn" color="success" onClick={() => LoginAttempt()}>GO</Button>
                 </Grid>
               </Grid>
             </Box>

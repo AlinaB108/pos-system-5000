@@ -1,9 +1,7 @@
 import { Typography, Button, Grid, Box, Paper, createTheme, ThemeProvider} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { useStoreContext } from "../../utils/GlobalState";
 import { QUERY_CATEGORIES } from "../../utils/queries";
-import { idbPromise } from "../../utils/helpers";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import { experimentalStyled as styled } from '@mui/material/styles'
