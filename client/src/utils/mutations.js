@@ -1,54 +1,52 @@
 import { gql } from '@apollo/client';
 
 
-export const ADD_SHIFT = gql`
-  mutation Mutation($clockIn: String!, $clockOut: String, $breakStart: String, $breakEnd: String) {
-    addShift(clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
-      _id
-      breakEnd
-      breakStart
-      clockIn
-      clockOut
-      date
-    }
-  }
-`;
-
-export const UPDATE_SHIFT = gql`
-  mutation Mutation($id: ID!, $clockIn: String, $clockOut: String, $breakStart: String, $breakEnd: String) {
-    updateShift(_id: $id, clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
-      _id
-      date
-      clockIn
-      clockOut
-      breakStart
-      breakEnd
-    }
-  }
-`;
-
-
-export const UPDATE_TABLE = gql`
-  mutation Mutation($tableNum: Int!, $order: [ID], $orderStatus: Boolean, $tip: Float, $tableStatus: Boolean) {
-    updateTable(tableNum: $tableNum, order: $order, orderStatus: $orderStatus, tip: $tip, tableStatus: $tableStatus) {
-      _id
-      date
-      order {
+export const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
         _id
-        item
+      }
+    }
+  }
+`;
+
+export const ADD_ORDER = gql`
+  mutation addOrder($products: [ID]!) {
+    addOrder(products: $products) {
+      purchaseDate
+      products {
+        _id
+        name
+        description
         price
-        ingredients
-        inStock
         quantity
         category {
-          _id
           name
         }
       }
-      orderStatus
-      tableNum
-      tableStatus
-      tip
+    }
+  }
+`;
+
+export const ADD_USER = gql`
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        _id
+      }
     }
   }
 `;
