@@ -24,7 +24,7 @@ function NavLogin() {
         </svg>
         </Typography>
         <div style={{ marginLeft: 'auto' }}>
-          <Button variant="contained" href="/login" color="error" size="large">
+          <Button variant="contained" href="/pos" color="error" size="large">
             EXIT
           </Button>
         </div>
