@@ -73,6 +73,42 @@ const resolvers = {
       }
 
       throw new AuthenticationError('Not logged in')
+    },
+    login: async (parent, { email, password }) => {
+      const employee = await Employee.findOne({ email });
+
+      if (!employee) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await employee.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(employee);
+
+      return { token, employee };
+    },
+    loginPOS: async (parent, { posID }) => {
+      const employeePOS = await Employee.findOne({ posID: posID }).populate({
+        path: 'tables', 
+        populate: {
+          path: 'order', 
+          model: 'Menu',
+          populate: {
+            path: 'category'
+          }
+        }}).populate({path: 'shifts'}).populate({path: 'roles'});
+      
+      if (!employeePOS) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(employeePOS);
+      console.log(employeePOS)
+      return { token, employeePOS };
     }
   }
 }
