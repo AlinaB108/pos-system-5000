@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -35,6 +35,24 @@ function PosNav() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const Time = () => {
+    const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
+  
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        setCurrentTime(new Date().toLocaleString());
+      }, 1000);
+  
+      return () => clearInterval(intervalId);
+    }, []);
+  
+    return (
+      <Typography variant="" sx={{ p: 1 }} style={{ color: 'white' }}>
+        {currentTime}
+      </Typography>
+    );
   };
 
   return (
@@ -74,7 +92,7 @@ function PosNav() {
             color: 'inherit',
           }}
         >
-          {new Date().toLocaleString()}
+          <Time />
         </Box>
 
 
