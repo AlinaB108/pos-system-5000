@@ -24,6 +24,11 @@ const employeeSchema = new Schema({
         required: true,
         minlength: 5
     },
+    posID: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     roles: [{
         type: Schema.Types.ObjectId,
         ref: 'Role'

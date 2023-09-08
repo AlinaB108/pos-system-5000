@@ -113,7 +113,7 @@ function PosNav() {
         </Box>
       </Box>
 
-      <Box sx={{justifyContent: 'center', margin: 'auto'}}>Welcome John! You are a SERVER today!</Box>
+      <Box sx={{justifyContent: 'center', margin: 'auto'}}>Welcome John! You are a MANAGER today!</Box>
       
       <Box
         sx={{
