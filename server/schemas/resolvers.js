@@ -27,7 +27,15 @@ const resolvers = {
     // FIND ONE
     employee: async (_, { _id }) => {
       try {
-        return await Employee.findById(_id);
+        return await Employee.findById(_id).populate({
+          path: 'tables', 
+          populate: {
+            path: 'order', 
+            model: 'Menu',
+            populate: {
+              path: 'category'
+            }
+          }}).populate({path: 'shifts'}).populate({path: 'roles'});
       } catch (error) {
         throw new Error('Unable to fetch employee');
       }
@@ -46,6 +54,23 @@ const resolvers = {
         throw new Error('Unable to fetch table');
       }
     },
+    me: async(_,__, context)=>{
+      try{
+        if(context.employee){
+          return await Employee.findById(context.employee._id).populate({
+            path: 'tables', 
+            populate: {
+              path: 'order', 
+              model: 'Menu',
+              populate: {
+                path: 'category'
+              }
+            }}).populate({path: 'shifts'}).populate({path: 'roles'});
+        }
+      }catch(err){
+        throw new Error('Not logged in!');
+      }
+    }
   },
   Mutation: {
     updateTable: async(_, args) => {
