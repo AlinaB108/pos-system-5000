@@ -1,8 +1,5 @@
 import React from "react";
 import { useQuery } from '@apollo/client';
-import { useStoreContext } from '../../utils/GlobalState';
-import { QUERY_CATEGORIES } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import './Nav.css'
@@ -12,14 +9,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 // import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
-// import MenuItem from '@mui/material/MenuItem';
-// import AdbIcon from '@mui/icons-material/Adb';
 
 function Nav() {
   function handleLogout() {

@@ -1,9 +1,9 @@
 import React from "react";
-import { useQuery } from '@apollo/client';
-import { useStoreContext } from '../../utils/GlobalState';
-import { QUERY_CATEGORIES } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import './About.css'
+// import { useQuery } from '@apollo/client';
+// import { useStoreContext } from '../../utils/GlobalState';
+// import { QUERY_CATEGORIES } from '../../utils/queries';
+// import { idbPromise } from '../../utils/helpers';
+// import './About.css'
 import { Typography, Grid, Box} from '@mui/material';
 import rest from "../../assets/rest.jpg";
 

@@ -23,9 +23,6 @@ import Login from './pages/Login/Login';
 import SingleOrder from './pages/SingleOrder/SingleOrder';
 // import Nav from './components/Nav';
 
-import { StoreProvider } from './utils/GlobalState';
-
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -49,8 +46,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <StoreProvider>
-
           <Routes>
             {/* 404 ROUTE vv */}
             <Route
@@ -94,7 +89,6 @@ function App() {
               element={<Tips />}
             />
           </Routes>
-        </StoreProvider>
       </Router>
     </ApolloProvider>
   );
