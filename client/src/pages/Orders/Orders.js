@@ -1,10 +1,22 @@
 import PosNav from '../../components/PosNav/PosNav';
 
-const Orders = () => {
+const Orders = async () => {
+  const queriedOrders = await Orders.findAll();
+
+  const allOrders = [];
+
+  queriedOrders.map((e) => {
+    const appendedOrder = document.createElement('p')
+    appendedOrder.textContent()
+
+    document.getElementById('orders').append()
+  })
+
+
   return (
     <div className="container">
       <PosNav />
-      ORDERS ROUTE
+      <box id="orders"></box>
     </div>
   );
 };
