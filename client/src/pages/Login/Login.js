@@ -1,7 +1,7 @@
 import React from 'react';
 import PosLoginKeyPad from '../../components/PosLoginKeyPad/PosLoginKeyPad';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-
+import { LOGIN_POS } from '../../utils/mutations';
 
 const Login = () => {
   return (

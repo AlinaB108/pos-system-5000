@@ -7,6 +7,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
+    posID: Int
     roles: [Role]
     tables: [Table]
     shifts: [Shift]
@@ -52,6 +53,11 @@ const typeDefs = gql`
     name: String
   }
 
+  type Auth {
+    token: ID
+    employeePOS: Employee
+  }
+
   type Query {
     # Find All
     employees: [Employee]
@@ -68,6 +74,8 @@ const typeDefs = gql`
     updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
     addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String): Shift
     updateShift(_id: ID!, clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
+    login(email: String!, password: String!): Auth
+    loginPOS(posID: Int!): Auth
   }
 `;
 
