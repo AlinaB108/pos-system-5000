@@ -18,7 +18,7 @@ import NoMatch from './pages/NoMatch/NoMatch';
 import Tips from './pages/Tips/Tips';
 import Orders from './pages/Orders/Orders';
 import Profile from './pages/Profile/Profile';
-import ServerProfile from './pages/ServerProfile/ServerProfile';
+// import ServerProfile from './pages/ServerProfile/ServerProfile';
 import Login from './pages/Login/Login';
 import SingleOrder from './pages/SingleOrder/SingleOrder';
 // import Nav from './components/Nav';
@@ -80,10 +80,6 @@ function App() {
             <Route
               path="/pos/profile"
               element={<Profile />}
-            />
-            <Route
-              path="/pos/serverprofile"
-              element={<ServerProfile />}
             />
             <Route
               path="/pos/order"
