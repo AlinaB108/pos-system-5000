@@ -1,6 +1,6 @@
 import PosNav from '../../components/PosNav/PosNav';
 
-const Orders = async () => {
+const Orders = () => {
   // const queriedOrders = await Orders.findAll();
 
   // const allOrders = [];

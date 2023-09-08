@@ -98,9 +98,6 @@ function PosNav() {
           style={{ backgroundColor: '#f2f4f3', color: 'black' }}
           sx={{ m: 2,  }}
           href='/pos/orders'
-          onClick={() => {
-            // Handle the "All Orders" action here
-          }}
         >
           All Orders
         </Button>
@@ -108,11 +105,15 @@ function PosNav() {
           style={{ backgroundColor: '#7ca6f3', color: 'black' }}
           sx={{ m: 2 }}
           href='/pos/tips'
-          onClick={() => {
-            // Handle the "Your Tips" action here
-          }}
         >
           Your Tips
+        </Button>
+        <Button
+          style={{ backgroundColor: '#2fa6f3', color: 'black' }}
+          sx={{ m: 2 }}
+          href='/pos/profile'
+        >
+          YOUR PROFILE
         </Button>
         <Button
           style={{ backgroundColor: '#fce698', color: 'black' }}
