@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { AppBar, Box, Typography, Button, Grid } from '@mui/material';
 // Not used but might need later(?)
 import { Toolbar, IconButton, Menu, MenuIcon, Container, Avatar, Tooltip, MenuItem, AdbIcon } from '@mui/material';
-import './PosNav.css';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -42,7 +41,7 @@ function PosNav() {
     }, []);
   
     return (
-      <Typography variant="h6" sx={{ p: 1 }} style={{ color: '#23296c' }}>
+      <Typography variant="h5" sx={{ p: 1 }}>
         {currentTime}
       </Typography>
     );
@@ -69,7 +68,7 @@ function PosNav() {
       </Grid>
 
       <Box sx={{justifyContent: 'center', margin: 'auto'}}>
-        <Typography variant="h6" style={{ textDecoration: 'none', color: '#23296c' }}>
+        <Typography variant="h5">
           Welcome John! You are a SERVER today!
         </Typography>
       </Box>
@@ -84,6 +83,7 @@ function PosNav() {
         }}
       >
         <Button
+          size="large"
           style={{ backgroundColor: '#f2f4f3', color: 'black' }}
           sx={{ m: 2,  }}
           href='/pos/orders'
@@ -94,6 +94,7 @@ function PosNav() {
           All Orders
         </Button>
         <Button
+          size="large"
           style={{ backgroundColor: '#7ca6f3', color: 'black' }}
           sx={{ m: 2 }}
           href='/pos/tips'
@@ -104,6 +105,7 @@ function PosNav() {
           Your Tips
         </Button>
         <Button
+          size="large"
           style={{ backgroundColor: '#fce698', color: 'black' }}
           sx={{ m: 2 }}
           onClick={() => {
@@ -113,6 +115,7 @@ function PosNav() {
           Start Break
         </Button>
         <Button
+          size="large"
           style={{ backgroundColor: '#f09850', color: 'black' }}
           sx={{ m: 2 }}
           onClick={() => {
