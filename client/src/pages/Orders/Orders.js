@@ -1,22 +1,24 @@
 import PosNav from '../../components/PosNav/PosNav';
+import PosOrderList from '../../components/PosOrderList/PosOrderList';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_TABLES } from '../../utils/queries';
 
-const Orders = async () => {
-  // const queriedOrders = await Orders.findAll();
+const Orders = () => {
+  const { loading, data } = useQuery(QUERY_ALL_TABLES)
 
-  // const allOrders = [];
-
-  // queriedOrders.map((e) => {
-  //   const appendedOrder = document.createElement('p')
-  //   appendedOrder.textContent()
-
-  //   document.getElementById('orders').append()
-  // })
-
+  const tables = data || [];
+  console.log(data)
 
   return (
     <div className="container">
       <PosNav />
-      <box id="orders">hello</box>
+      {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <PosOrderList
+              tables={tables}
+            />
+          )}
     </div>
   );
 };

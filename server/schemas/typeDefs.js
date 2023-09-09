@@ -68,6 +68,7 @@ const typeDefs = gql`
     employee(_id: ID!): Employee
     menuItem(_id: ID!): Menu
     table(_id: ID!): Table
+    me: Employee
   }  
 
   type Mutation {
