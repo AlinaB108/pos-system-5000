@@ -88,22 +88,6 @@ function App() {
                 element={<Tips />}
               />
             </Route>
-            {/* <Route
-              path="/pos/profile"
-              element={<Profile />}
-            />
-            <Route
-              path="/pos/order"
-              element={<SingleOrder />}
-            />
-            <Route
-              path="/pos/orders"
-              element={<Orders />}
-            />
-            <Route
-              path="/pos/tips"
-              element={<Tips />}
-            /> */}
           </Routes>
       </Router>
     </ApolloProvider>
