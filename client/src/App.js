@@ -19,7 +19,7 @@ import Tips from './pages/Tips/Tips';
 import Orders from './pages/Orders/Orders';
 import Profile from './pages/Profile/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
-import Login from './pages/Login/Login';
+import PosMain from './pages/PosMain/PosMain'
 import SingleOrder from './pages/SingleOrder/SingleOrder';
 // import Nav from './components/Nav';
 
@@ -70,9 +70,25 @@ function App() {
             {/* BACKEND POS SYSTEM ROUTES vv */}
             <Route
               path="/pos/"
-              element={<Login />}
-            />
-            <Route
+              element={<PosMain />}>
+                <Route
+              path="/pos/profile"
+              element={<Profile />}
+              />
+              <Route
+                path="/pos/order"
+                element={<SingleOrder />}
+              />
+              <Route
+                path="/pos/orders"
+                element={<Orders />}
+              />
+              <Route
+                path="/pos/tips"
+                element={<Tips />}
+              />
+            </Route>
+            {/* <Route
               path="/pos/profile"
               element={<Profile />}
             />
@@ -87,7 +103,7 @@ function App() {
             <Route
               path="/pos/tips"
               element={<Tips />}
-            />
+            /> */}
           </Routes>
       </Router>
     </ApolloProvider>
