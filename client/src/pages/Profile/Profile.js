@@ -1,21 +1,9 @@
 import React from "react";
-import PosNav from '../../components/PosNav/PosNav';
-import { useQuery } from '@apollo/client';
-import { ME } from '../../utils/queries';
-import Auth from "../../utils/auth";
 import PosServerProfile from '../../components/PosServerProfile/PosServerProfile';
+import { useOutletContext } from "react-router-dom";
 
 const Profile = () => {
-  const { loading, data } = useQuery(ME);
-  console.log(data)
-  const profile = data?.me || {};
-  console.log(profile)
-
-  if (loading) {
-    // RETURNS A LOADING SCREEN IF DATA LOADING
-    return <div>Loading...</div>;
-  }
-
+  const [profile] = useOutletContext();
   if (!profile?.firstName) {
     return (
       <h4>
@@ -24,10 +12,9 @@ const Profile = () => {
     );
   }
 
-  if (Auth.loggedIn()) {
+  if (profile?.firstName) {
     return (
       <div className="container">
-        <PosNav profile = {profile}/>
         <PosServerProfile profile = {profile}/>
       </div>
     );
