@@ -37,51 +37,56 @@ function PosNav({profile}) {
       </Box>
 
       <Grid
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          width: 'fit-content',
-          justifyContent: 'space-evenly',
-          width: '100vw'
-        }}
+        container
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+        sx={{py: 2, px: 2 }}  
       >
-      <Grid>
-        <Button
-          size="large"
-          style={{ backgroundColor: '#f2f4f3', color: 'black' }}
-          href='/pos/orders'
-        >
-          All Orders
-        </Button>
-        <Button
-          size="large"
-          style={{ backgroundColor: '#7ca6f3', color: 'black' }}
-          href='/pos/tips'
-        >
-          Your Tips
-        </Button>
-        <Button
-          size="large"
-          style={{ backgroundColor: '#2fa6f3', color: 'black' }}
-          href='/pos/profile'
-        >
-          YOUR PROFILE
-        </Button>
-        </Grid>
-
-        <Grid>
+        <Grid item xs={6} sm={2}>
           <Button
             size="large"
-            style={{ backgroundColor: '#fce698', color: 'black' }}
+            style={{ width: '100%', backgroundColor: '#f2f4f3', color: 'black' }}
+            href="/pos/orders"
+          >
+            All Orders
+          </Button>
+        </Grid>
+        <Grid item xs={6} sm={2}>
+          <Button
+            size="large"
+            style={{ width: '100%', backgroundColor: '#7ca6f3', color: 'black' }}
+            href="/pos/tips"
+          >
+            Your Tips
+          </Button>
+        </Grid>
+        <Grid item xs={6} sm={2}>
+          <Button
+            size="large"
+            style={{ width: '100%', backgroundColor: '#2fa6f3', color: 'black' }}
+            href="/pos/profile"
+          >
+            YOUR PROFILE
+          </Button>
+        </Grid>
+
+        {/* Row 2 */}
+        <Grid item xs={6} sm={2}>
+          <Button
+            size="large"
+            style={{ width: '100%', backgroundColor: '#fce698', color: 'black' }}
             onClick={() => {
               // Handle the "Start Break" action here
             }}
           >
             Start Break
           </Button>
+        </Grid>
+        <Grid item xs={6} sm={2}>
           <Button
             size="large"
-            style={{ backgroundColor: '#f09850', color: 'black' }}
+            style={{ width: '100%', backgroundColor: '#f09850', color: 'black' }}
             onClick={() => {
               // Handle the "Clock Out" action here
             }}
