@@ -5,7 +5,7 @@ import { Box, Grid, Paper, Typography } from '@mui/material';
 
 function PosServerProfile() {
   return (
-    <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 3 }}>
+    <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 4 }}>
       {/* First Container */}
       <Grid item xs={12} sm={6}>
         <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
