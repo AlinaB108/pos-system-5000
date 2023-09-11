@@ -3,29 +3,14 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_POS } from '../../utils/mutations';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import Time from '../Time/Time';
 
 import { Typography, Button, Grid, Box, Paper } from '@mui/material';
 
-const Time = () => {
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date().toLocaleString());
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  return (
-    <Typography variant="h6" sx={{ p: 3 }} style={{ color: 'white' }}>
-      {currentTime}
-    </Typography>
-  );
-};
 
 const PosLoginKeyPad = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');
+  const [login, { error, data }] = useMutation(LOGIN_POS);
 
   const appendToEmployeeNumber = (number) => {
     const newEmployeeNumber = employeeNumber + number;
@@ -36,12 +21,21 @@ const PosLoginKeyPad = () => {
     setEmployeeNumber('');
   };
 
-  const LoginAttempt = () => {
-    const { loading, data } = useMutation(LOGIN_POS);
 
-    console.log(data)
-    // FIX THE CODE HERE TO GRAB USER ID FROM LOGIN PARAMS
+  const loginAttempt = async () => {
+    // event.preventDefault();
+    const posId = parseInt(employeeNumber)
+    try {
+      const { data } = await login({
+        variables: { 'posId': posId },
+      });
+      console.log(data)
+      Auth.login(data.loginPOS.token);
+    } catch (e) {
+      console.error(e);
+    }                 
   };
+
 
   return (
     <Grid container alignItems="center" justifyContent="center" sx={{ pt: 8 }}>
@@ -50,9 +44,9 @@ const PosLoginKeyPad = () => {
           <Typography variant="h5" sx={{ p: 3, color: 'white' }}>
             Enter Your Employee Number:
           </Typography>
-          <Paper className="numpadback" sx={{ p: 3, bgcolor: 'background.paper2'}}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',}}>
-              <input type="text" value={employeeNumber} readOnly style={{ fontSize: '1.5rem', padding: '8px', width: '100%' }}/>
+          <Paper className="numpadback" sx={{ p: 3, bgcolor: 'background.paper2' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', }}>
+              <input type="text" value={employeeNumber} readOnly style={{ fontSize: '1.5rem', padding: '8px', width: '100%' }} />
               <Grid container spacing={2} className="keypad">
                 <Grid item xs={4}>
                   <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('1')}>1</Button>
@@ -88,13 +82,14 @@ const PosLoginKeyPad = () => {
                   <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('0')}>0</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" color="success" sx={{ width: "100%", height: '4.5rem' }}>GO</Button>
+                 
+                  <Button variant="contained" size="large" color="success" sx={{ width: "100%", height: '4.5rem' }} onClick={() => loginAttempt()}>GO</Button>
                 </Grid>
               </Grid>
             </Box>
           </Paper>
           {/* Added current time */}
-          <Time/>
+          <Time />
         </Box>
       </Grid>
     </Grid>

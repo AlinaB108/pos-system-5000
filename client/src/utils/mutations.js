@@ -33,6 +33,10 @@ export const UPDATE_TABLE = gql`
     updateTable(tableNum: $tableNum, order: $order, orderStatus: $orderStatus, tip: $tip, tableStatus: $tableStatus) {
       _id
       date
+      orderStatus
+      tableNum
+      tableStatus
+      tip
       order {
         _id
         item
@@ -45,57 +49,17 @@ export const UPDATE_TABLE = gql`
           name
         }
       }
-      orderStatus
-      tableNum
-      tableStatus
-      tip
     }
   }
 `;
 
 export const LOGIN_POS = gql`
-mutation LoginPOS($posId: Int!) {
+mutation Mutation($posId: Int!) {
   loginPOS(posID: $posId) {
     employeePOS {
-      _id
       firstName
       lastName
-      email
-      password
-      posID
-      roles {
-        _id
-        name
-        hourlyRate
-      }
-      tables {
-        _id
-        tableNum
-        order {
-          _id
-          item
-          price
-          ingredients
-          inStock
-          quantity
-          category {
-            _id
-            name
-          }
-        }
-        orderStatus
-        tip
-        date
-        tableStatus
-      }
-      shifts {
-        _id
-        date
-        clockIn
-        clockOut
-        breakStart
-        breakEnd
-      }
     }
+    token
   }
 }`
