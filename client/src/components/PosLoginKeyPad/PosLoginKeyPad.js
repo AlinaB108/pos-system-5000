@@ -37,6 +37,7 @@ const PosLoginKeyPad = () => {
     setEmployeeNumber('');
   };
 
+
   const LoginAttempt = async () => {
     // event.preventDefault();
     const posId = parseInt(employeeNumber)
@@ -50,6 +51,7 @@ const PosLoginKeyPad = () => {
       console.error(e);
     }
   };
+
 
   return (
     <Grid container alignItems="center" justifyContent="center" sx={{ pt: 8 }}>
@@ -96,7 +98,7 @@ const PosLoginKeyPad = () => {
                   <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('0')}>0</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" color="success" sx={{ width: "100%", height: '4.5rem' }} onClick={() => LoginAttempt()}>GO</Button>
+                  {/* <Button variant="contained" size="large" color="success" sx={{ width: "100%", height: '4.5rem' }} onClick={loginAttempt}>GO</Button> */}
                 </Grid>
               </Grid>
             </Box>
