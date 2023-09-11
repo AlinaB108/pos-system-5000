@@ -33,6 +33,10 @@ export const UPDATE_TABLE = gql`
     updateTable(tableNum: $tableNum, order: $order, orderStatus: $orderStatus, tip: $tip, tableStatus: $tableStatus) {
       _id
       date
+      orderStatus
+      tableNum
+      tableStatus
+      tip
       order {
         _id
         item
@@ -45,10 +49,6 @@ export const UPDATE_TABLE = gql`
           name
         }
       }
-      orderStatus
-      tableNum
-      tableStatus
-      tip
     }
   }
 `;
@@ -71,6 +71,10 @@ mutation LoginPOS($posId: Int!) {
       tables {
         _id
         tableNum
+        orderStatus
+        tip
+        date
+        tableStatus
         order {
           _id
           item
@@ -83,10 +87,6 @@ mutation LoginPOS($posId: Int!) {
             name
           }
         }
-        orderStatus
-        tip
-        date
-        tableStatus
       }
       shifts {
         _id

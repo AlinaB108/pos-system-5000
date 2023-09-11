@@ -26,6 +26,7 @@ const Time = () => {
 
 const PosLoginKeyPad = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');
+  const [login, { error, data }] = useMutation(LOGIN_POS);
 
   const appendToEmployeeNumber = (number) => {
     const newEmployeeNumber = employeeNumber + number;
@@ -36,11 +37,18 @@ const PosLoginKeyPad = () => {
     setEmployeeNumber('');
   };
 
-  const LoginAttempt = () => {
-    const { loading, data } = useMutation(LOGIN_POS);
-
-    console.log(data)
-    // FIX THE CODE HERE TO GRAB USER ID FROM LOGIN PARAMS
+  const LoginAttempt = async () => {
+    // event.preventDefault();
+    const posId = parseInt(employeeNumber)
+    try {
+      const { data } = await login({
+        variables: { 'posId': posId },
+      });
+      console.log(data)
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -50,9 +58,9 @@ const PosLoginKeyPad = () => {
           <Typography variant="h5" sx={{ p: 3, color: 'white' }}>
             Enter Your Employee Number:
           </Typography>
-          <Paper className="numpadback" sx={{ p: 3, bgcolor: 'background.paper2'}}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',}}>
-              <input type="text" value={employeeNumber} readOnly style={{ fontSize: '1.5rem', padding: '8px', width: '100%' }}/>
+          <Paper className="numpadback" sx={{ p: 3, bgcolor: 'background.paper2' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', }}>
+              <input type="text" value={employeeNumber} readOnly style={{ fontSize: '1.5rem', padding: '8px', width: '100%' }} />
               <Grid container spacing={2} className="keypad">
                 <Grid item xs={4}>
                   <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('1')}>1</Button>
@@ -94,7 +102,7 @@ const PosLoginKeyPad = () => {
             </Box>
           </Paper>
           {/* Added current time */}
-          <Time/>
+          <Time />
         </Box>
       </Grid>
     </Grid>
