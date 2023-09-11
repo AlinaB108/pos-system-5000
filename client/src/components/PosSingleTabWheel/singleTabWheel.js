@@ -7,11 +7,21 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import { experimentalStyled as styled } from '@mui/material/styles'
 import "./singleTabWheel.css"
+import { QUERY_ALL_MENU } from "../../utils/queries";
 
 
 function RenderWheel() {
     const [value, setValue] = React.useState(0);
 
+    const { loading, data } = useQuery(QUERY_ALL_MENU);
+    console.log(data)
+    const menuItems = data?.menuItems || {};
+    console.log(menuItems)
+
+    if (loading) {
+        // RETURNS A LOADING SCREEN IF DATA LOADING
+        return <div>Loading...</div>;
+    }
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
