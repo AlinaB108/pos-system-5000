@@ -54,48 +54,12 @@ export const UPDATE_TABLE = gql`
 `;
 
 export const LOGIN_POS = gql`
-mutation LoginPOS($posId: Int!) {
+mutation Mutation($posId: Int!) {
   loginPOS(posID: $posId) {
     employeePOS {
-      _id
       firstName
       lastName
-      email
-      password
-      posID
-      roles {
-        _id
-        name
-        hourlyRate
-      }
-      tables {
-        _id
-        tableNum
-        orderStatus
-        tip
-        date
-        tableStatus
-        order {
-          _id
-          item
-          price
-          ingredients
-          inStock
-          quantity
-          category {
-            _id
-            name
-          }
-        }
-      }
-      shifts {
-        _id
-        date
-        clockIn
-        clockOut
-        breakStart
-        breakEnd
-      }
     }
+    token
   }
 }`

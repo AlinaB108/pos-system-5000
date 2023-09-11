@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import Time from '../Time/Time';
+import Auth from '../../utils/auth';
 import { AppBar, Box, Typography, Button, Grid } from '@mui/material';
 // Not used but might need later(?)
 import { Toolbar, IconButton, Menu, MenuIcon, Container, Avatar, Tooltip, MenuItem, AdbIcon } from '@mui/material';
@@ -7,46 +9,7 @@ import { Toolbar, IconButton, Menu, MenuIcon, Container, Avatar, Tooltip, MenuIt
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function PosNav() {
-  // BELOW IS CODE FOR DROP DOWN MENUS IF NEEDED!! vvv
-  // const [anchorElNav, setAnchorElNav] = useState(null);
-  // const [anchorElUser, setAnchorElUser] = useState(null);
-
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
-
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
-
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
-
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
-  // DROP DOWN MENU CODE ^^
-
-  const Time = () => {
-    const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
-
-    useEffect(() => {
-      const intervalId = setInterval(() => {
-        setCurrentTime(new Date().toLocaleString());
-      }, 1000);
-
-      return () => clearInterval(intervalId);
-    }, []);
-
-    return (
-      <Typography variant="h5" sx={{ p: 1 }}>
-        {currentTime}
-      </Typography>
-    );
-  };
-
+function PosNav({profile}) {
   return (
     <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
       <Grid container alignItems="center" justifyContent="space-between" sx={{ px: 2, mt: 1.5 }}>
@@ -61,15 +24,15 @@ function PosNav() {
           <Time />
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button variant="contained" href="/pos" color="error" size="large">
+          <Button variant="contained" href="/pos" color="error" size="large" onClick={Auth.logout}>
             EXIT
           </Button>
         </Grid>
       </Grid>
-
+    
       <Box sx={{ justifyContent: 'center', margin: 'auto' }}>
         <Typography variant="h5">
-          Welcome John! You are a SERVER today!
+          Welcome {profile.firstName}! You are a {profile.roles[0].name} today!
         </Typography>
       </Box>
 
