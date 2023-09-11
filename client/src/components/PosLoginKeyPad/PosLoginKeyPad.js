@@ -3,21 +3,8 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_POS } from '../../utils/mutations';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import './PosLoginKeypad.css';
 
 import { Typography, Button, Grid, Box, Paper } from '@mui/material';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#f2f4f3', // Change this to your desired primary color
-    },
-    secondary: {
-      main: '#f50057', // Change this to your desired secondary color
-    },
-  },
-});
 
 const Time = () => {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
@@ -57,52 +44,51 @@ const PosLoginKeyPad = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
     <Grid container alignItems="center" justifyContent="center" sx={{ pt: 8 }}>
       <Grid item xs={12} md={8} lg={6}>
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Typography variant="h5" sx={{ p: 3 }} style={{ color: 'white' }}>
+          <Typography variant="h5" sx={{ p: 3, color: 'white' }}>
             Enter Your Employee Number:
           </Typography>
-          <Paper className="numpadback" sx={{ p: 3 }} style={{backgroundColor:"#d4e1f1"}}>
+          <Paper className="numpadback" sx={{ p: 3, bgcolor: 'background.paper2'}}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',}}>
               <input type="text" value={employeeNumber} readOnly style={{ fontSize: '1.5rem', padding: '8px', width: '100%' }}/>
               <Grid container spacing={2} className="keypad">
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('1')}>1</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('1')}>1</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('2')}>2</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('2')}>2</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('3')}>3</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('3')}>3</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('4')}>4</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('4')}>4</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('5')}>5</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('5')}>5</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('6')}>6</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('6')}>6</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('7')}>7</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('7')}>7</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('8')}>8</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('8')}>8</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('9')}>9</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('9')}>9</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" color="error" onClick={() => clearLoginAttempt()}>CLEAR</Button>
+                  <Button variant="contained" size="large" color="error" sx={{ width: "100%", height: '4.5rem' }} onClick={() => clearLoginAttempt()}>CLEAR</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" onClick={() => appendToEmployeeNumber('0')}>0</Button>
+                  <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('0')}>0</Button>
                 </Grid>
                 <Grid item xs={4}>
-                  <Button variant="contained" size="large" className="padBtn" color="success" onClick={() => LoginAttempt()}>GO</Button>
+                  <Button variant="contained" size="large" color="success" sx={{ width: "100%", height: '4.5rem' }} onClick={loginAttempt}>GO</Button>
                 </Grid>
               </Grid>
             </Box>
@@ -112,7 +98,6 @@ const PosLoginKeyPad = () => {
         </Box>
       </Grid>
     </Grid>
-    </ThemeProvider>
   );
 };
 

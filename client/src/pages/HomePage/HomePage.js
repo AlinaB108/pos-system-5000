@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer.js";
 
 const HomePage = () => {
   return (
-    <div className="container">
+    <div className="container" style={{ backgroundColor: '#f2f4f3' }}>
       <Nav />
       <About />
       <Menu />
