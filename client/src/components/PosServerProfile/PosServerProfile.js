@@ -5,10 +5,10 @@ import { Box, Grid, Paper, Typography } from '@mui/material';
 
 function PosServerProfile() {
   return (
-    <Grid container justifyContent="center" alignItems="center" sx={{ mt: 3 }}>
+    <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 3 }}>
       {/* First Container */}
       <Grid item xs={12} sm={6}>
-        <Grid container justifyContent="center" alignItems="stretch" height='70vh'>
+        <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
           <Grid item xs={11}>
             <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
               OPEN MENUS
@@ -68,9 +68,9 @@ function PosServerProfile() {
       </Grid>
 
       {/* Second Container */}
-      <Grid item xs={12} sm={6}>
-        <Grid container justifyContent="center" alignItems="stretch" height='70vh'>
-          <Grid item xs={6} sm={6}>
+      <Grid item xs={12} sm={6} sx={{ pl: 2}}> 
+        <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
+          <Grid item xs={12} sm={6} sx={{ pb: 2}}>
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                 Coworkers
@@ -83,7 +83,7 @@ function PosServerProfile() {
             </Paper>
           </Grid>
 
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={12} sm={6} sx={{ pb: 2}}>
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                 Sections
