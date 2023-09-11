@@ -3,26 +3,10 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_POS } from '../../utils/mutations';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import Time from '../Time/Time';
 
 import { Typography, Button, Grid, Box, Paper } from '@mui/material';
 
-const Time = () => {
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date().toLocaleString());
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  return (
-    <Typography variant="h6" sx={{ p: 3 }} style={{ color: 'white' }}>
-      {currentTime}
-    </Typography>
-  );
-};
 
 const PosLoginKeyPad = () => {
   const [employeeNumber, setEmployeeNumber] = useState('');
@@ -46,10 +30,10 @@ const PosLoginKeyPad = () => {
         variables: { 'posId': posId },
       });
       console.log(data)
-      Auth.login(data.login.token);
+      Auth.login(data.loginPOS.token);
     } catch (e) {
       console.error(e);
-    }
+    }                 
   };
 
 
