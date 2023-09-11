@@ -19,33 +19,29 @@ function RenderWheel() {
         setValue(id);
     }
     return (
-    <Grid columns={2} sx={5} border={'solid'} borderColor={'pink'} width={'50%'} height={"45%"} position={"absolute"} top={'12%'} left={'42%'}>
-      <Box container border={'solid'} borderColor={"yellow"} position='absolute' top='10%' left={'5%'} sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+    <Grid columns={2} sx={5} border={'solid'} borderColor={'teal'} width={'55%'} height={"45%"} position={"absolute"} top={'18%'} left={'42%'}>
+    <Box container border={'solid'} borderColor={"yellow"} backgroundColor='white' position='absolute' top='10%' left={'8%'} sx={{ maxWidth: { xs: 320, sm: 480 } }} >
         <Tabs
+            textColor="black"
             value={value}
             onChange={handleChange}
             variant="scrollable"
             orientation="vertical"
             scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
+            aria-label="Order Selector"
         >
         <Tab className={value === 0 ? 'tabs active-tabs' : 'tabs'}
             onClick={() => toggleTab(0)} label="Beverages" />
         <Tab className={value === 1 ? 'tabs active-tabs' : 'tabs'}
-            onClick={() => toggleTab(1)} label="Entrees" />
+            onClick={() => toggleTab(1)} label="appetizers" />
         <Tab className={value === 2 ? 'tabs active-tabs' : 'tabs'} 
-            onClick={() => toggleTab(2)} label="Item Three" />
+            onClick={() => toggleTab(2)} label="Entrees" />
         <Tab className={value === 4 ? 'tabs active-tabs' : 'tabs'} 
-            onClick={() => toggleTab(4)} label="Item Four" />
-        <Tab className={value === 5 ? 'tabs active-tabs' : 'tabs'}
-            onClick={() => toggleTab(5)} label="Item Five" />
-        <Tab className={value === 6 ? 'tabs active-tabs' : 'tabs'}
-            onClick={() => toggleTab(6)} label="Item Six" />
+            onClick={() => toggleTab(4)} label="Desserts" />
         </Tabs>
-      </Box>
-      <Box paddingBottom={'40%'} position={"absolute"} left={'20%'} top={'10%'} height={'5%'} width={'70%'} border={'solid'} borderColor={'green'}>
-
-      </Box>
+    </Box>
+        <Box paddingBottom={'40%'} position={"absolute"} left={'21%'} top={'2%'} height={'fit-content'} width={'75%'} border={'solid'} backgroundColor='white' borderColor={'green'}>
+        </Box>
      </Grid>
         );
       }
