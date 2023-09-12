@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { QUERY_ALL_MENU } from "../../utils/queries";
+import SingleOrderNav from "../SingleOrderNav/SingleOrderNav";
 
 
 function SingleOrder({tableOrder}) {
@@ -11,7 +12,7 @@ function SingleOrder({tableOrder}) {
   
   tableOrder.order.map((item) => {
 
-    existingOrder.push(item.item)
+    existingOrder.push(item)
   });
 
   const [FoodStuff, setFoodStuff] = useState(existingOrder);
@@ -53,12 +54,11 @@ function SingleOrder({tableOrder}) {
         break;
     }
     const currentItems = menuItems.filter((item) => {
-      console.log(catName);
       return item.category[0].name === catName;
     });
     return currentItems;
   }
-
+  console.log(FoodStuff);
   return (
     <Grid container justifyContent="center" sx={{ mt: 4}}>
       {/* First Container */}
@@ -71,7 +71,7 @@ function SingleOrder({tableOrder}) {
           <ul>
             {
           FoodStuff.map((item) => {
-            return <li>{item}</li>
+            return <li>{item.item}</li>
           }
         )
             }
@@ -126,8 +126,8 @@ function SingleOrder({tableOrder}) {
             <Grid container justifyContent="center" alignItems="center">
               {deez().map((item, index) => (
             <Button variant='menubtn'  key={index}onClick={() =>{
-              setFoodStuff([...FoodStuff, item.item]) 
-            console.log(FoodStuff);}}
+              setFoodStuff([...FoodStuff, item]) 
+           }}
             sx={{ p: 2, m:0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center'  }}>
             {item.item}
             </Button>
@@ -135,6 +135,10 @@ function SingleOrder({tableOrder}) {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid item position='absolute' bottom={0}>
+        <SingleOrderNav tableNum = {tableOrder.tableNum} order = {FoodStuff} />
+
       </Grid>
     </Grid>
   );
