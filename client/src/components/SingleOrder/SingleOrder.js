@@ -1,11 +1,10 @@
-import { Typography, Button, Grid, Paper } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Typography, Tabs, Tab, Button, Grid, Box, Paper, createTheme, ThemeProvider,
+} from "@mui/material";
+import React, { useState, useEffect, toggleState } from "react";
 import { useQuery } from "@apollo/client";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "../SingleOrderNav/SingleOrderNav";
-
 
 function SingleOrder({tableOrder}) {
   const existingOrder = [];
@@ -20,7 +19,7 @@ function SingleOrder({tableOrder}) {
   
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
-  
+
   if (loading) {
     // RETURNS A LOADING SCREEN IF DATA LOADING
     return <div>Loading...</div>;
@@ -30,6 +29,7 @@ function SingleOrder({tableOrder}) {
     setValue(newValue);
     event.preventDefault();
   };
+
   var catName = "Beverages";
   const toggleTab = (id) => {
     setValue(id);
@@ -60,22 +60,21 @@ function SingleOrder({tableOrder}) {
   }
   console.log(FoodStuff);
   return (
-    <Grid container justifyContent="center" sx={{ mt: 4}}>
+    <Grid container justifyContent="center" sx={{ mt: 4 }}>
       {/* First Container */}
-      <Grid item xs={12} sm={5} sx={{ px:5 }} height="fit-content">  
+      <Grid item xs={12} sm={5} sx={{ px: 5 }} height="fit-content">
         <Paper>
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
             Table {tableOrder.tableNum}
           </Typography>
           <Grid item xs={6} sx={{ p: 2 }}>
-          <ul>
-            {
-          FoodStuff.map((item) => {
-            return <li>{item.item}</li>
-          }
-        )
-            }
-          </ul>
+            <ul>
+              {
+                FoodStuff.map((item) => {
+                  return <li>{item}</li>
+                })
+              }
+            </ul>
           </Grid>
         </Paper>
       </Grid>
@@ -84,7 +83,7 @@ function SingleOrder({tableOrder}) {
       <Grid item xs={12} sm={7}>
         <Grid container>
           {/* Wheel */}
-          <Grid item xs={12} sm={4} sx={{ p:1 }}>
+          <Grid item xs={12} sm={4} sx={{ p: 1 }}>
             <Tabs
               textColor="black"
               value={value}
@@ -93,31 +92,31 @@ function SingleOrder({tableOrder}) {
               orientation="vertical"
               scrollButtons="auto"
               aria-label="Order Selector"
-              
+
             >
               <Tab
                 className={value === 0 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(0)}
                 label="Beverages"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
               />
               <Tab
                 className={value === 1 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(1)}
                 label="Appetizers"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
               />
               <Tab
                 className={value === 2 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(2)}
                 label="Entrees"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
               />
               <Tab
                 className={value === 3 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(3)}
                 label="Desserts"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
               />
             </Tabs>
           </Grid>
@@ -125,12 +124,13 @@ function SingleOrder({tableOrder}) {
           <Grid item xs={12} sm={8}>
             <Grid container justifyContent="center" alignItems="center">
               {deez().map((item, index) => (
-            <Button variant='menubtn'  key={index}onClick={() =>{
-              setFoodStuff([...FoodStuff, item]) 
-           }}
-            sx={{ p: 2, m:0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center'  }}>
-            {item.item}
-            </Button>
+                <Button variant='menubtn' key={index} onClick={() => {
+                  setFoodStuff([...FoodStuff, item.item])
+                  console.log(FoodStuff);
+                }}
+                  sx={{ p: 2, m: 0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center' }}>
+                  {item.item}
+                </Button>
               ))}
             </Grid>
           </Grid>

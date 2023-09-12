@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Grid, Paper, Typography } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Box, Grid, Button, Input, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
 
 function PosServerProfile({ profile }) {
+  var inputBoolean = 'none';
+
   var allTables = profile.tables
   function deez2(order) {
     var totalPrice = 0
@@ -42,7 +43,6 @@ function PosServerProfile({ profile }) {
               }
             </Grid>
           </Grid>
-          <Button textAlign='center' href="/pos/order">NEW ORDER</Button>
         </Grid>
       </Grid>
 
@@ -52,27 +52,74 @@ function PosServerProfile({ profile }) {
           <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-                Coworkers
+                New Table Info
               </Typography>
               <Grid sx={{ p: 2 }} style={{ overflowY: 'auto' }}>
-                <p>You</p>
-                <p>Not You</p>
-                <p>Not You x2</p>
+                {/* FIX THESE BUTTONS */}
+                <Button textAlign='center'>Table Number</Button>
+                <Button textAlign='center'>Guest Count</Button>
+                {/* FIX THESE BUTTONS */}
+              </Grid>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
+            <Paper sx={{ marginRight: '20px' }}>
+              <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+                New Table Info
+              </Typography>
+              <Grid sx={{ p: 2 }} style={{ overflowY: 'auto' }}>
+                {/* FIX THESE BUTTONS */}
+                <Button textAlign='center'>SHOW YOU YOUR INPUT HERE</Button>
+                <Button textAlign='center'>SHOW YOU YOUR INPUT HERE</Button>
+                <Button textAlign='center' href="/pos/order">NEW ORDER</Button>
+                {/* FIX THESE BUTTONS */}
               </Grid>
             </Paper>
           </Grid>
 
           <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
+            {/* KEYPAD FUNCTIONALITY MISSINGvv */}
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-                Sections
+                Input
               </Typography>
               <Grid sx={{ p: 2 }} style={{ overflowY: 'auto' }}>
-                <p>20,21,22</p>
-                <p>30,31,32</p>
-                <p>40,41,42</p>
+                <Grid container spacing={2} className="keypad">
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">1</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">2</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">3</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">4</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">5</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">6</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">7</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">8</Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">9</Button>
+                  </Grid>
+                  <Grid item xs={4} />
+                  <Grid item xs={4}>
+                    <Button variant="numpad" size="large">0</Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Paper>
+            {/* KEYPAD ^^ */}
           </Grid>
         </Grid>
       </Grid>
