@@ -1,5 +1,4 @@
-import { Typography, Button, Grid, Box, Paper, createTheme, ThemeProvider,
-} from "@mui/material";
+import { Typography, Button, Grid, Paper } from "@mui/material";
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import Tabs from "@mui/material/Tabs";
