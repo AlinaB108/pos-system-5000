@@ -4,13 +4,14 @@ import {
 import React, { useState, useEffect, toggleState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_MENU } from "../../utils/queries";
+import SingleOrderNav from "../SingleOrderNav/SingleOrderNav";
 
 function SingleOrder({tableOrder}) {
   const existingOrder = [];
   
   tableOrder.order.map((item) => {
 
-    existingOrder.push(item.item)
+    existingOrder.push(item)
   });
 
   const [FoodStuff, setFoodStuff] = useState(existingOrder);
@@ -53,12 +54,11 @@ function SingleOrder({tableOrder}) {
         break;
     }
     const currentItems = menuItems.filter((item) => {
-      console.log(catName);
       return item.category[0].name === catName;
     });
     return currentItems;
   }
-
+  console.log(FoodStuff);
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
       {/* First Container */}
@@ -135,6 +135,10 @@ function SingleOrder({tableOrder}) {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid item position='absolute' bottom={0}>
+        <SingleOrderNav tableNum = {tableOrder.tableNum} order = {FoodStuff} />
+
       </Grid>
     </Grid>
   );
