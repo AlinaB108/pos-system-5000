@@ -59,19 +59,32 @@ const theme = createTheme({
       MuiButton: {
           variants: [
               {
-                  props: { variant: 'numpad', color: 'primary' },
-                  style: {
-                      background: '#f2f4f3',
-                      color: '#000',
-                      width: '100%',
-                      height: '4.5rem',
+                props: { variant: 'numpad', color: 'primary' },
+                style: {
+                    background: '#f2f4f3',
+                    color: '#000',
+                    width: '100%',
+                    height: '4.5rem',
                       // fontFamily: 'nunito',
                       // fontWeight: 'bold',
-                      "&:hover":{
-                          background: 'rgba(252, 230, 152, 0.8)',
-                      }
-                      
-                  }
+                    "&:hover":{
+                        background: 'rgba(252, 230, 152, 0.8)',
+                        }
+                    }
+              },
+              {
+                props: { variant: 'menubtn', color: 'primary' },
+                style: {
+                    background: '#7ca6f3',
+                    color: '#000',
+                    width: '30%',
+                    height: '4.6rem',
+                      // fontFamily: 'nunito',
+                      // fontWeight: 'bold',
+                    "&:hover":{
+                        background: 'rgba(101, 143, 223, 0.8)',
+                        }
+                    }
               },
           ]
       }

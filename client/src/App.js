@@ -19,8 +19,8 @@ import Shift from './pages/Shift/Shift';
 import Orders from './pages/Orders/Orders';
 import Profile from './pages/Profile/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
-import PosMain from './pages/PosMain/PosMain'
-import SingleOrder from './components/SingleOrder/SingleOrder';
+import PosMain from './pages/PosMain/PosMain';
+import Table from './pages/Table/Table';
 // import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
@@ -76,8 +76,8 @@ function App() {
               element={<Profile />}
               />
               <Route
-                path="/pos/order"
-                element={<SingleOrder />}
+                path="/pos/order/:_id"
+                element={<Table />}
               />
               <Route
                 path="/pos/orders"

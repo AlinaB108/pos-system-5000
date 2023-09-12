@@ -1,27 +1,21 @@
-import {
-  Typography,
-  Button,
-  Grid,
-  Box,
-  Paper,
-  createTheme,
-  ThemeProvider,
-} from "@mui/material";
-import React, { useState, useEffect, toggleState } from "react";
+import { Typography, Button, Grid, Paper } from "@mui/material";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 
 
+function SingleOrder({tableOrder}) {
+  const currentItems = [];
+  
+  tableOrder.order.map((item) => {
 
+    currentItems.push(item.item)
+  });
 
-function SingleOrder() {
-  const [FoodStuff, setFoodStuff] = React.useState([]);
-  const [value, setValue] = React.useState(0);
+  const [FoodStuff, setFoodStuff] = useState(currentItems);
+  const [value, setValue] = useState(0);
   
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
@@ -29,15 +23,6 @@ function SingleOrder() {
   if (loading) {
     // RETURNS A LOADING SCREEN IF DATA LOADING
     return <div>Loading...</div>;
-  }
-
-  
-let FoodStuffMap = () =>{
-  
-  return FoodStuff.map((item) => {
-      return <li>{item}</li>
-    }
-  )
   }
 
   const handleChange = (event, newValue) => {
@@ -48,12 +33,6 @@ let FoodStuffMap = () =>{
   const toggleTab = (id) => {
     setValue(id);
   };
-  
-
-  function AppendToOrder() {
-
-
-  }
 
   function deez() {
     switch (value) {
@@ -79,13 +58,16 @@ let FoodStuffMap = () =>{
     });
     return currentItems;
   }
+
   return (
-    <Grid container>
-      <Grid item justifyContent={"center"} xs={6}>
-        <Box>Table Number</Box>
-      </Grid>
-      <Grid>
-        <Box>
+    <Grid container justifyContent="center" sx={{ mt: 4}}>
+      {/* First Container */}
+      <Grid item xs={12} sm={5} sx={{ px:5 }} height="fit-content">  
+        <Paper>
+          <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+            Table {tableOrder.tableNum}
+          </Typography>
+          <Grid item xs={6} sx={{ p: 2 }}>
           <ul>
             {
           FoodStuff.map((item) => {
@@ -93,58 +75,65 @@ let FoodStuffMap = () =>{
           }
         )
             }
-            {/* <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-            <li>Item 5</li> */}
           </ul>
-        </Box>
+          </Grid>
+        </Paper>
       </Grid>
-      <Grid item xs={6} sm={4}>
-        <Tabs
-          textColor="black"
-          value={value}
-          onChange={handleChange}
-          variant="scrollable"
-          orientation="vertical"
-          scrollButtons="auto"
-          aria-label="Order Selector"
-        >
-          <Tab
-            className={value === 0 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(0)}
-            label="Beverages"
-          />
-          <Tab
-            className={value === 1 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(1)}
-            label="Appetizers"
-          />
-          <Tab
-            className={value === 2 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(2)}
-            label="Entrees"
-          />
-          <Tab
-            className={value === 3 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(3)}
-            label="Desserts"
-          />
-        </Tabs>
-      </Grid>
-      <Grid item xs={12} sm={8}>
-        <Grid container justifyContent="center" alignItems="center">
-          {deez().map((item, index) => (
-            
-            <Button key={index}onClick={() =>{
+
+      {/* Second Container */}
+      <Grid item xs={12} sm={7}>
+        <Grid container>
+          {/* Wheel */}
+          <Grid item xs={12} sm={4} sx={{ p:1 }}>
+            <Tabs
+              textColor="black"
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              orientation="vertical"
+              scrollButtons="auto"
+              aria-label="Order Selector"
+              
+            >
+              <Tab
+                className={value === 0 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(0)}
+                label="Beverages"
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+              />
+              <Tab
+                className={value === 1 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(1)}
+                label="Appetizers"
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+              />
+              <Tab
+                className={value === 2 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(2)}
+                label="Entrees"
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+              />
+              <Tab
+                className={value === 3 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(3)}
+                label="Desserts"
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff"}}
+              />
+            </Tabs>
+          </Grid>
+          {/* Items */}
+          <Grid item xs={12} sm={8}>
+            <Grid container justifyContent="center" alignItems="center">
+              {deez().map((item, index) => (
+            <Button variant='menubtn'  key={index}onClick={() =>{
               setFoodStuff([...FoodStuff, item.item]) 
             console.log(FoodStuff);}}
-            sx={{ p: 2 }}>
+            sx={{ p: 2, m:0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center'  }}>
             {item.item}
             </Button>
-            
-          ))}
+              ))}
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
