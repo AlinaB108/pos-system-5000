@@ -10,8 +10,13 @@ export default function Table() {
     const { loading, data } = useQuery(QUERY_TABLE, {
         variables: { "id": id._id },
     });
-    const tableOrder = data?.table || {};
-    console.log(tableOrder);
-
-    return <SingleOrder tableOrder = {tableOrder}/>
+    if(loading){
+        return <div > loading...</div>
+    }else{
+        console.log(data)
+        const tableOrder = data?.table || {};
+        console.log(tableOrder);
+        return <SingleOrder tableOrder = {tableOrder}/>
+    }
+    
 }

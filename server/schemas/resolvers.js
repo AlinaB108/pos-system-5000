@@ -55,7 +55,13 @@ const resolvers = {
     },
     table: async (_, { _id }) => {
       try {
-        return await Table.findById(_id);
+        return await Table.findById(_id).populate({
+          path: 'order', 
+          model: 'Menu',
+          populate: {
+            path: 'category'
+          }
+        });
       } catch (error) {
         throw new Error('Unable to fetch table');
       }
