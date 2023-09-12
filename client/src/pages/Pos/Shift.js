@@ -1,4 +1,4 @@
-import PosNav from '../../components/PosNav/PosNav';
+import PosNav from '../../components/Pos/Nav';
 import { useOutletContext } from "react-router-dom";
 import { Box, Grid, Button, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
 

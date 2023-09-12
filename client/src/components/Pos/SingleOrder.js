@@ -4,7 +4,7 @@ import {
 import React, { useState, useEffect, toggleState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_MENU } from "../../utils/queries";
-import SingleOrderNav from "../SingleOrderNav/SingleOrderNav";
+import SingleOrderNav from "./SingleOrderNav";
 
 function SingleOrder({tableOrder}) {
   const existingOrder = [];
