@@ -13,15 +13,30 @@ const Shift = () => {
     );
   }
   const allRoles = profile.roles
-  function formatFullDate(date) {
-    var result="";
-    var d = date;
-    result += (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear() + 
-              " "+ d.getHours()+":"+d.getMinutes()+":"+
-              d.getSeconds()+" "+d.getMilliseconds();
-    return result;
-  }
-  console.log(profile.shifts[0].clockIn)
+  function convertTimestamp(timestamp) {
+    var d = new Date(timestamp * 1), // Convert the passed timestamp to milliseconds
+        yyyy = d.getFullYear(),
+        mm = ('0' + (d.getMonth() + 1)).slice(-2),  // Months are zero based. Add leading 0.
+        dd = ('0' + d.getDate()).slice(-2),         // Add leading 0.
+        hh = d.getHours(),
+        h = hh,
+        min = ('0' + d.getMinutes()).slice(-2),     // Add leading 0.
+        ampm = 'AM',
+        time;
+
+    if (hh > 12) {
+        h = hh - 12;
+        ampm = 'PM';
+    } else if (hh === 12) {
+        h = 12;
+        ampm = 'PM';
+    } else if (hh == 0) {
+        h = 12;
+    }
+
+    time = mm + '-' + dd + '-' + yyyy + ', ' + h + ':' + min + ' ' + ampm;
+    return time;
+}
   return (
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
             {allRoles.map(role => {
@@ -41,7 +56,7 @@ const Shift = () => {
               <p>Clock In Time</p>
               </Typography>
               <Typography sx={{ pl: 1, pr: 1 }}>
-              <p>{profile.shifts[0].clockIn.toString().padStart(2,0)}</p>
+              <p>{convertTimestamp(profile.shifts[0].clockIn)}</p>
               </Typography>
             </Box>
 
@@ -55,7 +70,7 @@ const Shift = () => {
               <p>Clock Out Time</p>
               </Typography>
               <Typography sx={{ pl: 1, pr: 1 }}>
-              <p>TEST</p>
+              <p>{convertTimestamp(profile.shifts[0].clockOut)}</p>
               </Typography>
             </Box>
 
