@@ -26,8 +26,8 @@ db.once('open', async () => {
     await Shift.deleteMany();
 
     const shifts = await Shift.insertMany([
-        { clockIn: new Date(), clockOut: new Date(), breakStart: null, breakEnd: null },
-        { clockIn: new Date(), clockOut: new Date(), breakStart: null, breakEnd: null },
+        { clockIn: new Date(), clockedIn: false, clockOut: new Date(), breakStart: null, breakEnd: null },
+        { clockIn: new Date(), clockedIn: false, clockOut: new Date(), breakStart: null, breakEnd: null },
         // Add more shifts as needed
     ]);
     

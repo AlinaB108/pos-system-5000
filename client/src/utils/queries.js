@@ -36,6 +36,7 @@ query Employee($id: ID!) {
     shifts {
       _id
       date
+      clockedIn
       clockIn
       clockOut
       breakStart
@@ -120,6 +121,7 @@ query Employees {
     shifts {
       _id
       date
+      clockedIn
       clockIn
       clockOut
       breakStart
@@ -204,6 +206,7 @@ export const ME = gql`query Query {
     shifts {
       _id
       date
+      clockedIn
       clockIn
       clockOut
       breakStart

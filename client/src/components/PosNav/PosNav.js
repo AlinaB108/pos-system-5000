@@ -55,19 +55,10 @@ function PosNav({profile}) {
         <Grid item xs={6} sm={2}>
           <Button
             size="large"
-            style={{ width: '100%', backgroundColor: '#7ca6f3', color: 'black' }}
-            href="/pos/tips"
-          >
-            Your Tips
-          </Button>
-        </Grid>
-        <Grid item xs={6} sm={2}>
-          <Button
-            size="large"
             style={{ width: '100%', backgroundColor: '#2fa6f3', color: 'black' }}
             href="/pos/profile"
           >
-            YOUR PROFILE
+            Home
           </Button>
         </Grid>
 
@@ -80,18 +71,7 @@ function PosNav({profile}) {
               // Handle the "Start Break" action here
             }}
           >
-            Start Break
-          </Button>
-        </Grid>
-        <Grid item xs={6} sm={2}>
-          <Button
-            size="large"
-            style={{ width: '100%', backgroundColor: '#f09850', color: 'black' }}
-            onClick={() => {
-              // Handle the "Clock Out" action here
-            }}
-          >
-            Clock Out
+            Shift
           </Button>
         </Grid>
       </Grid>

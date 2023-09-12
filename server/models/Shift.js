@@ -7,6 +7,11 @@ const shiftSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    clockedIn: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     clockIn: {
         type: Date
     },
