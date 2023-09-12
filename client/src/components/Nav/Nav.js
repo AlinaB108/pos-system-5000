@@ -1,15 +1,7 @@
 import React from "react";
-import { useQuery } from '@apollo/client';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import './Nav.css'
-// Using Material UI
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { AppBar, Box, Toolbar, Typography, Button, Grid } from '@mui/material';
 
 function Nav() {
   function handleLogout() {
@@ -18,24 +10,24 @@ function Nav() {
 
   return (
     <AppBar position="static" style={{ backgroundColor: 'black' }}>
-      <Toolbar>
+      <Toolbar sx={{ my: 3 }}>
         <Typography variant="h5" component={Link} to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           Sapori D'Italia
         </Typography>
-        <div style={{ marginLeft: 'auto' }}>
-          <Box mx={6}>
-            <Button component={Link} to="#About" color="inherit">
-              About
-            </Button>
-            <Button component={Link} to="#Menu" color="inherit">
-              Menu
-            </Button>
-            <Button component={Link} to="#Contact" color="inherit">
-              Contact
-            </Button>
-          </Box>
-        </div> 
-        <div style={{ marginLeft: 'auto' }}>
+          <Grid style={{ marginLeft: 'auto' }}>
+            <Box mx={6}>
+              <Button component="a" href="#About" color="inherit">
+                About
+              </Button>
+              <Button component="a" href="#Menu" color="inherit">
+                Menu
+              </Button>
+              <Button component="a" href="#Contact" color="inherit">
+                Contact
+              </Button>
+            </Box>
+          </Grid>
+        <Grid style={{ marginLeft: 'auto' }}>
           {/* If loggedIn is true Logout button renders */}
           {Auth.loggedIn() ? (
             <Button color="inherit" onClick={handleLogout}>
@@ -51,7 +43,7 @@ function Nav() {
               </Button>
             </>
           )}
-        </div>
+        </Grid>
       </Toolbar>
     </AppBar>
   );
