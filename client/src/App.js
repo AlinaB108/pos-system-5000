@@ -8,19 +8,19 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import HomePage from './pages/HomePage/HomePage';
-import HomeLogin from './pages/HomeLogin/HomeLogin';
-import Signup from './pages/HomeSignup/HomeSignup';
-import NoMatch from './pages/NoMatch/NoMatch';
+import HomePage from './pages/Front/HomePage';
+import HomeLogin from './pages/Front/HomeLogin';
+import Signup from './pages/Front/HomeSignup';
+import NoMatch from './pages/Front/NoMatch';
 // FRONT END WEBSITE ROUTES ^^
 
 // POS APPLICATION ROUTES vv
-import Shift from './pages/Shift/Shift';
-import Orders from './pages/Orders/Orders';
-import Profile from './pages/Profile/Profile';
+import Shift from './pages/Pos/Shift';
+import Orders from './pages/Pos/Orders';
+import Profile from './pages/Pos/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
-import PosMain from './pages/PosMain/PosMain';
-import Table from './pages/Table/Table';
+import PosMain from './pages/Pos/PosMain';
+import Table from './pages/Pos/Table';
 // import Nav from './components/Nav';
 
 const httpLink = createHttpLink({

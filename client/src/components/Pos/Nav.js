@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import Time from '../Time/Time';
+import Time from './Time';
 import Auth from '../../utils/auth';
 import { AppBar, Box, Typography, Button, Grid } from '@mui/material';
 // Not used but might need later(?)

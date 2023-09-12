@@ -1,5 +1,5 @@
 import React from 'react';
-import PosLoginKeyPad from '../PosLoginKeyPad/PosLoginKeyPad';
+import PosLoginKeyPad from '../Pos/LoginKeyPad';
 import { AppBar, Grid, Toolbar, Typography, Button } from '@mui/material';
 
 
