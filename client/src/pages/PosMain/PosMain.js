@@ -15,6 +15,7 @@ export default function PosMain() {
     if (!profile?.firstName) {
         return <Login />
     }
+
     if (loading) {
         // RETURNS A LOADING SCREEN IF DATA LOADING
         return <div>Loading...</div>;
@@ -23,8 +24,8 @@ export default function PosMain() {
     if (Auth.loggedIn()) {
         return (
             <div className="container">
-                <PosNav profile={profile} />
-                <Outlet context ={[profile]}/>
+                <PosNav profile ={profile} />
+                <Outlet context ={[profile]} />
             </div>
         );
     }

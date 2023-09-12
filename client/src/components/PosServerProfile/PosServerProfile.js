@@ -1,18 +1,20 @@
 import React from 'react';
 
 
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+// import { Button } from '@mui/utils';
 // import Button from '@mui/material/Button';
 
-function PosServerProfile() {
+function PosServerProfile(profile) {
   return (
     <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 4 }}>
       {/* First Container */}
       <Grid item xs={12} sm={6}>
         <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
           <Grid item xs={11}>
-            <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+            <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1", justifyContent: 'start' }}>
               OPEN MENUS
+              <Button textAlign='center' href="/pos/order">NEW ORDER</Button>
             </Typography>
             <Grid container justifyContent="center" spacing={3}>
               <Grid item xs={6} sm={6} md={4}>
@@ -21,10 +23,7 @@ function PosServerProfile() {
                     Table 1
                   </Typography>
                   <Typography sx={{ ml: 2 }}>
-                    <p>aaaaaaaaa</p>
-                    <p>aaaaaaaaa</p>
-                    <p>aaaaaaaaa</p>
-                    <p>aaaaaaaaa</p>
+
                   </Typography>
                 </Box>
               </Grid>
@@ -69,9 +68,9 @@ function PosServerProfile() {
       </Grid>
 
       {/* Second Container */}
-      <Grid item xs={12} sm={6} sx={{ pl: 2}}> 
+      <Grid item xs={12} sm={6} sx={{ pl: 2 }}>
         <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
-          <Grid item xs={12} sm={6} sx={{ pb: 2}}>
+          <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                 Coworkers
@@ -84,7 +83,7 @@ function PosServerProfile() {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} sm={6} sx={{ pb: 2}}>
+          <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                 Sections
