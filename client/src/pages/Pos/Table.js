@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_TABLE } from "../../utils/queries";
 import { useParams } from "react-router-dom";
-import SingleOrder from "../../components/SingleOrder/SingleOrder";
+import SingleOrder from "../../components/Pos/SingleOrder";
 
 export default function Table() {
     const id = useParams();

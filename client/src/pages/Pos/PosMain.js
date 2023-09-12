@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Login from '../../components/Login/Login';
-import PosNav from '../../components/PosNav/PosNav';
+import Login from '../../components/Front/Login';
+import PosNav from '../../components/Pos/Nav';
 import { useQuery } from '@apollo/client';
 import { ME } from '../../utils/queries';
 import Auth from "../../utils/auth";

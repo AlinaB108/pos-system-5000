@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_POS } from '../../utils/mutations';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import Time from '../Time/Time';
+import Time from './Time';
 
 import { Typography, Button, Grid, Box, Paper } from '@mui/material';
 
