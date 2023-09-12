@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import { Box, Grid, Button, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
 // import Button from '@mui/material/Button';
 
@@ -42,41 +40,6 @@ function PosServerProfile({ profile }) {
                   </Grid>
                 })
               }
-              {/* <Grid item xs={6} sm={6} md={4}>
-                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                    Table 2
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4}>
-                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                    Table 3
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4}>
-                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                    Table 4
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4}>
-                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                    Table 5
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4}>
-                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                    Table 6
-                  </Typography>
-                </Box>
-              </Grid> */}
             </Grid>
           </Grid>
         </Grid>

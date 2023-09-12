@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 
 const Profile = () => {
   const [profile] = useOutletContext();
+  
   if (!profile?.firstName) {
     return (
       <h4>

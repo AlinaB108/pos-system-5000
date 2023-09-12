@@ -1,4 +1,4 @@
-import { Typography, Button, Grid, Box, Paper, createTheme, ThemeProvider} from "@mui/material";
+import { Typography, Button, Grid, Box, Paper, createTheme, ThemeProvider } from "@mui/material";
 import React, { useState, useEffect, toggleState } from "react";
 import { useQuery } from "@apollo/client";
 import Tabs from '@mui/material/Tabs';
@@ -84,9 +84,6 @@ function RenderWheel() {
      </Grid>
         );
       }
-
-        
-    
 
 
 export default RenderWheel;
