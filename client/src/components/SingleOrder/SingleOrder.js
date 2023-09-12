@@ -16,16 +16,30 @@ import { Link } from "react-router-dom";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 
-function SingleOrder() {
-  const [value, setValue] = React.useState(0);
 
+
+
+function SingleOrder() {
+  const [FoodStuff, setFoodStuff] = React.useState([]);
+  const [value, setValue] = React.useState(0);
+  
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
-
+  
   if (loading) {
     // RETURNS A LOADING SCREEN IF DATA LOADING
     return <div>Loading...</div>;
   }
+
+  
+let FoodStuffMap = () =>{
+  
+  return FoodStuff.map((item) => {
+      return <li>{item}</li>
+    }
+  )
+  }
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
     event.preventDefault();
@@ -34,6 +48,13 @@ function SingleOrder() {
   const toggleTab = (id) => {
     setValue(id);
   };
+  
+
+  function AppendToOrder() {
+
+
+  }
+
   function deez() {
     switch (value) {
       case 0:
@@ -65,13 +86,19 @@ function SingleOrder() {
       </Grid>
       <Grid>
         <Box>
-          <div className="items">
-            <ul>Item 1</ul>
-            <ul>Item 2</ul>
-            <ul>Item 3</ul>
-            <ul>Item 4</ul>
-            <ul>Item 5</ul>
-          </div>
+          <ul>
+            {
+          FoodStuff.map((item) => {
+            return <li>{item}</li>
+          }
+        )
+            }
+            {/* <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li> */}
+          </ul>
         </Box>
       </Grid>
       <Grid item xs={6} sm={4}>
@@ -109,9 +136,14 @@ function SingleOrder() {
       <Grid item xs={12} sm={8}>
         <Grid container justifyContent="center" alignItems="center">
           {deez().map((item, index) => (
-            <Button key={index} sx={{ p: 2 }}>
-              {item.item}
+            
+            <Button key={index}onClick={() =>{
+              setFoodStuff([...FoodStuff, item.item]) 
+            console.log(FoodStuff);}}
+            sx={{ p: 2 }}>
+            {item.item}
             </Button>
+            
           ))}
         </Grid>
       </Grid>
