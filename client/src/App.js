@@ -20,7 +20,7 @@ import Orders from './pages/Orders/Orders';
 import Profile from './pages/Profile/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
 import PosMain from './pages/PosMain/PosMain'
-import SingleOrder from './pages/SingleOrder/SingleOrder';
+import SingleOrder from './components/SingleOrder/SingleOrder';
 // import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
