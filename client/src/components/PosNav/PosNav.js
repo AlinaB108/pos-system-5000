@@ -67,9 +67,7 @@ function PosNav({profile}) {
           <Button
             size="large"
             style={{ width: '100%', backgroundColor: '#fce698', color: 'black' }}
-            onClick={() => {
-              // Handle the "Start Break" action here
-            }}
+            href="/pos/shift"
           >
             Shift
           </Button>
