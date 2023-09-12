@@ -2,17 +2,7 @@ import React from 'react';
 import { Box, Grid, Button, Input, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
 
 function PosServerProfile({ profile }) {
-  const [InputBoolean, setInputBoolean] = React.useState('none');
-
-  const inpBool = () => {
-    if (InputBoolean = 'block') {
-      setInputBoolean('none');
-      return;
-    } else {
-      setInputBoolean('block');
-      return;
-    };
-  };
+  var inputBoolean = 'none';
 
   var allTables = profile.tables
   function deez2(order) {
@@ -65,16 +55,31 @@ function PosServerProfile({ profile }) {
                 New Table Info
               </Typography>
               <Grid sx={{ p: 2 }} style={{ overflowY: 'auto' }}>
-                <Button textAlign='center' onClick={() => inpBool()}>Table Number</Button>
-
-                <Button textAlign='center' onClick={() => inpBool()}>Guest Count</Button>
+                {/* FIX THESE BUTTONS */}
+                <Button textAlign='center'>Table Number</Button>
+                <Button textAlign='center'>Guest Count</Button>
+                {/* FIX THESE BUTTONS */}
+              </Grid>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
+            <Paper sx={{ marginRight: '20px' }}>
+              <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+                New Table Info
+              </Typography>
+              <Grid sx={{ p: 2 }} style={{ overflowY: 'auto' }}>
+                {/* FIX THESE BUTTONS */}
+                <Button textAlign='center'>SHOW YOU YOUR INPUT HERE</Button>
+                <Button textAlign='center'>SHOW YOU YOUR INPUT HERE</Button>
                 <Button textAlign='center' href="/pos/order">NEW ORDER</Button>
+                {/* FIX THESE BUTTONS */}
               </Grid>
             </Paper>
           </Grid>
 
           <Grid item xs={12} sm={6} sx={{ pb: 2 }}>
-            <Paper sx={{ marginRight: '20px', display: InputBoolean }}>
+            {/* KEYPAD FUNCTIONALITY MISSINGvv */}
+            <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                 Input
               </Typography>
@@ -114,6 +119,7 @@ function PosServerProfile({ profile }) {
                 </Grid>
               </Grid>
             </Paper>
+            {/* KEYPAD ^^ */}
           </Grid>
         </Grid>
       </Grid>
