@@ -21,7 +21,13 @@ const resolvers = {
     },    
 
     tables: async () => {
-      return await Table.find();
+      return await Table.find().populate({
+          path: 'order', 
+          model: 'Menu',
+          populate: {
+            path: 'category'
+          }
+        });
     },
 
     // FIND ONE

@@ -5,20 +5,22 @@ export const ADD_SHIFT = gql`
   mutation Mutation($clockIn: String!, $clockOut: String, $breakStart: String, $breakEnd: String) {
     addShift(clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
       _id
-      breakEnd
-      breakStart
+      date
+      clockedIn
       clockIn
       clockOut
-      date
+      breakStart
+      breakEnd
     }
   }
 `;
 
 export const UPDATE_SHIFT = gql`
-  mutation Mutation($id: ID!, $clockIn: String, $clockOut: String, $breakStart: String, $breakEnd: String) {
-    updateShift(_id: $id, clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
+  mutation Mutation($id: ID!, $clockedIn: Boolean, $clockIn: String, $clockOut: String, $breakStart: String, $breakEnd: String) {
+    updateShift(_id: $id, clockedIn: $clockedIn, clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
       _id
       date
+      clockedIn
       clockIn
       clockOut
       breakStart

@@ -1,34 +1,32 @@
 import React from 'react';
+import { Box, Grid, Button, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
 
 const OrderList = ({ tables }) => {
   console.log(tables)
   if (!tables.length) {
     return <h3>No Orders Yet</h3>;
   }
-// TODO: MAKE SURE THIS WORKS!!!
+
   return (
     <div>
-      {tables &&
-        tables.map((table) => (
-          <div key={table._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              {table.tableNum} <br />
-              <span style={{ fontSize: '1rem' }}>
-                Placed: {table.date}
-              </span>
-            </h4>
-            <div className="card-body bg-light p-2">
-              {table.orders &&
-                table.orders.map((order) => (
-                  <div key={order._id} className="card mb-3">
-                    <p>{order.item}</p> <br />
-                    <p>{order.price}</p> <br />
-                    <p>{order.category.name}</p> <br />
-                  </div>
-                ))}
-            </div>
-          </div>
-        ))}
+      {tables.map(table => {
+        return <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
+            <Button>
+              <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                  Table #{table.tableNum}
+                </Typography>
+                <Typography sx={{ pl: 1, pr: 1 }}>
+                  {table.order.map(item => {
+                    return <div key={item._id} className="card mb-3">
+                      <p>${item.price} {item.item}</p>
+                    </div>
+                  })}
+                </Typography>
+              </Box>
+            </Button>
+        </Grid>
+      })}
     </div>
   );
 };

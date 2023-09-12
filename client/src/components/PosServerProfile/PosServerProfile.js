@@ -6,12 +6,12 @@ function PosServerProfile({ profile }) {
   var allTables = profile.tables
   function deez2(order) {
     var totalPrice = 0
-    for(let i = 0; i < order.length; i++) {
+    for (let i = 0; i < order.length; i++) {
       totalPrice += order[i].price
-    } 
+    }
     console.log(totalPrice)
     return totalPrice.toFixed(2)
-    
+
   }
   return (
     <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 4 }}>
@@ -42,6 +42,7 @@ function PosServerProfile({ profile }) {
               }
             </Grid>
           </Grid>
+          <Button textAlign='center' href="/pos/order">NEW ORDER</Button>
         </Grid>
       </Grid>
 

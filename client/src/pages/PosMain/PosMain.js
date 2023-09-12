@@ -8,9 +8,7 @@ import Auth from "../../utils/auth";
 
 export default function PosMain() {
     const { loading, data } = useQuery(ME);
-    console.log(data)
     const profile = data?.me || {};
-    console.log(profile)
 
     if (!profile?.firstName) {
         return <Login />
