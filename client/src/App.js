@@ -15,7 +15,7 @@ import NoMatch from './pages/NoMatch/NoMatch';
 // FRONT END WEBSITE ROUTES ^^
 
 // POS APPLICATION ROUTES vv
-import Tips from './pages/Tips/Tips';
+import Shift from './pages/Shift/Shift';
 import Orders from './pages/Orders/Orders';
 import Profile from './pages/Profile/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
@@ -84,8 +84,8 @@ function App() {
                 element={<Orders />}
               />
               <Route
-                path="/pos/tips"
-                element={<Tips />}
+                path="/pos/shift"
+                element={<Shift />}
               />
             </Route>
           </Routes>
