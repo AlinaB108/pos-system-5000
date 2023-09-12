@@ -25,7 +25,7 @@ const theme = createTheme({
           primary: '#000',
           secondary: '#fff',
           darkBlue: '#23296c'
-      }
+      },
   },
   components: {
       // MuiLink: {
@@ -123,6 +123,10 @@ const theme = createTheme({
       // }
       h5: {
         color: '#23296c'
+        // Will add fonts later
+      },
+      h6: {
+        color: '#000'
         // Will add fonts later
       }
   }
