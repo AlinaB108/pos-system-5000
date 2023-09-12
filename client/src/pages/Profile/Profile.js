@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 
 const Profile = () => {
   const [profile] = useOutletContext();
+  
   if (!profile?.firstName) {
     return (
       <h4>
@@ -15,7 +16,7 @@ const Profile = () => {
   if (profile?.firstName) {
     return (
       <div className="container">
-        <PosServerProfile profile = {profile}/>
+        <PosServerProfile profile={profile}/>
       </div>
     );
   };
