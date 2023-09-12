@@ -8,26 +8,28 @@ const OrderList = ({ tables }) => {
   }
 
   return (
-    <div>
+    <Grid container justifyContent="center">
       {tables.map(table => {
-        return <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
+        return <Grid container justifyContent="center" sx={{ mt: 2 }} item xs={12} md={4} sm={6}>
+          <Grid>
             <Button>
-              <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                  Table #{table.tableNum}
-                </Typography>
-                <Typography sx={{ pl: 1, pr: 1 }}>
-                  {table.order.map(item => {
-                    return <div key={item._id} className="card mb-3">
-                      <p>${item.price} {item.item}</p>
-                    </div>
-                  })}
-                </Typography>
-              </Box>
-            </Button>
+                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '300px' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                    Table {table.tableNum}
+                  </Typography>
+                  <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
+                    {table.order.map(item => {
+                      return <div key={item._id}>
+                        <p>{item.item} ${item.price}</p>
+                      </div>
+                    })}
+                  </Typography>
+                </Box>
+              </Button>
+          </Grid>
         </Grid>
       })}
-    </div>
+    </Grid>
   );
 };
 
