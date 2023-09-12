@@ -7,14 +7,14 @@ import { QUERY_ALL_MENU } from "../../utils/queries";
 
 
 function SingleOrder({tableOrder}) {
-  const currentItems = [];
+  const existingOrder = [];
   
   tableOrder.order.map((item) => {
 
-    currentItems.push(item.item)
+    existingOrder.push(item.item)
   });
 
-  const [FoodStuff, setFoodStuff] = useState(currentItems);
+  const [FoodStuff, setFoodStuff] = useState(existingOrder);
   const [value, setValue] = useState(0);
   
   const { loading, data } = useQuery(QUERY_ALL_MENU);
