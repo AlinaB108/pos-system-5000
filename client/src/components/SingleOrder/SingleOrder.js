@@ -1,20 +1,21 @@
-import { Typography, Button, Grid, Box, Paper, createTheme, ThemeProvider,
-} from "@mui/material";
-import React, { useState, useEffect, toggleState } from "react";
+import { Typography, Button, Grid, Paper } from "@mui/material";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 
 
+function SingleOrder({tableOrder}) {
+  const currentItems = [];
+  
+  tableOrder.order.map((item) => {
 
+    currentItems.push(item.item)
+  });
 
-function SingleOrder() {
-  const [FoodStuff, setFoodStuff] = React.useState([]);
-  const [value, setValue] = React.useState(0);
+  const [FoodStuff, setFoodStuff] = useState(currentItems);
+  const [value, setValue] = useState(0);
   
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
@@ -22,15 +23,6 @@ function SingleOrder() {
   if (loading) {
     // RETURNS A LOADING SCREEN IF DATA LOADING
     return <div>Loading...</div>;
-  }
-
-  
-let FoodStuffMap = () =>{
-  
-  return FoodStuff.map((item) => {
-      return <li>{item}</li>
-    }
-  )
   }
 
   const handleChange = (event, newValue) => {
@@ -41,12 +33,6 @@ let FoodStuffMap = () =>{
   const toggleTab = (id) => {
     setValue(id);
   };
-  
-
-  function AppendToOrder() {
-
-
-  }
 
   function deez() {
     switch (value) {
@@ -72,13 +58,14 @@ let FoodStuffMap = () =>{
     });
     return currentItems;
   }
+
   return (
     <Grid container justifyContent="center" sx={{ mt: 4}}>
       {/* First Container */}
       <Grid item xs={12} sm={5} sx={{ px:5 }} height="fit-content">  
         <Paper>
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-            Table Number
+            Table {tableOrder.tableNum}
           </Typography>
           <Grid item xs={6} sx={{ p: 2 }}>
           <ul>
@@ -88,11 +75,6 @@ let FoodStuffMap = () =>{
           }
         )
             }
-            {/* <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-            <li>Item 5</li> */}
           </ul>
           </Grid>
         </Paper>

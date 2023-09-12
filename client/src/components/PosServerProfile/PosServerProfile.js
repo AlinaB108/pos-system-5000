@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Grid, Button, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
-// import Button from '@mui/material/Button';
+import { Box, Grid, Paper, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 
 function PosServerProfile({ profile }) {
   var allTables = profile.tables
@@ -26,7 +26,7 @@ function PosServerProfile({ profile }) {
               {
                 allTables.map(item => {
                   return <Grid item xs={6} sm={6} md={4}>
-                    <Button>
+                    <Button href={`/pos/order/${item._id}`}>
                       <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
                         <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                           Table {item.tableNum}
