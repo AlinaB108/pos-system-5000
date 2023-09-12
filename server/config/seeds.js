@@ -77,8 +77,8 @@ db.once('open', async () => {
             category: categories[0],
         },
         {
-            item: 'Fettucini Alfredo with Chicken',
-            price: 35.99,
+            item: 'Chicken Alfredo',
+            price: 305.99,
             ingredients: ['Noodles', 'Eggs', 'Chicken', 'Alfredo', 'Parmesan cheese'],
             inStock: true,
             quantity: 50,
