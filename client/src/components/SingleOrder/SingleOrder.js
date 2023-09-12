@@ -1,19 +1,21 @@
 import {
-  Typography, Button, Grid, Box, Paper, createTheme, ThemeProvider,
+  Typography, Tabs, Tab, Button, Grid, Box, Paper, createTheme, ThemeProvider,
 } from "@mui/material";
 import React, { useState, useEffect, toggleState } from "react";
 import { useQuery } from "@apollo/client";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 
-function SingleOrder() {
-  const [FoodStuff, setFoodStuff] = React.useState([]);
-  const [value, setValue] = React.useState(0);
+function SingleOrder({tableOrder}) {
+  const currentItems = [];
+  
+  tableOrder.order.map((item) => {
 
+    currentItems.push(item.item)
+  });
+
+  const [FoodStuff, setFoodStuff] = useState(currentItems);
+  const [value, setValue] = useState(0);
+  
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
 
@@ -56,13 +58,14 @@ function SingleOrder() {
     });
     return currentItems;
   }
+
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
       {/* First Container */}
       <Grid item xs={12} sm={5} sx={{ px: 5 }} height="fit-content">
         <Paper>
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-            Table Number
+            Table {tableOrder.tableNum}
           </Typography>
           <Grid item xs={6} sx={{ p: 2 }}>
             <ul>
