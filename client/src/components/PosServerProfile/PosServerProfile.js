@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid, Button, Input, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
 
 function PosServerProfile({ profile }) {
-  const [InputBoolean, setInputBoolean] = React.useState();
+  const [InputBoolean, setInputBoolean] = React.useState('none');
 
   const inpBool = () => {
     if (InputBoolean = 'block') {
