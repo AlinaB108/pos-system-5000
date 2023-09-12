@@ -15,7 +15,7 @@ const Profile = () => {
   if (profile?.firstName) {
     return (
       <div className="container">
-        <PosServerProfile profile = {profile}/>
+        <PosServerProfile profile={profile}/>
       </div>
     );
   };
