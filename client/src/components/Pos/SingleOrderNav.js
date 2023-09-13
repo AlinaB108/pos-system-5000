@@ -31,9 +31,7 @@ function SingleOrderNav({tableNum, order}) {
     const [sendOrder, {error} ] = useMutation(UPDATE_TABLE) 
         const idArray = []
         let orderList =[]
-         order.map((item) => {
-            orderList += item.item
-        })
+        orderList = order.map((item) => item.item).join('\n');
         let totalPrice = 0
          order.map((item) => {
             totalPrice += item.price
@@ -87,7 +85,7 @@ function SingleOrderNav({tableNum, order}) {
             >
                 <Box sx={style}>
                     <Typography id='modal-modal-title' variant='h6' component='h2' >
-                Order Submission
+                        Order Submission
                     </Typography>
                     <Typography id='modal-modal-description'>
                         YOUR ORDER HAS BEEN SUCCESSFULLY SUBMITTED
@@ -105,22 +103,25 @@ function SingleOrderNav({tableNum, order}) {
         >
             <Box sx={style}>
                 <Grid>
-                    <Typography id= 'modal-modal description'>
+                    <Typography id= 'modal-modal description' style={{ whiteSpace: 'pre-line', maxHeight: '250px', overflowY: 'auto' }}>
                         {orderList}
-                        {totalPrice.toFixed(2)}
+                    </Typography>
+                    <Typography sx={{ py:1 }}> 
+                        Total Price: ${totalPrice.toFixed(2)} 
                     </Typography>
                 </Grid>
-                <Button>
-                    Submit Payment
-                </Button>
+
                 <Input type="text" name="tip" defaultValue={'Tip Amount?'}>
                 </Input>
-
-                <Button href='../profile/' onClick={handleOrderClose}>
-                    Close Table
-                </Button>
+                <Grid container justifyContent="center" alignItems="center" sx={{ pt:1 }}>
+                    <Button variant="dobtn">
+                        Submit Payment
+                    </Button>
+                    <Button variant="dontbtn" href='../profile/' onClick={handleOrderClose}>
+                        Close Table
+                    </Button>   
+                </Grid>
             </Box>
-
         </Modal>
     </Grid>
     </AppBar>

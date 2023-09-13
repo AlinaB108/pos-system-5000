@@ -87,6 +87,34 @@ const theme = createTheme({
                         }
                     }
               },
+              {
+                props: { variant: 'dobtn', color: 'primary' },
+                style: {
+                    background: '#49cd5f',
+                    color: '#000',
+                    width: '50%',
+                    
+                      // fontFamily: 'nunito',
+                      // fontWeight: 'bold',
+                    "&:hover":{
+                        background: 'rgba(54, 190, 77, 1)',
+                        }
+                    }
+              },
+              {
+                props: { variant: 'dontbtn', color: 'primary' },
+                style: {
+                    background: '#d32f2f',
+                    color: '#000',
+                    width: '50%',
+                    
+                      // fontFamily: 'nunito',
+                      // fontWeight: 'bold',
+                    "&:hover":{
+                        background: 'rgba(197, 41, 41, 1)',
+                        }
+                    }
+              },
           ]
       }
   },
@@ -123,11 +151,12 @@ const theme = createTheme({
       //     fontWeight: 'bold'
       // }
       h5: {
-        color: '#23296c'
-        // Will add fonts later
+        color: '#23296c',
+        fontFamily: ['"Work Sans"', 'sans-serif'].join(','),
       },
       h6: {
-        color: '#000'
+        color: '#000',
+        fontFamily: ['"Work Sans"', 'sans-serif'].join(','),
         // Will add fonts later
       }
   }
