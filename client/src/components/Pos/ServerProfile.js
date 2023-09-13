@@ -58,7 +58,7 @@ function PosServerProfile({ profile }) {
       <Grid item xs={12} sm={6}>
         <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
           <Grid item xs={11}>
-            <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+            <Typography variant="h5"  sx={{ p: 2, backgroundColor: "#d4e1f1", textAlign:'center'}}>
               Open Tables
             </Typography>
             <Grid container justifyContent="center">
@@ -67,7 +67,7 @@ function PosServerProfile({ profile }) {
                   <Grid container justifyContent="center" alignItems="center" item xs={6} sm={6} md={4} key={item._id}>
                     <Button href={`/pos/order/${item._id}`}>
                       <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' width='50vw' style={{ backgroundColor: "#fff" }}>
-                        <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                        <Typography variant="h6"  sx={{ textAlign:'center', pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                           Table {item.tableNum}
                         </Typography>
                         <Typography sx={{ p:2, mt: '50px' }} color="#000">
@@ -89,14 +89,14 @@ function PosServerProfile({ profile }) {
       <Grid item xs={12} sm={6} sx={{ pl: 2 }}>
         <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
             <Paper sx={{ marginRight: '20px' }}>
-              <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+              <Typography variant="h5"  sx={{ p: 2, backgroundColor: "#d4e1f1", textAlign:'center' }}>
                 New Table
               </Typography>
               <Grid sx={{ p: 2 }} style={{ overflowY: 'auto' }}>
                 <Typography sx={{ p: 2 }}>Table Number</Typography>
-                <Input onClick={() => setSelectedInput('Table Number')} value={tableNumber} fullWidth textAlign='center' readOnly />
+                <Input onClick={() => setSelectedInput('Table Number')} value={tableNumber} fullWidth sx={{textAlign:'center'}} readOnly />
                 <Typography sx={{ p: 2 }}>Guest Count</Typography>
-                <Input onClick={() => setSelectedInput('Guest Count')} value={guestCount} fullWidth textAlign='center' readOnly />
+                <Input onClick={() => setSelectedInput('Guest Count')} value={guestCount} fullWidth sx={{textAlign:'center'}} readOnly />
                 <Button variant="outlined" color="primary" sx={{ p: 2 }} href="/pos/order">NEW ORDER</Button>
               </Grid>
             </Paper>

@@ -20,7 +20,7 @@ const OrderList = ({ tables }) => {
                   <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
                     {table.order.map(item => {
                       return <div key={item._id}>
-                        <p>{item.item} ${item.price}</p>
+                        <Typography>{item.item} ${item.price}</Typography>
                       </div>
                     })}
                   </Typography>
