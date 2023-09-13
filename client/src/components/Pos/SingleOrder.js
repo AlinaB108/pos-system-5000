@@ -1,18 +1,34 @@
 import {
   Typography, Tabs, Tab, Button, Grid, Paper
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "./SingleOrderNav";
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
+import IconButton from '@mui/material/IconButton';
 
 function SingleOrder({tableOrder}) {
-
+  // get existing food items for table to add to order log 
   const existingOrder = tableOrder.order;
-  console.log(existingOrder)
+
+  // Set initial value of order to existing items in order for table
   const [FoodStuff, setFoodStuff] = useState(existingOrder);
   const [value, setValue] = useState(0);
   
+  let totalPrice = 0
+  FoodStuff.map((item) => {
+    totalPrice += item.price
+  });
+
+  useEffect(() => {
+    FoodStuff.map((item) => {
+    totalPrice += item.price
+  });
+  }, FoodStuff)
+
+
+  // Query all menu items to use on the right side of page to add items to table's order
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
 
@@ -26,11 +42,15 @@ function SingleOrder({tableOrder}) {
     event.preventDefault();
   };
 
+  // initial value of category is Beverages since the page starts on the top tab when the page loads 
   var catName = "Beverages";
+
+  // When the category buttons are clicked, the value is changed to match the new category
   const toggleTab = (id) => {
     setValue(id);
   };
 
+  // Set category based on selected value and then filter menu items to match
   function filterCategory() {
     switch (value) {
       case 0:
@@ -49,39 +69,53 @@ function SingleOrder({tableOrder}) {
         catName = "Beverages";
         break;
     }
+    // filter menu items for only the items that match the selected category
     const currentItems = menuItems.filter((item) => {
       return item.category[0].name === catName;
     });
-    console.log(currentItems);
+
+    // return the filtered array of items to render on the page
     return currentItems;
-    
   }
-  console.log(FoodStuff);
+
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
       {/* First Container */}
-      <Grid item xs={12} sm={5} sx={{ px: 5 }} height="fit-content">
+      <Grid item xs={12} sm={5} sx={{ px: 5, mb: "5%" }} height="fit-content">
         <Paper>
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
             Table {tableOrder.tableNum}
           </Typography>
-          <Grid item xs={6} sx={{ p: 2 }}>
-            <ul>
+          <Grid item xs={12} sx={{ px: 2, pt:2 }}>
               {
                 FoodStuff.map((item) => {
-                  return <li key ={item._id}>{item.item}</li>
+                  return (
+                  <Grid item container xs={12} key ={item._id} sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
+                    <Typography xs={11} sx={{px: 1}}> {item.item}</Typography>
+                    <IconButton>
+                      <DeleteOutlineRoundedIcon xs={1} sx={{color: 'primary.main'}}/>
+                    </IconButton>
+                  </Grid>
+                  )
                 })
               }
-            </ul>
           </Grid>
-          <p>test</p>
+          <Grid item container xs={12} sx={{ p: 2, justifyContent: 'space-between', backgroundColor:'accent.main'  }}>
+              <Typography xs ={6} sx = {{color: 'primary.main', fontWeight: 'bold' }}>
+                Total Price:
+              </Typography>
+              <Typography xs ={6} sx = {{color: 'primary.main', fontWeight: 'bold' }}>
+                {totalPrice.toFixed(2)}
+              </Typography>
+          </Grid>
         </Paper>
       </Grid>
 
-      {/* Second Container */}
+      {/* Second Container with menu items to choose from to add to order */}
       <Grid item xs={12} sm={7}>
         <Grid container>
-          {/* Wheel */}
+
+          {/* Categories to choose from rendered on tabs */}
           <Grid item xs={12} sm={4} sx={{ p: 1 }}>
             <Tabs
               textColor= 'text.darkBlue'
@@ -119,13 +153,13 @@ function SingleOrder({tableOrder}) {
               />
             </Tabs>
           </Grid>
-          {/* Items */}
+
+          {/* Render filtered menu items as buttons that can add items to the order */}
           <Grid item xs={12} sm={8}>
             <Grid container justifyContent="center" alignItems="center">
               {filterCategory().map((item, index) => (
                 <Button variant='menubtn' key={index} onClick={() => {
                   setFoodStuff([...FoodStuff, item])
-                  console.log(FoodStuff);
                 }}
                   sx={{ p: 2, m: 0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center' }}>
                   {item.item}
@@ -135,9 +169,10 @@ function SingleOrder({tableOrder}) {
           </Grid>
         </Grid>
       </Grid>
+
+      {/* Render the footer to allow for sending order and checking out the table */}
       <Grid item position='fixed' bottom={0}>
         <SingleOrderNav tableNum = {tableOrder.tableNum} order = {FoodStuff} />
-
       </Grid>
     </Grid>
   );

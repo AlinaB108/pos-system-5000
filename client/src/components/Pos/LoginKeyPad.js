@@ -28,7 +28,6 @@ const PosLoginKeyPad = () => {
       const { data } = await login({
         variables: { 'posId': posId },
       });
-      console.log(data)
       Auth.login(data.loginPOS.token);
     } catch (e) {
       console.error(e);

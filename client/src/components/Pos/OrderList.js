@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Grid, Button, Typography } from '@mui/material';
 
 const OrderList = ({ tables }) => {
-  console.log(tables)
   if (!tables.length) {
     return <h3>No Orders Yet</h3>;
   }
@@ -20,7 +19,7 @@ const OrderList = ({ tables }) => {
                   <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
                     {table.order.map(item => {
                       return <div key={item._id}>
-                        <p>{item.item} ${item.price}</p>
+                        <Typography>{item.item} ${item.price}</Typography>
                       </div>
                     })}
                   </Typography>

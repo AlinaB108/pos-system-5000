@@ -85,7 +85,7 @@ const Shift = () => {
           {allRoles.map(role => {
             return <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden' }} width="200px" style={{ backgroundColor: "#fff" }}>
                 <Typography variant="h6" textAlign='center'>
-                <p>{role.name}</p>
+                {role.name}
                 </Typography>
               </Box>
           })}
@@ -103,10 +103,10 @@ const Shift = () => {
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
           <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-            <p>Break Start Time</p>
+            Break Start Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            <p>{convertTimestamp(currentShift[0].breakStart)}</p>
+            {convertTimestamp(currentShift[0].breakStart)}
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
@@ -122,35 +122,34 @@ const Shift = () => {
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
           <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-            <p>Clock In Time</p>
+            Clock In Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            {console.log(currentShift)}
-            <p>{convertTimestamp(currentShift[0].clockIn)}</p>
+            {convertTimestamp(currentShift[0].clockIn)}
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
           <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-            <p>Break Start Time</p>
+            Break Start Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            <p>{convertTimestamp(currentShift[0].breakStart)}</p>
+            {convertTimestamp(currentShift[0].breakStart)}
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
           <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-            <p>Break End Time</p>
+            Break End Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            <p>{convertTimestamp(currentShift[0].breakEnd)}</p>
+            {convertTimestamp(currentShift[0].breakEnd)}
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
           <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-            <p>Clock Out Time</p>
+            Clock Out Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            <p>{convertTimestamp(profile.shifts[0].clockOut)}</p>
+            {convertTimestamp(profile.shifts[0].clockOut)}
           </Typography>
         </Box>
       </Grid>
@@ -163,11 +162,10 @@ const Shift = () => {
         {/* CLOCK IN STUFF */}
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
           <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-            <p>Shift Start Time</p>
+            Shift Start Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            {console.log(currentShift)}
-            <p>{convertTimestamp(currentShift[0].clockIn)}</p>
+            {convertTimestamp(currentShift[0].clockIn)}
           </Typography>
         </Box>
   
@@ -184,11 +182,10 @@ const Shift = () => {
       {/* CLOCK IN STUFF */}
       <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
         <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
-          <p>Shift Start Time</p>
+          Shift Start Time
         </Typography>
         <Typography sx={{ pl: 1, pr: 1 }}>
-          {console.log(currentShift)}
-          <p>{convertTimestamp(currentShift[0].clockIn)}</p>
+          {convertTimestamp(currentShift[0].clockIn)}
         </Typography>
       </Box>
 

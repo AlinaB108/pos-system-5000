@@ -69,9 +69,8 @@ function SingleOrderNav({tableNum, order}) {
     const handleSendOrder = async () => {
         try {
             sendOrder({variables: {tableNum,"order": idArray}}) 
-            console.log('');  
         } catch (err) {
-            console.log(error);
+            console.log(err);
         }
     }
     return (
