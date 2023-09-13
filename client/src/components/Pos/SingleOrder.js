@@ -134,7 +134,7 @@ function SingleOrder({tableOrder}) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item position='absolute' bottom={0}>
+      <Grid item position='fixed' bottom={0}>
         <SingleOrderNav tableNum = {tableOrder.tableNum} order = {FoodStuff} />
 
       </Grid>
