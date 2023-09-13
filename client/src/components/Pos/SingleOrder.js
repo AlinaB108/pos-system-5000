@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "./SingleOrderNav";
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
+import IconButton from '@mui/material/IconButton';
 
 function SingleOrder({tableOrder}) {
   // get existing food items for table to add to order log 
@@ -18,7 +20,7 @@ function SingleOrder({tableOrder}) {
   FoodStuff.map((item) => {
     totalPrice += item.price
   });
-  
+
   useEffect(() => {
     FoodStuff.map((item) => {
     totalPrice += item.price
@@ -79,23 +81,31 @@ function SingleOrder({tableOrder}) {
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
       {/* First Container */}
-      <Grid item xs={12} sm={5} sx={{ px: 5, mb: "2%" }} height="fit-content">
+      <Grid item xs={12} sm={5} sx={{ px: 5, mb: "5%" }} height="fit-content">
         <Paper>
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
             Table {tableOrder.tableNum}
           </Typography>
-          <Grid item xs={6} sx={{ p: 2 }}>
-            <ul>
+          <Grid item xs={12} sx={{ px: 2, pt:2 }}>
               {
                 FoodStuff.map((item) => {
-                  return <li key ={item._id}>{item.item}</li>
+                  return (
+                  <Grid item container xs={12} key ={item._id} sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
+                    <Typography xs={11} sx={{px: 1}}> {item.item}</Typography>
+                    <IconButton>
+                      <DeleteOutlineRoundedIcon xs={1} sx={{color: 'primary.main'}}/>
+                    </IconButton>
+                  </Grid>
+                  )
                 })
               }
-            </ul>
           </Grid>
-          <Grid item xs={6} sx={{ p: 2 }}>
-              <Typography>
-                Total Price: {totalPrice.toFixed(2)}
+          <Grid item container xs={12} sx={{ p: 2, justifyContent: 'space-between', backgroundColor:'accent.main'  }}>
+              <Typography xs ={6} sx = {{color: 'primary.main', fontWeight: 'bold' }}>
+                Total Price:
+              </Typography>
+              <Typography xs ={6} sx = {{color: 'primary.main', fontWeight: 'bold' }}>
+                {totalPrice.toFixed(2)}
               </Typography>
           </Grid>
         </Paper>
