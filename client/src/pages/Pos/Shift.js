@@ -121,34 +121,34 @@ const Shift = () => {
     return (
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-          <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+          <Typography variant="h6" textAlign='center' sx={{ p: 1.5, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
             Clock In Time
           </Typography>
-          <Typography sx={{ pl: 1, pr: 1 }}>
+          <Typography sx={{ px:1, pt:4 }} height="10vh">
             {convertTimestamp(currentShift[0].clockIn)}
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-          <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+          <Typography variant="h6" textAlign='center' sx={{ p: 1.5, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
             Break Start Time
           </Typography>
-          <Typography sx={{ pl: 1, pr: 1 }}>
+          <Typography sx={{ px:1, pt:4 }} height="10vh"> 
             {convertTimestamp(currentShift[0].breakStart)}
           </Typography>
         </Box>
-        <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-          <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+        <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }} >
+          <Typography variant="h6" textAlign='center' sx={{ p: 1.5, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
             Break End Time
           </Typography>
-          <Typography sx={{ pl: 1, pr: 1 }}>
+          <Typography sx={{ px:1, pt:4 }} height="10vh">
             {convertTimestamp(currentShift[0].breakEnd)}
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-          <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+          <Typography variant="h6" textAlign='center' sx={{ p: 1.5, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
             Clock Out Time
           </Typography>
-          <Typography sx={{ pl: 1, pr: 1 }}>
+          <Typography sx={{ px:1, pt:4 }} height="10vh">
             {convertTimestamp(profile.shifts[0].clockOut)}
           </Typography>
         </Box>
