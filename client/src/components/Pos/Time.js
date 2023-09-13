@@ -13,7 +13,7 @@ export default function Time() {
   }, []);
 
   return (
-    <Typography variant="h6" sx={{ p: 3 }} style={{ color: 'white' }}>
+    <Typography variant="h6" sx={{ p: 3 }} style={{ color: '#7ca6f3' }}>
       {currentTime}
     </Typography>
   );
