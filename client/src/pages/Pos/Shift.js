@@ -74,7 +74,7 @@ const Shift = () => {
       h = 12;
     }
 
-    time = mm + '-' + dd + '-' + yyyy + ', ' + h + ':' + min + ' ' + ampm;
+    time = mm + '/' + dd + '/' + yyyy + ', ' + h + ':' + min + ' ' + ampm;
     return time;
   }
 
@@ -117,7 +117,7 @@ const Shift = () => {
   }
 
   // WHEN YOU CLOCK OUT FOR THE DAY AND SHOWS YOU ALL INFO ABOUT YOUR DAY
-  if (!currentShift[0].clockedIn && currentShift[0].currentShift && currentShift[0].clockOut) {
+  if (!currentShift[0].clockedIn && currentShift[0].clockOut) {
     return (
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
@@ -157,7 +157,27 @@ const Shift = () => {
     )
   }
 
-
+  if(currentShift[0].clockedIn && currentShift[0].currentShift && currentShift[0].breakEnd) {
+    return (
+      <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
+        {/* CLOCK IN STUFF */}
+        <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+          <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+            <p>Shift Start Time</p>
+          </Typography>
+          <Typography sx={{ pl: 1, pr: 1 }}>
+            {console.log(currentShift)}
+            <p>{convertTimestamp(currentShift[0].clockIn)}</p>
+          </Typography>
+        </Box>
+  
+        <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+          <Button onClick={handleClockOut}>Clock Out</Button>
+        </Box>
+  
+      </Grid>
+    );
+  }
   // DEFAULT RETURN: IF CLOCKED IN AND CURRENTSHIFT IS TRUE
   return (
     <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
