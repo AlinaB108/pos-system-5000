@@ -7,6 +7,8 @@ import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "./SingleOrderNav";
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import IconButton from '@mui/material/IconButton';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 function SingleOrder({tableOrder}) {
   // get existing food items for table to add to order log 
@@ -91,10 +93,16 @@ function SingleOrder({tableOrder}) {
                 FoodStuff.map((item) => {
                   return (
                   <Grid item container xs={12} key ={item._id} sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
-                    <Typography xs={11} sx={{px: 1}}> {item.item}</Typography>
-                    <IconButton>
-                      <DeleteOutlineRoundedIcon xs={1} sx={{color: 'primary.main'}}/>
-                    </IconButton>
+                    <Typography xs={9} sx={{px: 1}}> {item.item}</Typography>
+                    <Grid item container xs={3}sx = {{alignItems: 'center'}}> 
+                      <IconButton>
+                        <RemoveIcon  sx={{color: 'primary.main'}}/>
+                      </IconButton>
+                      <Typography > #</Typography>
+                      <IconButton>
+                        <AddIcon  sx={{color: 'primary.main'}}/>
+                      </IconButton>
+                    </Grid>
                   </Grid>
                   )
                 })
