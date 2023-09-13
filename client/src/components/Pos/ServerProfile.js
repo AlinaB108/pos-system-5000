@@ -21,7 +21,7 @@ function PosServerProfile({ profile }) {
   };
 
   var allTables = profile.tables;
-  console.log(allTables)
+
   var allOpenTables = allTables.filter((table) => table.tableStatus === true)
   function deez2(order) {
     var totalPrice = 0;

@@ -6,7 +6,6 @@ const Orders = () => {
   const { loading, data } = useQuery(QUERY_ALL_TABLES)
 
   const tables = data?.tables || [];
-  console.log(tables);
   if (loading) {
     // RETURNS A LOADING SCREEN IF DATA LOADING
     return <div>Loading...</div>;

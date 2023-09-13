@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Grid, Button, Typography } from '@mui/material';
 
 const OrderList = ({ tables }) => {
-  console.log(tables)
   if (!tables.length) {
     return <h3>No Orders Yet</h3>;
   }

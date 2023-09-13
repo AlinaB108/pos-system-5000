@@ -165,7 +165,6 @@ const Shift = () => {
             Shift Start Time
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            {console.log(currentShift)}
             {convertTimestamp(currentShift[0].clockIn)}
           </Typography>
         </Box>
@@ -186,7 +185,6 @@ const Shift = () => {
           Shift Start Time
         </Typography>
         <Typography sx={{ pl: 1, pr: 1 }}>
-          {console.log(currentShift)}
           {convertTimestamp(currentShift[0].clockIn)}
         </Typography>
       </Box>

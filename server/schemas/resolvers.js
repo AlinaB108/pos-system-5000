@@ -145,7 +145,7 @@ const resolvers = {
       }
 
       const token = signToken(employeePOS);
-      console.log(employeePOS)
+
       return { token, employeePOS };
     }
   }
