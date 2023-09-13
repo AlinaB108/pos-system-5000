@@ -47,11 +47,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
           <Routes>
-            {/* 404 ROUTE vv */}
-            <Route
-              path="*"
-              element={<NoMatch />}
-            />
+
 
             {/* FRONTEND WEBSITE ROUTES vv */}
             <Route
@@ -61,7 +57,7 @@ function App() {
 
             {/* BACKEND POS SYSTEM ROUTES vv */}
             <Route
-              path="/pos/"
+              path="/pos"
               element={<PosMain />}>
                 <Route
                   path="/pos/profile"
@@ -80,7 +76,12 @@ function App() {
                   path="/pos/shift"
                   element={<Shift />}
                 />
-            </Route>
+            </Route>            
+            {/* 404 ROUTE vv */}
+            <Route
+              path="*"
+              element={<NoMatch />}
+            />
           </Routes>
       </Router>
     </ApolloProvider>
