@@ -21,6 +21,8 @@ function PosServerProfile({ profile }) {
   };
 
   var allTables = profile.tables;
+  console.log(allTables)
+  var allOpenTables = allTables.filter((table) => table.tableStatus === true)
   function deez2(order) {
     var totalPrice = 0;
     for (let i = 0; i < order.length; i++) {
@@ -60,7 +62,7 @@ function PosServerProfile({ profile }) {
               Open Tables
             </Typography>
             <Grid container justifyContent="center">
-              {allTables.map((item) => {
+              {allOpenTables.map((item) => {
                 return (
                   <Grid container justifyContent="center" alignItems="center" item xs={6} sm={6} md={4} key={item._id}>
                     <Button href={`/pos/order/${item._id}`}>
