@@ -1,9 +1,7 @@
 import React from 'react';
-import { Box, Grid, Button, Input, ListItemSecondaryAction, Paper, Typography, tableSortLabelClasses } from '@mui/material';
+import { Box, Grid, Button, Paper, Typography } from '@mui/material';
 
 function PosServerProfile({ profile }) {
-  var inputBoolean = 'none';
-
   var allTables = profile.tables
   function deez2(order) {
     var totalPrice = 0

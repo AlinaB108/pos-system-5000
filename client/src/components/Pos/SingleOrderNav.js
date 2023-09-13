@@ -1,15 +1,9 @@
 import { useMutation } from "@apollo/client";
 import {
-    Typography,
     Button,
     Grid,
-    Box,
-    Paper,
-    createTheme,
-    ThemeProvider,
-    AppBar,
+    AppBar
 } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { UPDATE_TABLE } from '../../utils/mutations'
 
 
@@ -17,18 +11,14 @@ import { UPDATE_TABLE } from '../../utils/mutations'
 function SingleOrderNav({tableNum, order}) {
     const [sendOrder, {error} ] = useMutation(UPDATE_TABLE) 
         const idArray = []
-    console.log(order);
     order.map((item) => {
-        idArray.push(item._id)
-        }) 
+        return idArray.push(item._id)
+    }) 
 
     const handleSendOrder = async (event) => {
         event.preventDefault()
         try {
-            const {data} = sendOrder({variables: {tableNum,"order": idArray}})
-            console.log(data);
-            console.log(idArray);
-            
+            sendOrder({variables: {tableNum,"order": idArray}})   
         } catch (err) {
             console.log(error);
         }
