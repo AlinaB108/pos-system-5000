@@ -4,15 +4,15 @@ import {createTheme, responsiveFontSizes } from '@mui/material';
 
 const theme = createTheme({
   palette: {
-      // primary: {
-      //     main: '#344E41'
-      // },
-      // secondary: {
-      //     main: '#E29263'
-      // },
-      // accent: {
-      //     main: '#9CA92E'
-      // },
+      primary: {
+          main: '#23296c'
+      },
+      secondary: {
+          main: '#d4e1f1'
+      },
+      accent: {
+          main: '#FCE698'
+      },
       background: {
           default: '#212035',
           paper: '#fff',

@@ -64,21 +64,22 @@ function App() {
               path="/pos/"
               element={<PosMain />}>
                 <Route
-              path="/pos/profile"
-              element={<Profile />}
-              />
-              <Route
-                path="/pos/order/:_id"
-                element={<Table />}
-              />
-              <Route
-                path="/pos/orders"
-                element={<Orders />}
-              />
-              <Route
-                path="/pos/shift"
-                element={<Shift />}
-              />
+                  path="/pos/profile"
+                  index
+                  element={<Profile />}
+                  />
+                <Route
+                  path="/pos/order/:_id"
+                  element={<Table />}
+                />
+                <Route
+                  path="/pos/orders"
+                  element={<Orders />}
+                />
+                <Route
+                  path="/pos/shift"
+                  element={<Shift />}
+                />
             </Route>
           </Routes>
       </Router>

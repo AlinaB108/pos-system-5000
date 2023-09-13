@@ -84,7 +84,7 @@ function SingleOrder({tableOrder}) {
           {/* Wheel */}
           <Grid item xs={12} sm={4} sx={{ p: 1 }}>
             <Tabs
-              textColor="black"
+              textColor= 'text.darkBlue'
               value={value}
               onChange={handleChange}
               variant="scrollable"

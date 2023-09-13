@@ -69,7 +69,7 @@ const resolvers = {
     me: async(_,__, context)=>{
       try{
         if(context.employee){
-          return await Employee.findById(context.employee._id).populate({
+          const employee = await Employee.findById(context.employee._id).populate({
             path: 'tables', 
             populate: {
               path: 'order', 
@@ -78,6 +78,7 @@ const resolvers = {
                 path: 'category'
               }
             }}).populate({path: 'shifts'}).populate({path: 'roles'});
+            return employee
         }
       }catch(err){
         throw new Error('Not logged in!');
