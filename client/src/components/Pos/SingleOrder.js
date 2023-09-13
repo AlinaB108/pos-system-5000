@@ -74,6 +74,7 @@ function SingleOrder({tableOrder}) {
               }
             </ul>
           </Grid>
+          <p>test</p>
         </Paper>
       </Grid>
 

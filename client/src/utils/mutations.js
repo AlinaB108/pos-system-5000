@@ -2,24 +2,25 @@ import { gql } from '@apollo/client';
 
 
 export const ADD_SHIFT = gql`
-  mutation Mutation($clockIn: String!, $clockOut: String, $breakStart: String, $breakEnd: String) {
-    addShift(clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
-      _id
-      date
-      clockedIn
-      clockIn
-      clockOut
-      breakStart
-      breakEnd
-    }
+mutation Mutation($clockIn: String!, $currentShift: Boolean, $clockedIn: Boolean) {
+  addShift(clockIn: $clockIn, currentShift: $currentShift, clockedIn: $clockedIn) {
+    currentShift
+    clockedIn
+    date
+    clockIn
+    clockOut
+    breakStart
+    breakEnd
   }
+}
 `;
 
 export const UPDATE_SHIFT = gql`
-  mutation Mutation($id: ID!, $clockedIn: Boolean, $clockIn: String, $clockOut: String, $breakStart: String, $breakEnd: String) {
-    updateShift(_id: $id, clockedIn: $clockedIn, clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
+  mutation Mutation($id: ID!, $currentShift: Boolean, $clockedIn: Boolean, $clockIn: String, $clockOut: String, $breakStart: String, $breakEnd: String) {
+    updateShift(_id: $id, currentShift: $currentShift, clockedIn: $clockedIn, clockIn: $clockIn, clockOut: $clockOut, breakStart: $breakStart, breakEnd: $breakEnd) {
       _id
       date
+      currentShift
       clockedIn
       clockIn
       clockOut
