@@ -50,32 +50,19 @@ function SingleOrderNav({tableNum, order}) {
     const handleOpenCheck = () => setOpen2(true);
     const handleCloseCheck = () => setOpen2(false);
 
+    const [closeOrder, {orderError}] = useMutation(UPDATE_TABLE)
+        const handleOrderClose = async() => {
+            try {
+                await closeOrder({variables: {'tableNum': tableNum, 'tableStatus': false}})
+                console.log('Table Closed!');
+
+            } catch (err) {
+                console.log(orderError);
+            }
+            
+        }
 
 
-    // const Modal = async () => {
-    //     const [open, setOpen] = React.useState(false)
-    //     const handleOpen = () => setOpen(true)
-    //     const handleClose = () => setOpen(false)
-    //     return (
-    //     <div>
-    //         <modal 
-    //         open={open} 
-    //         onClose={handleClose}
-    //         aria-labelledby = 'modal-modal-title'
-    //         aria-describedby = 'modal-modal-description'
-    //         >
-    //             <Box>
-    //                 <Typography id='modal-modal-title' variant='h6' component='h2'>
-    //             Order Submission
-    //                 </Typography>
-    //                 <Typography id='modal-modal-description'>
-    //                     YOUR ORDER HAS BEEN SUCCESSFULLY SUBMITTED
-    //                 </Typography>
-    //             </Box>
-    //         </modal>
-    //     </div>
-    //     )
-    // }
 
 
 
@@ -130,7 +117,7 @@ function SingleOrderNav({tableNum, order}) {
                 <Input type="text" name="tip" defaultValue={'Tip Amount?'}>
                 </Input>
 
-                <Button>
+                <Button href='../profile/' onClick={handleOrderClose}>
                     Close Table
                 </Button>
             </Box>
