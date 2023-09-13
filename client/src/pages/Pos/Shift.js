@@ -40,72 +40,78 @@ const Shift = () => {
   return (
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
             {allRoles.map(role => {
-              return <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                <p>{role.name}</p>
-                </Typography>
-                <Typography sx={{ pl: 1, pr: 1 }}>
-                <p>${role.hourlyRate}/hour</p>
-                </Typography>
-            </Box>
+              return <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden' }} width="200px" style={{ backgroundColor: "#fff" }}>
+                  <Typography variant="h6" textAlign='center'>
+                  <p>{role.name}</p>
+                  </Typography>
+                </Box>
             })}
             
-            {/* CLOCK IN STUFF */}
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-              <p>Clock In Time</p>
-              </Typography>
-              <Typography sx={{ pl: 1, pr: 1 }}>
-              <p>{convertTimestamp(profile.shifts[0].clockIn)}</p>
-              </Typography>
-            </Box>
+        <Grid container justifyContent="center" alignItems="center">
+          {/* CLOCK IN STUFF */}
+            <Grid item xs={3}>
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+                  <p>Clock In Time</p>
+                </Typography>
+                <Typography sx={{ pl: 1, pr: 1 }}>
+                  <p>{convertTimestamp(profile.shifts[0].clockIn)}</p>
+                </Typography>
+              </Box>
 
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Button><p>Clock In</p></Button>
-            </Box>
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Button><p>Clock In</p></Button>
+              </Box>
+            </Grid>
 
             {/* CLOCK OUT STUFF */}
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-              <p>Clock Out Time</p>
-              </Typography>
-              <Typography sx={{ pl: 1, pr: 1 }}>
-              <p>{convertTimestamp(profile.shifts[0].clockOut)}</p>
-              </Typography>
-            </Box>
+            <Grid item xs={3}>
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+                  <p>Clock Out Time</p>
+                </Typography>
+                <Typography sx={{ pl: 1, pr: 1 }}>
+                  <p>{convertTimestamp(profile.shifts[0].clockOut)}</p>
+                </Typography>
+              </Box>
 
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Button><p>Clock Out</p></Button>
-            </Box>
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Button><p>Clock Out</p></Button>
+              </Box>
+            </Grid>
 
             {/* BREAK START STUFF */}
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-              <p>Break Start Time</p>
-              </Typography>
-              <Typography sx={{ pl: 1, pr: 1 }}>
-              <p>TEST</p>
-              </Typography>
-            </Box>
+            <Grid item xs={3}>
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+                  <p>Break Start Time</p>
+                </Typography>
+                <Typography sx={{ pl: 1, pr: 1 }}>
+                  <p>TEST</p>
+                </Typography>
+              </Box>
 
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Button><p>Start Break</p></Button>
-            </Box>
-            
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Button><p>Start Break</p></Button>
+              </Box>
+            </Grid>
+
             {/* BREAK END STUFF */}
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-              <p>Break End Time</p>
-              </Typography>
-              <Typography sx={{ pl: 1, pr: 1 }}>
-              <p>TEST</p>
-              </Typography>
-            </Box>
+            <Grid item xs={3}>
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '15px 15px 0 0' }}>
+                  <p>Break End Time</p>
+                </Typography>
+                <Typography sx={{ pl: 1, pr: 1 }}>
+                  <p>TEST</p>
+                </Typography>
+              </Box>
 
-            <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-              <Button><p>End Break</p></Button>
-            </Box>
-
+              <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
+                <Button><p>End Break</p></Button>
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
   );
 };
