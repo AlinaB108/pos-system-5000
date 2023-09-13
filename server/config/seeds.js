@@ -28,6 +28,8 @@ db.once('open', async () => {
     const shifts = await Shift.insertMany([
         { clockIn: Date(), clockedIn: false, clockOut: Date(), breakStart: null, breakEnd: null },
         { clockIn: Date(), clockedIn: false, clockOut: Date(), breakStart: null, breakEnd: null },
+        { clockIn: Date(), currentShift: true, clockedIn: false, clockOut: Date(), breakStart: null, breakEnd: null },
+        { clockIn: Date(), currentShift: true, clockedIn: false, clockOut: Date(), breakStart: null, breakEnd: null },
         // Add more shifts as needed
     ]);
     
@@ -389,7 +391,7 @@ db.once('open', async () => {
             posID: 1000,
             roles: [roles[1]],
             tables: [tables[0]._id, tables[1]._id, tables[2]._id],
-            shifts: [shifts[1]],
+            shifts: [shifts[1], shifts[2]],
         },
         {
             firstName: 'Jane',
@@ -399,7 +401,7 @@ db.once('open', async () => {
             posID: 1001,
             roles: [roles[2], roles[0]],
             tables: [tables[3]._id, tables[4]._id, tables[5]._id],
-            shifts: [shifts[0]],
+            shifts: [shifts[0], shifts[3]]
             },
             // Add more employees as needed
         ]);

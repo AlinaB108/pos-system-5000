@@ -37,7 +37,7 @@ const PosLoginKeyPad = () => {
 
 
   return (
-    <Grid container alignItems="center" justifyContent="center" sx={{ pt: 8 }}>
+    <Grid container alignItems="center" justifyContent="center" sx={{ pt: '1%' }}>
       <Grid item xs={12} md={8} lg={6}>
         <Box display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h5" sx={{ p: 3, color: 'white' }}>

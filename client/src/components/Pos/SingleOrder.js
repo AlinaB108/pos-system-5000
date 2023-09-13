@@ -69,11 +69,12 @@ function SingleOrder({tableOrder}) {
             <ul>
               {
                 FoodStuff.map((item) => {
-                  return <li key ={item._id}>{item.item}</li>
+                  return <li key ={item._id}>${item.price + "  " + item.item}</li>
                 })
               }
             </ul>
           </Grid>
+          <p>test</p>
         </Paper>
       </Grid>
 
@@ -134,7 +135,7 @@ function SingleOrder({tableOrder}) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item position='absolute' bottom={0}>
+      <Grid item position='fixed' bottom={0}>
         <SingleOrderNav tableNum = {tableOrder.tableNum} order = {FoodStuff} />
 
       </Grid>
