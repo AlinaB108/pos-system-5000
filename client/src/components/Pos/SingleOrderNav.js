@@ -75,7 +75,7 @@ function SingleOrderNav({tableNum, order}) {
     }
     return (
     <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
-    <Grid item  display='flex' justifyContent='space-between' bottom={'0'}>
+    <Grid item container justifyContent='space-between'>
         <Button onClick={() => {handleOpenSubmit() ; handleSendOrder()}}>
             Send Order
         </Button>
