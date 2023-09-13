@@ -86,9 +86,17 @@ const resolvers = {
     }
   },
   Mutation: {
-    updateTable: async(_, args) => {
+    updateTable: async(_, args, context) => {
+      if(context.employee){
       const table = await Table.findOneAndUpdate({tableNum: args.tableNum}, args, {new: true }).populate({path: 'order', populate: {path: 'category'}});
+
+      await Employee.findByIdAndUpdate(
+        context.employee._id, 
+        { $addToSet: {tables: table }}, 
+        {new: true});
+
       return table; 
+      }
     },
     addShift: async(_, args, context) => {
       if(context.employee){
