@@ -75,7 +75,7 @@ const typeDefs = gql`
 
   type Mutation {
     updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
-    addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String): Shift
+    addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String, currentShift: Boolean, clockedIn: Boolean): Shift
     updateShift(_id: ID!, currentShift: Boolean, clockedIn: Boolean, clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
     login(email: String!, password: String!): Auth
     loginPOS(posID: Int!): Auth

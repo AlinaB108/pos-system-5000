@@ -2,10 +2,12 @@
 import { useOutletContext } from "react-router-dom";
 import { Box, Grid, Button, Typography } from '@mui/material';
 import { useMutation } from "@apollo/client";
-import { UPDATE_SHIFT } from "../../utils/mutations";
+import { ADD_SHIFT, UPDATE_SHIFT } from "../../utils/mutations";
 
 const Shift = () => {
   const [profile] = useOutletContext();
+  const [updateShift, {updateShiftError}] = useMutation(UPDATE_SHIFT)
+  const [addShift, {addShiftError}] = useMutation(ADD_SHIFT)
   if (!profile?.firstName) {
     return (
       <h4>
@@ -13,14 +15,43 @@ const Shift = () => {
       </h4>
     );
   }
-
+  
   // VARIABLES TO ACCESS SPECFIC VERSIONS OF SHIFTS
   const allShifts = profile.shifts
   const currentShift = allShifts.filter((shift) => shift.currentShift === true)
   const allRoles = profile.roles
 
-  // UPDATE SHIFT MUTATION
-  // const [updateShift, error] = useMutation(UPDATE_SHIFT)
+  const handleClockIn = async () => {
+    try {
+      await addShift({variables: {"clockIn": Date.now().toString(), "currentShift": true, "clockedIn": true}})
+      window.location.reload()
+    } catch (err) {
+      console.log(addShiftError)
+    }
+  }
+  
+  const handleBreakStart = async () => {
+    try {
+      updateShift({variables: {"id": currentShift[0]._id, "breakStart": Date.now().toString(), "clockedIn": false}})
+    } catch (err) {
+      console.log(updateShiftError)
+    }
+  }
+  const handleBreakEnd = async () => {
+    try {
+      updateShift({variables: {"id": currentShift[0]._id, "breakEnd": Date.now().toString(), "clockedIn": true}})
+    } catch (err) {
+      console.log(updateShiftError)
+    }
+  }
+  const handleClockOut = async () => {
+    try {
+      updateShift({variables: {"id": currentShift[0]._id, "clockOut": Date.now().toString(), "clockedIn": false}})
+    } catch (err) {
+      console.log(updateShiftError)
+    }
+  }
+  
   // TIMESTAMP FUNCTION TO CONVERT UNIX TO REAL HUMAN TIME
   function convertTimestamp(timestamp) {
     var d = new Date(timestamp * 1),
@@ -48,7 +79,7 @@ const Shift = () => {
   }
 
   // IF THEY DONT HAVE A CURRENT SHIFT THEN THEY ARE NOT CLOCKED IN ETC
-  if (!currentShift) {
+  if (!currentShift[0]) {
     return (
       <Grid container justifyContent="center" alignItems="flex-start" sx={{ mt: 2 }}>
           {allRoles.map(role => {
@@ -60,7 +91,7 @@ const Shift = () => {
           })}
 
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-          <Button><p>Clock In</p></Button>
+          <Button onClick={handleClockIn}>Clock In</Button>
         </Box>
       </Grid>
     )
@@ -75,11 +106,11 @@ const Shift = () => {
             <p>Break Start Time</p>
           </Typography>
           <Typography sx={{ pl: 1, pr: 1 }}>
-            <p>{currentShift[0].breakStart}</p>
+            <p>{convertTimestamp(currentShift[0].breakStart)}</p>
           </Typography>
         </Box>
         <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-          <Button><p>End Break</p></Button>
+          <Button onClick={handleBreakEnd}>End Break</Button>
         </Box>
       </Grid>
     )
@@ -142,11 +173,11 @@ const Shift = () => {
       </Box>
 
       <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-        <Button><p>Start Break</p></Button>
+        <Button onClick={handleBreakStart}>Start Break</Button>
       </Box>
 
       <Box sx={{ m: 2, borderRadius: '15px', overflow: 'hidden', backgroundColor: "#fff" }}>
-        <Button><p>Clock Out</p></Button>
+        <Button onClick={handleClockOut}>Clock Out</Button>
       </Box>
 
     </Grid>
