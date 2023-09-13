@@ -1,4 +1,4 @@
-import PosOrderList from '../../components/PosOrderList/PosOrderList';
+import PosOrderList from '../../components/Pos/OrderList';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_TABLES } from '../../utils/queries';
 

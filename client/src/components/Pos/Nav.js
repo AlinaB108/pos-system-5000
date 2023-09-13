@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import Time from '../Time/Time';
+import React from 'react';
+import Time from './Time';
 import Auth from '../../utils/auth';
 import { AppBar, Box, Typography, Button, Grid } from '@mui/material';
-// Not used but might need later(?)
-import { Toolbar, IconButton, Menu, MenuIcon, Container, Avatar, Tooltip, MenuItem, AdbIcon } from '@mui/material';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function PosNav({profile}) {
   return (

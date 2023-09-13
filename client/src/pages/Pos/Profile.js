@@ -1,6 +1,6 @@
 import React from "react";
-import PosServerProfile from '../../components/PosServerProfile/PosServerProfile';
-import PosManagerProfile from '../../components/PosManagerProfile/PosManagerProfile';
+import PosServerProfile from '../../components/Pos/ServerProfile';
+import PosManagerProfile from '../../components/Pos/ManagerProfile';
 import { useOutletContext } from "react-router-dom";
 
 const Profile = () => {

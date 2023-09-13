@@ -1,19 +1,15 @@
 import {
-  Typography, Tabs, Tab, Button, Grid, Box, Paper, createTheme, ThemeProvider,
+  Typography, Tabs, Tab, Button, Grid, Paper
 } from "@mui/material";
-import React, { useState, useEffect, toggleState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_MENU } from "../../utils/queries";
-import SingleOrderNav from "../SingleOrderNav/SingleOrderNav";
+import SingleOrderNav from "./SingleOrderNav";
 
 function SingleOrder({tableOrder}) {
-  const existingOrder = [];
-  
-  tableOrder.order.map((item) => {
 
-    existingOrder.push(item)
-  });
-
+  const existingOrder = tableOrder.order;
+  console.log(existingOrder)
   const [FoodStuff, setFoodStuff] = useState(existingOrder);
   const [value, setValue] = useState(0);
   
@@ -35,7 +31,7 @@ function SingleOrder({tableOrder}) {
     setValue(id);
   };
 
-  function deez() {
+  function filterCategory() {
     switch (value) {
       case 0:
         catName = "Beverages";
@@ -56,7 +52,9 @@ function SingleOrder({tableOrder}) {
     const currentItems = menuItems.filter((item) => {
       return item.category[0].name === catName;
     });
+    console.log(currentItems);
     return currentItems;
+    
   }
   console.log(FoodStuff);
   return (
@@ -71,7 +69,7 @@ function SingleOrder({tableOrder}) {
             <ul>
               {
                 FoodStuff.map((item) => {
-                  return <li>{item}</li>
+                  return <li key ={item._id}>{item.item}</li>
                 })
               }
             </ul>
@@ -123,9 +121,9 @@ function SingleOrder({tableOrder}) {
           {/* Items */}
           <Grid item xs={12} sm={8}>
             <Grid container justifyContent="center" alignItems="center">
-              {deez().map((item, index) => (
+              {filterCategory().map((item, index) => (
                 <Button variant='menubtn' key={index} onClick={() => {
-                  setFoodStuff([...FoodStuff, item.item])
+                  setFoodStuff([...FoodStuff, item])
                   console.log(FoodStuff);
                 }}
                   sx={{ p: 2, m: 0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center' }}>
