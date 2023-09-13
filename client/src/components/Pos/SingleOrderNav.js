@@ -5,7 +5,8 @@ import {
     AppBar,
     Typography,
     Box,
-    Modal
+    Modal,
+    Input,
 } from "@mui/material";
 import  { UPDATE_TABLE } from '../../utils/mutations'
 import React from 'react';
@@ -29,13 +30,25 @@ const style = {
 function SingleOrderNav({tableNum, order}) {
     const [sendOrder, {error} ] = useMutation(UPDATE_TABLE) 
         const idArray = []
+        let orderList =[]
+         order.map((item) => {
+            orderList += item.item
+        })
+        let totalPrice = 0
+         order.map((item) => {
+            totalPrice += item.price
+
+        })
     order.map((item) => {
         return idArray.push(item._id)
     }) 
 
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    const [open, setOpen] = React.useState(false);
+    const handleOpenSubmit = () => setOpen(true);
+    const handleCloseSubmit = () => setOpen(false);
+    const [open2, setOpen2] = React.useState(false)
+    const handleOpenCheck = () => setOpen2(true);
+    const handleCloseCheck = () => setOpen2(false);
 
 
 
@@ -74,22 +87,15 @@ function SingleOrderNav({tableNum, order}) {
             console.log(error);
         }
     }
-
-    const submitSendOrder = async (event) => {
-        event.preventDefault()
-        Modal()
-        handleOpen()
-    }
-    
     return (
     <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
     <Grid item  display='flex' justifyContent='space-between' bottom={'0'}>
-        <Button onClick={() => {handleOpen() ; handleSendOrder()}}>
+        <Button onClick={() => {handleOpenSubmit() ; handleSendOrder()}}>
             Send Order
         </Button>
         <Modal 
             open={open} 
-            onClose={handleClose}
+            onClose={handleCloseSubmit}
             aria-labelledby = 'modal-modal-title'
             aria-describedby = 'modal-modal-description'
             >
@@ -102,9 +108,34 @@ function SingleOrderNav({tableNum, order}) {
                     </Typography>
                 </Box>
             </Modal>
-        <Button>
+        <Button onClick={() => handleOpenCheck()}>
             Checkout Table
         </Button>
+        <Modal
+        open={open2}
+        onClose = {handleCloseCheck}
+        aria-labelledby= 'modal-modal-title' variant='h6' component='h2'
+        aria-describedby = 'modal-modal-description'
+        >
+            <Box sx={style}>
+                <Grid>
+                    <Typography id= 'modal-modal description'>
+                        {orderList}
+                        {totalPrice.toFixed(2)}
+                    </Typography>
+                </Grid>
+                <Button>
+                    Submit Payment
+                </Button>
+                <Input type="text" name="tip" defaultValue={'Tip Amount?'}>
+                </Input>
+
+                <Button>
+                    Close Table
+                </Button>
+            </Box>
+
+        </Modal>
     </Grid>
     </AppBar>
     )
