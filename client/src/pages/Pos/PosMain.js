@@ -11,8 +11,13 @@ export default function PosMain() {
     const { loading, data } = useQuery(ME);
     const profile = data?.me || {};
 
-    if (!profile?.firstName) {
-        return <PosLoginKeyPad />
+    if (!Auth.loggedIn()) {
+        return (
+        <>
+            <PosNav profile ={profile} />
+            <PosLoginKeyPad />
+        </>
+        )
     }
 
     if (loading) {
