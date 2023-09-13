@@ -69,11 +69,12 @@ function SingleOrder({tableOrder}) {
             <ul>
               {
                 FoodStuff.map((item) => {
-                  return <li key ={item._id}>{item.item}</li>
+                  return <li key ={item._id}>${item.price + "  " + item.item}</li>
                 })
               }
             </ul>
           </Grid>
+          <p>test</p>
         </Paper>
       </Grid>
 
