@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, Button, Paper, Typography, Input } from '@mui/material';
 import { UPDATE_TABLE } from '../../utils/mutations';
+import { useMutation } from "@apollo/client";
 
 function PosServerProfile({ profile }) {
   const [selectedInput, setSelectedInput] = useState('');
   const [tableNumber, setTableNumber] = useState('');
   const [guestCount, setGuestCount] = useState('');
+  const [openOrder, { data, orderError }] = useMutation(UPDATE_TABLE)
 
   const append = (n) => {
     if (selectedInput === 'Table Number') {
@@ -33,11 +35,10 @@ function PosServerProfile({ profile }) {
   }
 
   const handleNewTable = async () => {
-    const [openOrder, { data, orderError }] = useMutation(UPDATE_TABLE)
     try {
-      const response = await openOrder({ variables: { 'tableNum': tableNumber, 'tableStatus': true } })
-      console.log('Table Opened!');
-      window.location(`/pos/order/${response._id}`)
+      const response = await openOrder({ variables: { 'tableNum': parseInt(tableNumber), 'tableStatus': true } })
+      console.log(response.data.updateTable._id);
+      window.location.assign(`/pos/order/${response.data.updateTable._id}`)
     } catch (err) {
       console.log(orderError);
     }
