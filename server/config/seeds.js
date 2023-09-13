@@ -402,8 +402,17 @@ db.once('open', async () => {
             roles: [roles[2], roles[0]],
             tables: [tables[3]._id, tables[4]._id, tables[5]._id],
             shifts: [shifts[0], shifts[3]]
-            },
-            // Add more employees as needed
+        },
+        {
+            firstName: 'Chris',
+            lastName: 'Banta',
+            email: 'chris@example.com',
+            password: 'password789',
+            posID: 1002,
+            roles: [roles[2], roles[0]],
+            tables: [],
+            shifts: []
+        },
         ]);
 
         console.log('Employees Seeded');
