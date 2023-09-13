@@ -72,44 +72,44 @@ function SingleOrderNav({ tableNum, order }) {
         }
     }
     return (
-        <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
-            <Grid item display='flex' justifyContent='space-between' bottom={'0'}>
-                <Button onClick={() => { handleOpenSubmit(); handleSendOrder() }}>
-                    Send Order
-                </Button>
-                <Modal
-                    open={open}
-                    onClose={handleCloseSubmit}
-                    aria-labelledby='modal-modal-title'
-                    aria-describedby='modal-modal-description'
-                >
-                    <Box sx={style}>
-                        <Typography id='modal-modal-title' variant='h6' component='h2' >
-                            Order Submission
-                        </Typography>
-                        <Typography id='modal-modal-description'>
-                            YOUR ORDER HAS BEEN SUCCESSFULLY SUBMITTED
-                        </Typography>
-                    </Box>
-                </Modal>
-                <Button onClick={() => handleOpenCheck()}>
-                    Checkout Table
-                </Button>
-                <Modal
-                    open={open2}
-                    onClose={handleCloseCheck}
-                    aria-labelledby='modal-modal-title' variant='h6' component='h2'
-                    aria-describedby='modal-modal-description'
-                >
-                    <Box sx={style}>
-                        <Grid>
-                            <Typography id='modal-modal description' style={{ whiteSpace: 'pre-line', maxHeight: '250px', overflowY: 'auto' }}>
-                                {orderList}
-                            </Typography>
-                            <Typography sx={{ py: 1 }}>
-                                Total Price: ${totalPrice.toFixed(2)}
-                            </Typography>
-                        </Grid>
+    <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
+    <Grid item  display='flex' justifyContent='space-between' bottom={'0'}>
+        <Button onClick={() => {handleOpenSubmit() ; handleSendOrder()} }>
+            Send Order
+        </Button>
+        <Modal 
+            open={open} 
+            onClose={handleCloseSubmit}
+            aria-labelledby = 'modal-modal-title'
+            aria-describedby = 'modal-modal-description'
+            >
+                <Box sx={style}>
+                    <Typography id='modal-modal-title' variant='h6' component='h2' >
+                        Order Submission
+                    </Typography>
+                    <Typography id='modal-modal-description'>
+                        YOUR ORDER HAS BEEN SUCCESSFULLY SUBMITTED
+                    </Typography>
+                </Box>
+            </Modal>
+        <Button onClick={() => handleOpenCheck()}>
+            Checkout Table
+        </Button>
+        <Modal
+        open={open2}
+        onClose = {handleCloseCheck}
+        aria-labelledby= 'modal-modal-title' variant='h6' component='h2'
+        aria-describedby = 'modal-modal-description'
+        >
+            <Box sx={style}>
+                <Grid>
+                    <Typography id= 'modal-modal description' style={{ whiteSpace: 'pre-line', maxHeight: '250px', overflowY: 'auto' }}>
+                        {orderList}
+                    </Typography>
+                    <Typography sx={{ py:1 }}> 
+                        Total Price: ${totalPrice.toFixed(2)} 
+                    </Typography>
+                </Grid>
 
                         <Input type="text" name="tip" defaultValue={'Tip Amount?'}>
                         </Input>
