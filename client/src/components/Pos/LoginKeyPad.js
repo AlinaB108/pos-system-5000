@@ -81,7 +81,6 @@ const PosLoginKeyPad = () => {
                   <Button variant="numpad" size="large" onClick={() => appendToEmployeeNumber('0')}>0</Button>
                 </Grid>
                 <Grid item xs={4}>
-                 
                   <Button variant="contained" size="large" color="success" sx={{ width: "100%", height: '4.5rem' }} onClick={() => loginAttempt()}>GO</Button>
                 </Grid>
               </Grid>
