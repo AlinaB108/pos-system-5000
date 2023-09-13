@@ -6,16 +6,13 @@ import SingleOrder from "../../components/Pos/SingleOrder";
 
 export default function Table() {
     const id = useParams();
-    console.log(id)
     const { loading, data } = useQuery(QUERY_TABLE, {
         variables: { "id": id._id },
     });
     if(loading){
         return <div > loading...</div>
     }else{
-        console.log(data)
         const tableOrder = data?.table || {};
-        console.log(tableOrder);
         return <SingleOrder tableOrder = {tableOrder}/>
     }
     
