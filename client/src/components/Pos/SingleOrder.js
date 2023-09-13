@@ -139,25 +139,33 @@ function SingleOrder({tableOrder}) {
                 className={value === 0 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(0)}
                 label="Beverages"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
+                  background: 'rgba(181, 203, 230, 1)',
+                  } }}
               />
               <Tab
                 className={value === 1 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(1)}
                 label="Appetizers"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
+                  background: 'rgba(181, 203, 230, 1)',
+                  } }}
               />
               <Tab
                 className={value === 2 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(2)}
                 label="Entrees"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
+                  background: 'rgba(181, 203, 230, 1)',
+                  } }}
               />
               <Tab
                 className={value === 3 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(3)}
                 label="Desserts"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff" }}
+                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
+                  background: 'rgba(181, 203, 230, 1)',
+                  } }}
               />
             </Tabs>
           </Grid>

@@ -119,37 +119,10 @@ const theme = createTheme({
       }
   },
   typography: {
-      // // for home page
-      // h1: {
-      //     fontFamily:  [ '"Overpass"', 'sans-serif'].join(','),
-      //     fontSize: '4rem',
-      //     fontWeight: 'bold',
-      //     color: 'primary',
-      //     lineHeight: 1
-      // },
-      // // for Savannah Shifflet header on pages
-      // h4: {
-      //     fontFamily:  [ '"Overpass"', 'sans-serif'].join(','),
-      //     fontSize: '2rem',
-      //     fontWeight: 'bold',
-      //     color: 'primary',
-      //     lineHeight: 1
-      // },
-      // // for page headers
-      // h2: {
-      //     fontSize: '3rem',
-      //     fontFamily: 'exo'
-      // },
-      // // Subtitles - 'my strengths'
-      // h3: {
-      //     fontFamily: 'exo',
-      //     fontSize: '2rem'
-      // },
-      // body1: {
-      //     fontFamily: 'nunito',
-      //     fontSize: '1.2rem',
-      //     fontWeight: 'bold'
-      // }
+      innerText: {
+        fontFamily: ['"Raleway"', 'sans-serif]'].join(','),
+        fontSize: '1rem'
+      },
       h5: {
         color: '#23296c',
         fontFamily: ['"Work Sans"', 'sans-serif'].join(','),
@@ -157,7 +130,6 @@ const theme = createTheme({
       h6: {
         color: '#000',
         fontFamily: ['"Work Sans"', 'sans-serif'].join(','),
-        // Will add fonts later
       }
   }
 })
