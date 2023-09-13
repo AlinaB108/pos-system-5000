@@ -28,34 +28,35 @@ const theme = createTheme({
       },
   },
   components: {
-      // MuiLink: {
-      //     variants: [
-      //         {
-      //             props: { variant: 'nav'},
-      //             style: {
-      //                 fontFamily: 'nunito',
-      //                 fontSize: '1.1rem',
-      //                 fontWeight: 'normal',
-      //                 textDecoration: 'none',
-      //                 margin: '1rem',
-      //                 "&:hover":{
-      //                     textShadow: '#E29263 -1.2px 0.3px',
-      //                 }
-      //             }
-      //         },
-      //         {
-      //             props: {variant: 'header'},
-      //             style: {
-      //                 fontFamily:  [ '"Overpass"', 'sans-serif'].join(','),
-      //                 fontSize: '2rem',
-      //                 fontWeight: 'bold',
-      //                 color: 'primary',
-      //                 lineHeight: 1,
-      //                 textDecoration: 'none'
-      //             }
-      //         }
-      // ]
-      // },
+      MuiLink: {
+          variants: [
+              {
+                  props: { variant: 'linkicon'},
+                  style: {
+                      color: '#fff',
+                      fontFamily: 'nunito',
+                      fontSize: '1.1rem',
+                      fontWeight: 'normal',
+                      textDecoration: 'none',
+                      margin: '1rem',
+                      "&:hover":{
+                          textShadow: '#fff -1.2px 0.3px',
+                      }
+                  }
+              },
+              // {
+              //     props: {variant: 'header'},
+              //     style: {
+              //         fontFamily:  [ '"Overpass"', 'sans-serif'].join(','),
+              //         fontSize: '2rem',
+              //         fontWeight: 'bold',
+              //         color: 'primary',
+              //         lineHeight: 1,
+              //         textDecoration: 'none'
+              //     }
+              // }
+      ]
+      },
       MuiButton: {
           variants: [
               {

@@ -14,7 +14,7 @@ function Nav() {
         <Typography variant="h5" component={Link} to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           Sapori D'Italia
         </Typography>
-          <Grid style={{ marginLeft: 'auto' }}>
+          <Grid style={{ marginLeft: 'auto' }} textAlign="center">
             <Box mx={6}>
               <Button component="a" href="#About" color="inherit">
                 About
