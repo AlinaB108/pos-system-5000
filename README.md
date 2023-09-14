@@ -1,4 +1,4 @@
-Sidekick, Final Project-Group-2      
+# Sidekick, Final Project-Group-2      
 ![MIT License badge](https://img.shields.io/github/license/alinaB108/pos-system-5000)
 ### Contributors: Alina Badillo, Christopher Banta, Antonio Giuliani, Savannah Shifflet, Andrew Wilson
 
@@ -51,11 +51,15 @@ Additionally, this code uses node.js packages which can be installed by running 
 ---
 You can log into the application at the deployed link [here](https://sidekick-pos-a138f104c04c.herokuapp.com/pos) using a fake employee's id: 1000. 
 
-![POSScreenshot]()
+![POSScreenshot](./client/src/assets/poskeypad.png)
+
+---
+
+![POSScreenshot2](./client/src/assets/possingleorder.png)
 
 ### Credits 
 ---
-  - [Alina Badilla](https://github.com/AlinaB108)
+  - [Alina Badillo](https://github.com/AlinaB108)
   - [Christopher Banta](https://github.com/BantaChristopher)
   - [Antonio Giuliani](https://github.com/T0ny-Macaroni)
   - [Savannah Shifflet](https://github.com/Savannah-Shifflet)
