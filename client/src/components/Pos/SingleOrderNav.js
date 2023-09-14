@@ -8,7 +8,7 @@ import {
     Modal,
     Input,
 } from "@mui/material";
-import  { UPDATE_TABLE } from '../../utils/mutations'
+import { UPDATE_TABLE } from '../../utils/mutations'
 import React from 'react';
 
 const style = {
@@ -21,25 +21,25 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
-  
+};
 
 
 
 
-function SingleOrderNav({tableNum, order}) {
-    const [sendOrder, {error} ] = useMutation(UPDATE_TABLE) 
-        const idArray = []
-        let orderList =[]
-        orderList = order.map((item) => item.item).join('\n');
-        let totalPrice = 0
-         order.map((item) => {
-            totalPrice += item.price
 
-        })
+function SingleOrderNav({ tableNum, order }) {
+    const [sendOrder, { error }] = useMutation(UPDATE_TABLE)
+    const idArray = []
+    let orderList = []
+    orderList = order.map((item) => item.item).join('\n');
+    let totalPrice = 0
+    order.map((item) => {
+        totalPrice += item.price
+
+    })
     order.map((item) => {
         return idArray.push(item._id)
-    }) 
+    })
 
     const [open, setOpen] = React.useState(false);
     const handleOpenSubmit = () => setOpen(true);
@@ -48,33 +48,27 @@ function SingleOrderNav({tableNum, order}) {
     const handleOpenCheck = () => setOpen2(true);
     const handleCloseCheck = () => setOpen2(false);
 
-    const [closeOrder, {orderError}] = useMutation(UPDATE_TABLE)
-        const handleOrderClose = async() => {
-            try {
-                await closeOrder({variables: {'tableNum': tableNum, 'tableStatus': false}})
-                console.log('Table Closed!');
-
-            } catch (err) {
-                console.log(orderError);
-            }
-            
+    const [closeOrder, { orderError }] = useMutation(UPDATE_TABLE)
+    const handleOrderClose = async () => {
+        try {
+            await closeOrder({ variables: { 'tableNum': tableNum, order:[], orderStatus: false, tip: 0, tableStatus: false } })
+            console.log('Table Closed!');
+        } catch (err) {
+            console.log(orderError);
         }
-
-
-
-
+    }
 
     const handleSendOrder = async () => {
         try {
-            sendOrder({variables: {tableNum,"order": idArray}}) 
+            sendOrder({ variables: { tableNum, "order": idArray } })
         } catch (err) {
             console.log(err);
         }
     }
     return (
     <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
-    <Grid item container justifyContent='space-between'>
-        <Button onClick={() => {handleOpenSubmit() ; handleSendOrder()}}>
+    <Grid item  display='flex' justifyContent='space-between' bottom={'0'}>
+        <Button onClick={() => {handleOpenSubmit() ; handleSendOrder()} }>
             Send Order
         </Button>
         <Modal 
@@ -111,20 +105,20 @@ function SingleOrderNav({tableNum, order}) {
                     </Typography>
                 </Grid>
 
-                <Input type="text" name="tip" defaultValue={'Tip Amount?'}>
-                </Input>
-                <Grid container justifyContent="center" alignItems="center" sx={{ pt:1 }}>
-                    <Button variant="dobtn">
-                        Submit Payment
-                    </Button>
-                    <Button variant="dontbtn" href='../profile/' onClick={handleOrderClose}>
-                        Close Table
-                    </Button>   
-                </Grid>
-            </Box>
-        </Modal>
-    </Grid>
-    </AppBar>
+                        <Input type="text" name="tip" placeholder={'Tip Amount?'}>
+                        </Input>
+                        <Grid container justifyContent="center" alignItems="center" sx={{ pt: 1 }}>
+                            <Button variant="dobtn">
+                                Submit Payment
+                            </Button>
+                            <Button variant="dontbtn" href='../profile/' onClick={handleOrderClose}>
+                                Close Table
+                            </Button>
+                        </Grid>
+                    </Box>
+                </Modal>
+            </Grid>
+        </AppBar>
     )
 }
 
