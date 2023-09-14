@@ -83,7 +83,7 @@ function PosServerProfile({ profile }) {
                         <Typography variant="h6" sx={{ textAlign: 'center', pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                           Table {item.tableNum}
                         </Typography>
-                        <Typography sx={{ p: 2, mt: '50px' }} color="#000">
+                        <Typography sx={{ p: 2 }} color="#000">
                           Items: {item.order.length}
                           <br />
                           Price ${deez2(item.order)}

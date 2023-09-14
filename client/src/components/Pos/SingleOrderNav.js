@@ -51,18 +51,12 @@ function SingleOrderNav({ tableNum, order }) {
     const [closeOrder, { orderError }] = useMutation(UPDATE_TABLE)
     const handleOrderClose = async () => {
         try {
-            await closeOrder({ variables: { 'tableNum': tableNum, 'tableStatus': false } })
+            await closeOrder({ variables: { 'tableNum': tableNum, order:[], orderStatus: false, tip: 0, tableStatus: false } })
             console.log('Table Closed!');
-
         } catch (err) {
             console.log(orderError);
         }
-
     }
-
-
-
-
 
     const handleSendOrder = async () => {
         try {
@@ -111,7 +105,7 @@ function SingleOrderNav({ tableNum, order }) {
                     </Typography>
                 </Grid>
 
-                        <Input type="text" name="tip" defaultValue={'Tip Amount?'}>
+                        <Input type="text" name="tip" placeholder={'Tip Amount?'}>
                         </Input>
                         <Grid container justifyContent="center" alignItems="center" sx={{ pt: 1 }}>
                             <Button variant="dobtn">
