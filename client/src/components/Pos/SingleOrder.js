@@ -1,5 +1,5 @@
 import {
-  Typography, Tabs, Tab, Button, Grid, Paper
+  Typography, Tabs, Tab, Button, Grid, Paper, TableRow
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
@@ -12,6 +12,8 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 function SingleOrder({tableOrder}) {
   // get existing food items for table to add to order log 
+
+
   const existingOrder = tableOrder.order;
 
   // Set initial value of order to existing items in order for table
@@ -29,10 +31,33 @@ function SingleOrder({tableOrder}) {
   });
   }, FoodStuff)
 
+const DeleteOrderItem = (e) => {
+let itemUUID = e.target.parentElement.id  
+let deleteButtons = document.getElementsByClassName('deleteBtn')
+console.log(e.target.parentElement.id);
+for ( let d of deleteButtons) {
+  d.addEventListener('Click', (e) => {
+    itemUUID.remove()
+  })
+}
+      console.log(e.target);
+      let result = FoodStuff.filter((item) => {
+       return  item.uuid !== itemUUID
+      })
+      console.log(result);
+      setFoodStuff(result)
+    };
+
+  const uuid = () => {
+    return Math.floor((Math.random() * 1000000000)).toString('12')
+  }
+
 
   // Query all menu items to use on the right side of page to add items to table's order
   const { loading, data } = useQuery(QUERY_ALL_MENU);
   const menuItems = data?.menuItems || {};
+
+  // const IncrementItem = (
 
   if (loading) {
     // RETURNS A LOADING SCREEN IF DATA LOADING
@@ -79,6 +104,7 @@ function SingleOrder({tableOrder}) {
     // return the filtered array of items to render on the page
     return currentItems;
   }
+console.log(FoodStuff);
 
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
@@ -92,18 +118,19 @@ function SingleOrder({tableOrder}) {
               {
                 FoodStuff.map((item) => {
                   return (
-                  <Grid item container xs={12} key ={item._id} sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
+                    item.uuid? 
+                 ( <Grid  item container xs={12} id={item.uuid} key = {item.uuid} sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
+                  {console.log(item)}
+                  {console.log(item.uuid)}
                     <Typography xs={9} sx={{px: 1}}> {item.item}</Typography>
-                    <Grid item container xs={3}sx = {{alignItems: 'center'}}> 
-                      <IconButton>
-                        <RemoveIcon  sx={{color: 'primary.main'}}/>
+                      <IconButton onClick={(e) => DeleteOrderItem(e)} className='deleteBtn'>
+                        <DeleteOutlineRoundedIcon  sx={{color: 'primary.main'}}/>
                       </IconButton>
-                      <Typography > #</Typography>
-                      <IconButton>
-                        <AddIcon  sx={{color: 'primary.main'}}/>
-                      </IconButton>
-                    </Grid>
-                  </Grid>
+                  </Grid>) : (
+                     <Grid className='deleteBtn' item container xs={12}sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
+                     <Typography xs={9} sx={{px: 1}}> {item.item}</Typography>
+                   </Grid>
+                  )
                   )
                 })
               }
@@ -167,7 +194,7 @@ function SingleOrder({tableOrder}) {
             <Grid container justifyContent="center" alignItems="center">
               {filterCategory().map((item, index) => (
                 <Button variant='menubtn' key={index} onClick={() => {
-                  setFoodStuff([...FoodStuff, item])
+                  setFoodStuff([...FoodStuff, {...item, uuid : uuid()}]);
                 }}
                   sx={{ p: 2, m: 0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center' }}>
                   {item.item}
