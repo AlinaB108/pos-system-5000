@@ -23,7 +23,8 @@ function PosServerProfile({ profile }) {
   var allTables = profile.tables;
 
   var allOpenTables = allTables.filter((table) => table.tableStatus === true)
-  function deez2(order) {
+  //no more deez :(
+  function displayPrice(order) {
     var totalPrice = 0;
     for (let i = 0; i < order.length; i++) {
       totalPrice += order[i].price;
@@ -73,7 +74,7 @@ function PosServerProfile({ profile }) {
                         <Typography sx={{ p:2, mt: '50px' }} color="#000">
                           Items: {item.order.length}
                           <br />
-                          Price ${deez2(item.order)}
+                          Price ${displayPrice(item.order)}
                         </Typography>
                       </Box>
                     </Button>
