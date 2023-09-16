@@ -414,8 +414,8 @@ db.once('open', async () => {
       email: 'john@example.com',
       password: 'password123',
       posID: 1000,
-      roles: [roles[1]],
-      tables: [tables[0]._id, tables[1]._id, tables[2]._id],
+      roles: [roles[0]],
+      tables: [],
       shifts: [shifts[0], shifts[2]],
     },
     {

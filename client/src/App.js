@@ -17,6 +17,9 @@ import NoMatch from './pages/Front/NoMatch';
 // POS APPLICATION ROUTES vv
 import Shift from './pages/Pos/Shift';
 import Orders from './pages/Pos/Orders';
+import EmployeeList from './pages/Pos/EmployeeList';
+import MenuList from './pages/Pos/MenuList';
+import CommandsList from './pages/Pos/CommandsList';
 import Profile from './pages/Pos/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
 import PosMain from './pages/Pos/PosMain';
@@ -59,6 +62,10 @@ function App() {
             <Route
               path="/pos"
               element={<PosMain />}>
+                <Route
+                  path="/pos/shift"
+                  element={<Shift />}
+                />
                 <Route
                   path="/pos/profile"
                   index
