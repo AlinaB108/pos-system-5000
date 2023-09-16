@@ -73,8 +73,16 @@ function App() {
                   element={<Orders />}
                 />
                 <Route
-                  path="/pos/shift"
-                  element={<Shift />}
+                  path="/pos/employees"
+                  element={<EmployeeList />}
+                />
+                <Route
+                  path="/pos/menu"
+                  element={<MenuList />}
+                />
+                <Route
+                  path="/pos/ordrs" /*  another layer of security  */
+                  element={<CommandsList />}
                 />
             </Route>            
             {/* 404 ROUTE vv */}
