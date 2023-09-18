@@ -1,0 +1,1 @@
+// COMMANDS LIST page would have the nav bar at the top, then a bunch of buttons for whatever we think of

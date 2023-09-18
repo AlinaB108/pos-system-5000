@@ -9,22 +9,22 @@ function PosServerProfile() {
   return (
     <Grid container direction="row" alignItems="center" justifyContent="center" height="50vh" display="flex"> 
       <Box item xs={3} display="flex" container flexDirection="column" justifyContent="center" padding={1}>
-        <Button variant="contained" href="/pos" size="large">
+        <Button variant="contained" href="/pos/employees" size="large">
             Menu
         </Button>
       </Box>
       <Box item xs={3} display="flex" container flexDirection="column" justifyContent="center" padding={1}>
-        <Button variant="contained" href="/pos" size="large">
+        <Button variant="contained" href="/pos/orders" size="large">
           All Orders
         </Button>
       </Box>
       <Box item xs={3} display="flex" container flexDirection="column" justifyContent="center" padding={1}>
-        <Button variant="contained" href="/pos" size="large">
+        <Button variant="contained" href="/pos/menu" size="large">
           Employees
         </Button>
       </Box>
       <Box item xs={3} display="flex" container flexDirection="column" justifyContent="center" padding={1}>
-        <Button variant="contained" href="/pos" size="large">
+        <Button variant="contained" href="/pos/ordrs" size="large">
           Manager
         </Button>
       </Box>
