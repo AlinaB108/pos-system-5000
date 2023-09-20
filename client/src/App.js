@@ -17,9 +17,9 @@ import NoMatch from './pages/Front/NoMatch';
 // POS APPLICATION ROUTES vv
 import Shift from './pages/Pos/Shift';
 import Orders from './pages/Pos/Orders';
-import EmployeeList from './pages/Pos/EmployeeList';
-import MenuList from './pages/Pos/MenuList';
-import CommandsList from './pages/Pos/CommandsList';
+import Employees from './pages/Pos/Employees';
+import Menu from './pages/Pos/Menu';
+import Ordrs from './pages/Pos/Ordrs';
 import Profile from './pages/Pos/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
 import PosMain from './pages/Pos/PosMain';
@@ -81,15 +81,15 @@ function App() {
                 />
                 <Route
                   path="/pos/employees"
-                  element={<EmployeeList />}
+                  element={<Employees />}
                 />
                 <Route
                   path="/pos/menu"
-                  element={<MenuList />}
+                  element={<Menu />}
                 />
                 <Route
-                  path="/pos/ordrs" /*  another layer of security  */
-                  element={<CommandsList />}
+                  path="/pos/ordrs"
+                  element={<Ordrs />}
                 />
             </Route>            
             {/* 404 ROUTE vv */}

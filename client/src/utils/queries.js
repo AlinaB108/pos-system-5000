@@ -16,6 +16,10 @@ query Employee($id: ID!) {
     tables {
       _id
       tableNum
+      orderStatus
+      tip
+      date
+      tableStatus
       order {
         _id
         item
@@ -28,10 +32,6 @@ query Employee($id: ID!) {
           name
         }
       }
-      orderStatus
-      tip
-      date
-      tableStatus
     }
     shifts {
       _id
@@ -67,6 +67,10 @@ query Table($id: ID!) {
   table(_id: $id) {
     _id
     tableNum
+    orderStatus
+    tip
+    date
+    tableStatus
     order {
       _id
       item
@@ -79,10 +83,6 @@ query Table($id: ID!) {
         name
       }
     }
-    orderStatus
-    tip
-    date
-    tableStatus
   }
 }`;
 
@@ -102,6 +102,10 @@ query Employees {
     tables {
       _id
       tableNum
+      orderStatus
+      tip
+      date
+      tableStatus
       order {
         _id
         item
@@ -114,10 +118,6 @@ query Employees {
           name
         }
       }
-      orderStatus
-      tip
-      date
-      tableStatus
     }
     shifts {
       _id
@@ -153,6 +153,10 @@ query Table {
   tables {
     _id
     tableNum
+    orderStatus
+    tip
+    date
+    tableStatus
     order {
       _id
       item
@@ -165,10 +169,6 @@ query Table {
         name
       }
     }
-    orderStatus
-    tip
-    date
-    tableStatus
   }
 }`;
 
@@ -188,6 +188,10 @@ export const ME = gql`query Query {
     tables {
       _id
       tableNum
+      orderStatus
+      tip
+      date
+      tableStatus
       order {
         _id
         item
@@ -200,10 +204,6 @@ export const ME = gql`query Query {
           name
         }
       }
-      orderStatus
-      tip
-      date
-      tableStatus
     }
     shifts {
       _id
