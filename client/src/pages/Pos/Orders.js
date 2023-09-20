@@ -1,4 +1,4 @@
-import PosOrderList from './OrderList';
+import OrderList from '../../components/Pos/OrderList';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_TABLES } from '../../utils/queries';
 
@@ -11,9 +11,12 @@ const Orders = () => {
     return <div>Loading...</div>;
   }
 
+  // ADD THIS FUNCTIONALITY:
+  // IF CLOCKED IN AS MANAGER, RENDER MANAGER ALL ORDERS PAGE
+
   return (
     <div className="container">
-        <PosOrderList tables={tables}/>
+      <OrderList tables={tables} />
     </div>
   );
 };
