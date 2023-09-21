@@ -25,7 +25,7 @@ function PosNav({profile}) {
           </Button>
         </Grid>
   
-        <Box sx={{ justifyContent: 'center', mx: 'auto' }}>
+        <Box sx={{ justifyContent: 'center', mx: 'auto', textAlign: 'center' }}>
           <Typography variant="h5">
             Welcome {profile.firstName}! You are a {profile.roles[0].name} today!
           </Typography>
