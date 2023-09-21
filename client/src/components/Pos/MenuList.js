@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Grid, Button, Typography, ScopedCssBaseline } from '@mui/material';
+import { Box, Container, Grid, Button, Typography, Paper } from '@mui/material';
 
 
 const MenuList = ({ menuItems }) => {
@@ -9,10 +9,9 @@ const MenuList = ({ menuItems }) => {
   }
 
   return (
-    <Grid container justifyContent="center" spacing={4}>
+    <Grid container justifyContent="center" spacing={4} sx={{ mt:4}}>
       {/* First container */}
       <Grid item xs={6}>
-        
         <Grid style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%' }}>
           <Grid container justifyContent="center">
             {menuItems.map(item => (
@@ -40,8 +39,46 @@ const MenuList = ({ menuItems }) => {
         </Grid>
       </Grid>
 
+
       {/* Second container */}
-      <Grid item xs={6}>
+      <Grid container justifyContent="center" item xs={6}>
+        {/* Typography container - ughhhhh!!!!!!! */}
+        {/* <Grid item xs={12}> 
+          <Typography>Selected Item</Typography>
+        </Grid> */}
+          
+        {/* 4 containers - actions */}
+        <Grid container item xs={6} spacing={3}>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Typography>Container 1</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Typography>Container 2</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Typography>Container 3</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Typography>Container 4</Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+        {/* Ingredients container */}
+        <Grid item xs={6} sx={{ maxHeight: '65vh', px:3 }}>
+          <Paper style={{ height: '100%' }}>
+            <Typography>
+              List of Selectable Ingredients:
+            </Typography>
+            <li>ingredient</li>
+          </Paper>
+        </Grid>
       </Grid>
     </Grid>
   );
