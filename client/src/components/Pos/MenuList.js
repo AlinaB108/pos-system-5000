@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Grid, Button, Typography, ScopedCssBaseline } from '@mui/material';
+import { Box, Checkbox, Grid, Button, Typography, Paper } from '@mui/material';
 
 
 const MenuList = ({ menuItems }) => {
@@ -9,28 +9,29 @@ const MenuList = ({ menuItems }) => {
   }
 
   return (
-    <Grid container justifyContent="center" spacing={4}>
+    <Grid container justifyContent="center" spacing={4} sx={{ mt:4}}>
       {/* First container */}
       <Grid item xs={6}>
-        
         <Grid style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%' }}>
           <Grid container justifyContent="center">
             {menuItems.map(item => (
               <Grid container justifyContent="center" sx={{ mt: 2 }} item md={4} sm={9} key={item.id}>
                 <Grid>
                   <Button>
-                    <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '260px' }} height='25vh' style={{ backgroundColor: "#fff" }} >
-                      <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                    <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '260px' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+                      <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                         {item.item}
                       </Typography>
-                      <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
-                        ${item.price}
-                        {item.ingredients.map(ingredient => (
-                          <Grid key={ingredient._id}>
-                            <li>{ingredient}</li>
-                          </Grid>
-                        ))}
-                      </Typography>
+                      <Box sx={{ pt:1 }}>
+                        <Typography color="#000" height="fit-content" lineHeight="3">
+                          ${item.price}
+                          {item.ingredients.map(ingredient => (
+                            <Grid key={ingredient._id}>
+                              <Typography sx={{listStyle: 'none'}}>{ingredient}</Typography>
+                            </Grid>
+                          ))}
+                        </Typography>
+                      </Box>
                     </Box>
                   </Button>
                 </Grid>
@@ -40,8 +41,58 @@ const MenuList = ({ menuItems }) => {
         </Grid>
       </Grid>
 
+
       {/* Second container */}
-      <Grid item xs={6}>
+      <Grid container justifyContent="center" item xs={6}>
+        {/* Typography container - ughhhhh!!!!!!! */}
+        {/* <Grid item xs={12}> 
+          <Typography>Selected Item</Typography>
+        </Grid> */}
+          
+        {/* 4 containers - actions */}
+        <Grid container item xs={12} md={12} lg={6} spacing={3}>
+          <Grid item xs={6}>
+            {/* Add this to Papers when make it a button onClick={() => handleButtonClick(1)} */}
+            <Paper style={{ height: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>ADD Ingredient</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>Remove Ingredient</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>ITEM</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>EDIT Price</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
+        {/* Ingredients container */}
+        <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: '65vh', px:3 }}>
+          <Paper style={{ height: '100%' }}>
+            <Typography textAlign="center" sx={{ p:2 }}>
+              List of Selectable Ingredients:
+            </Typography>
+            {/* Might try checkbox? If yes I will style it globally */}
+            <Typography><Checkbox sx={{ color: '#23296c'}}/>bacon</Typography>
+            <Typography><Checkbox sx={{ color: '#23296c'}}/>tears</Typography>
+            <Typography><Checkbox sx={{ color: '#23296c'}}/>grapes</Typography>
+          </Paper>
+        </Grid>
       </Grid>
     </Grid>
   );

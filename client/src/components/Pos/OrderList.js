@@ -8,26 +8,28 @@ const OrderList = ({ tables }) => {
 
   return (
     <Grid container justifyContent="center">
-      {tables.map(table => {
-        return <Grid container justifyContent="center" sx={{ mt: 2 }} item xs={12} md={4} sm={6}>
-          <Grid>
-            <Button>
-                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '300px' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                  <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                    Table {table.tableNum}
-                  </Typography>
-                  <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
-                    {table.order.map(item => {
-                      return <div key={item._id}>
-                        <Typography variant="innerText">{item.item} ${item.price}</Typography>
-                      </div>
-                    })}
-                  </Typography>
-                </Box>
-              </Button>
-          </Grid>
+    {tables.map(table => (
+      <Grid container justifyContent="center" sx={{ mt: 2 }} item xs={12} md={3} sm={6} key={table.tableNum}>
+        <Grid>
+          <Button>
+            <Box sx={{ mt: 4, borderRadius: '25px', overflow: 'hidden', width: '300px' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+              <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                Table {table.tableNum}
+              </Typography>
+              <Box sx={{ pt: 1, maxHeight: '25vh', overflowY: 'auto' }}> {/* Adjust maxHeight as needed */}
+                <Typography color="#000" height="fit-content" lineHeight="2.5">
+                  {table.order.map(item => (
+                    <div key={item._id}>
+                      <Typography variant="innerText">{item.item} ${item.price}</Typography>
+                    </div>
+                  ))}
+                </Typography>
+              </Box>
+            </Box>
+          </Button>
         </Grid>
-      })}
+      </Grid>
+    ))}
     </Grid>
   );
 };
