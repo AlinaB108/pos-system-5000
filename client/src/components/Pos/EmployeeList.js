@@ -27,11 +27,11 @@ const MenuList = ({ employees }) => {
         <Grid container justifyContent="center" xs={6} md={6}>
           {employees.map(employee => {
             return <Grid container sx={{ justifyContent: "center" }} item md={3} sm={9} onClick={() => setSelectedEmployee(employee)}>
+
               <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: 'fit-content', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
                 <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                   {employee.firstName} {employee.lastName}
                 </Typography>
-
                 <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
                   Roles:
                 </Typography>
@@ -67,6 +67,7 @@ const MenuList = ({ employees }) => {
                 <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                   {selectedEmployee.firstName} {selectedEmployee.lastName}
                 </Typography>
+
                 <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
                   Roles:
                 </Typography>
@@ -91,6 +92,7 @@ const MenuList = ({ employees }) => {
                           <Typography sx={{ pt: 1 }}>{order.item}</Typography>
                         </div>
                       })}
+
                     </div>
                   })}
                 </Typography>
