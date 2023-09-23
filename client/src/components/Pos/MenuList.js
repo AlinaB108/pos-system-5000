@@ -3,6 +3,8 @@ import { Box, Container, Grid, Button, Typography, ScopedCssBaseline } from '@mu
 
 
 const MenuList = ({ menuItems }) => {
+  const [selectedFood, setSelectedFood] = React.useState({})
+
   // const menu = menuItems;
   if (!menuItems.length) {
     return <h3>No Menu Items!</h3>;
@@ -18,7 +20,7 @@ const MenuList = ({ menuItems }) => {
             {menuItems.map(item => (
               <Grid container justifyContent="center" sx={{ mt: 2 }} item md={4} sm={9} key={item.id}>
                 <Grid>
-                  <Button>
+                  <Button onClick={() => setSelectedFood(item)}>
                     <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '260px' }} height='25vh' style={{ backgroundColor: "#fff" }} >
                       <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                         {item.item}
@@ -42,6 +44,40 @@ const MenuList = ({ menuItems }) => {
 
       {/* Second container */}
       <Grid item xs={6}>
+      <Box backgroundColor="grey">
+            <Typography backgroundColor="white">
+              Control Pad for Selected Employee
+            </Typography>
+
+            <Button variant="contained" color="primary">
+              Button 1
+            </Button>
+
+            <Button variant="contained" color="secondary">
+              Button 2
+            </Button>
+
+            {selectedFood._id ? (
+              <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: 'fit-content', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+                <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                  {selectedFood.item}
+                </Typography>
+                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
+                  Ingredients:
+                </Typography>
+                <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
+                  {selectedFood.ingredients.map(ingredient => {
+                    return <div backgroundColor="#100" key={ingredient._id}>
+                      {ingredient}
+                    </div>
+                  })}
+                </Typography>
+                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
+                {selectedFood.price}
+                </Typography>
+              </Box>
+            ) : null}
+        </Box>
       </Grid>
     </Grid>
   );
