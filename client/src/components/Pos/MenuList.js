@@ -21,8 +21,7 @@ const MenuList = ({ menuItems }) => {
                 <Grid>
                   <Button onClick={() => setSelectedFood(item)}>
                     <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '260px' }} height='25vh' style={{ backgroundColor: "#fff" }} >
-                      <Typography variant="h6" textAlign='center' sx={{ pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-
+                      <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                         {item.item}
                       </Typography>
                       <Box sx={{ pt:1 }}>
@@ -46,43 +45,98 @@ const MenuList = ({ menuItems }) => {
 
 
       {/* Second container */}
-      <Grid item xs={6}>
-      <Box backgroundColor="grey">
-            <Typography backgroundColor="white">
-              Control Pad for Selected Employee
-            </Typography>
-
-            <Button variant="contained" color="primary">
-              Button 1
-            </Button>
-
-            <Button variant="contained" color="secondary">
-              Button 2
-            </Button>
-
+      <Grid container justifyContent="center" item xs={6}>
+        {/* Typography container - ughhhhh!!!!!!! */}
+        {/* <Grid item xs={12}> 
+              <Typography>Selected Item</Typography>
+            </Grid> */}
+        {/* <Typography backgroundColor="white">
+          Control Pad for Selected Employee
+        </Typography> */}
+          
+        {/* 4 containers - actions */}
+        <Grid container item xs={12} md={12} lg={6} spacing={3}>
+          <Grid item xs={6}>
+              <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+                onClick={() => {
+                  // Action stuff
+                  console.log('Button clicked');
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                  <Typography>ADD Ingredient</Typography>
+                </Box>
+              </Paper>
+            </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+              onClick={() => {
+                // Action stuff
+                console.log('Button clicked');
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>Remove Ingredient</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+              onClick={() => {
+                // Action stuff
+                console.log('Button clicked');
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>Item</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+              onClick={() => {
+                // Action stuff
+                console.log('Button clicked');
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <Typography>EDIT Price</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
+        {/* Ingredients container */}
+        <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: '65vh', px:3 }}>
+          <Paper style={{ height: '100%' }}>
+            {/* <Typography textAlign="center" sx={{ p:2 }}>
+              List of Selectable Ingredients:
+            </Typography> */}
             {selectedFood._id ? (
-              <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: 'fit-content', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+              <Grid sx={{ borderRadius: '5px', overflow: 'hidden', width: '100%', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+                <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                   {selectedFood.item}
                 </Typography>
-                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
+                <Typography variant="h6" textAlign='center' sx={{ p:1 }}>
                   Ingredients:
                 </Typography>
-                <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
+                <Typography color="#000" sx={{ p:2 }} height="fit-content">
                   {selectedFood.ingredients.map(ingredient => {
                     return <div backgroundColor="#100" key={ingredient._id}>
                       {ingredient}
+                      <hr></hr>
                     </div>
                   })}
                 </Typography>
-                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
-                {selectedFood.price}
+                <Typography variant="h6" textAlign='flex-start' sx={{ backgroundColor: "#fce698", pl:2 }}>
+                ${selectedFood.price}
                 </Typography>
-              </Box>
+              </Grid>
             ) : null}
-        </Box>
-
+          </Paper>
+        </Grid>
       </Grid>
+
+
     </Grid>
   );
 };
