@@ -56,8 +56,8 @@ const MenuList = ({ menuItems }) => {
           
         {/* 4 containers - actions */}
         <Grid container item xs={12} md={12} lg={6} spacing={3}>
-          <Grid item xs={6}>
-              <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+          <Grid item xs={6} container alignItems="flex-end">
+              <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
                 onClick={() => {
                   // Action stuff
                   console.log('Button clicked');
@@ -68,8 +68,8 @@ const MenuList = ({ menuItems }) => {
                 </Box>
               </Paper>
             </Grid>
-          <Grid item xs={6}>
-            <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+          <Grid item xs={6} container alignItems="flex-end">
+            <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
               onClick={() => {
                 // Action stuff
                 console.log('Button clicked');
@@ -80,8 +80,8 @@ const MenuList = ({ menuItems }) => {
               </Box>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
-            <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+          <Grid item xs={6} container alignItems="flex-start">
+            <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
               onClick={() => {
                 // Action stuff
                 console.log('Button clicked');
@@ -92,8 +92,8 @@ const MenuList = ({ menuItems }) => {
               </Box>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
-            <Paper style={{ height: '100%', width: '100%', cursor: 'pointer' }}
+          <Grid item xs={6} container alignItems="flex-start">
+            <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
               onClick={() => {
                 // Action stuff
                 console.log('Button clicked');
