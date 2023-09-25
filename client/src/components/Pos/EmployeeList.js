@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Button, Typography } from '@mui/material';
+import { Box, Grid, Button, Paper, Typography } from '@mui/material';
 
 
 const MenuList = ({ employees }) => {
@@ -21,111 +21,116 @@ const MenuList = ({ employees }) => {
   };
 
   return (
-    <div>
-      <Grid container justifyContent={'space-between'}>
-
-        <Grid container justifyContent="center" xs={6} md={6}>
-          {employees.map(employee => {
-            return <Grid container sx={{ justifyContent: "center" }} item md={3} sm={9} onClick={() => setSelectedEmployee(employee)}>
-
-              <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: 'fit-content', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                  {employee.firstName} {employee.lastName}
-                </Typography>
-                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
-                  Roles:
-                </Typography>
-
-                <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
-                  {employee.roles.map(role => {
-                    return <div backgroundColor="#100" key={role._id}>
-                      {role.name}
-                    </div>
-                  })}
-                </Typography>
-              </Box>
-            </Grid>
-          })}
-        </Grid>
-
-        <Grid container xs={6} md={5}>
-          <Box backgroundColor="grey">
-            <Typography backgroundColor="white">
-              Control Pad for Selected Employee
-            </Typography>
-
-            <Button variant="contained" color="primary" onClick={handleAddRoleClick}>
-              Button 1
-            </Button>
-
-            <Button variant="contained" color="secondary" onClick={handleDelRoleClick}>
-              Button 2
-            </Button>
-
-            {selectedEmployee._id ? (
-              <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: 'fit-content', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                  {selectedEmployee.firstName} {selectedEmployee.lastName}
-                </Typography>
-
-                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
-                  Roles:
-                </Typography>
-                <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
-                  {selectedEmployee.roles.map(role => {
-                    return <div backgroundColor="#100" key={role._id}>
-                      {role.name}
-                    </div>
-                  })}
-                </Typography>
-                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
-                  Tables:
-                </Typography>
-                <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
-                  {selectedEmployee.tables.map(table => {
-                    return <div sx={{ width: 100 }} key={table._id}>
-                      <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698" }}>
-                        {table.tableNum}
-                      </Typography>
-                      {table.order.map(order => {
-                        return <div key={order._id}>
-                          <Typography sx={{ pt: 1 }}>{order.item}</Typography>
-                        </div>
-                      })}
-
-                    </div>
-                  })}
-                </Typography>
-              </Box>
-            ) : null}
-          </Box>
+    <Grid container justifyContent="space-between" spacing={4} sx={{ mt:4}}>
+      {/* First container */}
+      <Grid item xs={6}>
+        <Grid style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%' }}>
+          <Grid container justifyContent="center">
+            {employees.map(employee => (
+              <Grid container sx={{ justifyContent: "center", maxWidth: '260px' }} item md={4} sm={9} key={employee._id} onClick={() => setSelectedEmployee(employee)}>
+                <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '100%', maxWidth: '260px', backgroundColor: "#fff" }} height='25vh'>
+                  <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                    {employee.firstName} {employee.lastName}
+                  </Typography>
+                  <Typography variant="h6" textAlign='flex-start' sx={{ p:1 }}>
+                    Roles:
+                  </Typography>
+                  <Typography color="#000" sx={{ pl:1, pr:1 }} height="fit-content">
+                    {employee.roles.map(role => (
+                      <div backgroundColor="#100" key={role._id}>
+                        {role.name}
+                      </div>
+                    ))}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </div >
+
+
+      {/* Second container */}
+      <Grid container justifyContent="center" item xs={6}>
+        <Grid sx={{ width: '100%' }}>
+          <Grid sx={{ backgroundColor: '#fff', borderRadius:'5px', p:2 }}>
+            <Typography textAlign="center">
+              Control Pad for Selected Employee
+            </Typography>
+            <Grid container justifyContent="center" sx={{ p:1 }}> 
+              <Button variant="contained" color="primary" onClick={handleAddRoleClick}>
+                Button 1
+              </Button>
+              <Button variant="contained" color="secondary" onClick={handleDelRoleClick}>
+                Button 2
+              </Button>
+            </Grid>
+          </Grid>
+
+        {selectedEmployee._id ? (
+          <Grid container justifyContent="space-between" sx={{ pt: '15px' }}>
+            <Grid xs={3} sx={{ p: '1px', backgroundColor: '#fff', maxHeight: '20vh', overflowY: 'auto', borderRadius: '5px' }}>
+              <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#d4e1f1", borderRadius: '5px' }}>
+                {selectedEmployee.firstName} {selectedEmployee.lastName}
+              </Typography>
+              <Typography variant="h6" textAlign='flex-start' sx={{ p: 1 }}>
+                Roles:
+              </Typography>
+              <Typography sx={{ pl: 1, pr: 1 }} height="fit-content">
+                {selectedEmployee.roles.map(role => {
+                  return <div backgroundColor="#100" key={role._id}>
+                    {role.name}
+                  </div>
+                })}
+              </Typography>
+            </Grid>
+            <Grid xs={9} sx={{ px:3}}>
+              <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#d4e1f1", borderRadius: "5px" }}>
+                Tables:
+              </Typography>
+              <Typography
+                sx={{ pl: 1, pr: 1, display: 'flex', flexWrap: 'wrap', maxHeight: '43vh', overflowY: 'auto', '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+                  '::-webkit-scrollbar-thumb': {
+                    backgroundColor: 'rgba(0,0,0,0)',
+                  },
+                }}>
+                {selectedEmployee.tables.map(table => (
+                  <Grid
+                    key={table._id}
+                    sx={{ flex: '0 0 calc(50% - 16px)', m: '8px', maxWidth: '50%', height: '20vh', backgroundColor: "#fff", borderRadius: '25px', overflowY: 'auto',
+                      '::-webkit-scrollbar': {
+                        width: '0',
+                      },
+                      '::-webkit-scrollbar-thumb': {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                      },
+                    }}>
+                    <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                      {table.tableNum}
+                    </Typography>
+                    {table.order.map(order => (
+                      <div key={order._id}>
+                        <Typography sx={{ pt: 1, pl: 2 }}>{order.item}</Typography>
+                      </div>
+                    ))}
+                  </Grid>
+                ))}
+              </Typography>
+            </Grid>
+          </Grid>
+        ) : null}
+        </Grid>
+      </Grid>
+
+    </Grid>
   );
 };
 
 export default MenuList;
 
 
-
-// MENU LIST page would be
-//
-//
-// ---------------------------------------------------------------
-// -----------------       NAVBAR               ------------------
-// -----------------                            ------------------
-// ---------------------------------------------------------------
-// -----                    --------                    ----------
-// -----                    --------   command buttons  ----------
-// -----List of scrollable  --------    for selected    ----------
-// -----  menu items        --------     foods          ----------
-// -----                    --------                    ----------
-// -----                    --------                    ----------
-// -----                    --------                    ----------
-// -----                    --------                    ----------
-// -----                    --------                    ----------
-// ---------------------------------------------------------------
 
 
 
