@@ -8,12 +8,16 @@ import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
 
 const MenuList = ({ menuItems }) => {
   const [selectedFood, setSelectedFood] = useState({});
   const [stockStatus, setStockStatus] = useState();
   const [updateMenu, { error, data }] = useMutation(UPDATE_MENU);
   const [newIngredient, setNewIngredient] = useState('');
+  const [price, setPrice] = useState(0)
 
   // updates stock status whenever a new food item is selected
   useEffect(()=>{
@@ -55,6 +59,7 @@ const MenuList = ({ menuItems }) => {
             const { data } = await updateMenu({
                 variables: { item: selectedFood.item, ingredients: updatedIngredients },
             });
+            setNewIngredient('')
             } catch (err) {
             console.log(err);
         }
@@ -73,6 +78,23 @@ const MenuList = ({ menuItems }) => {
       }
   };
 
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const changePrice = async()=>{
+    console.log(price)
+    if(price>0){
+      try{
+        const { data } = await updateMenu({
+          variables: { 'item': selectedFood.item, 'price': parseFloat(price) },
+        })
+      }catch(err){
+        console.log(err);
+      }
+    }
+  }
+
   if (!menuItems.length) {
     return <h3>No Menu Items!</h3>;
   }
@@ -83,7 +105,7 @@ const MenuList = ({ menuItems }) => {
       <Grid item container justifyContent="center" xs={6} style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%'}}>
             {menuItems.map(item => (
               <Grid container justifyContent="center" sx={{ mt: 1 }} item md={4} sm={9} key={item.id}>
-                  <Button variant="menubtn" onClick={() => setSelectedFood(item)} textAlign='center' sx={{width: '90%', backgroundColor: "accent.main"}} >
+                  <Button variant="menubtn" onClick={() => {setPrice(item.price); setSelectedFood(item)}} textAlign='center' sx={{width: '90%', backgroundColor: "accent.main"}} >
                         {item.item}
                   </Button>
               </Grid>
@@ -150,7 +172,20 @@ const MenuList = ({ menuItems }) => {
         textAlign="flex-start"
         sx={{ backgroundColor: "#fce698", pl: 2 }}
         >
-        ${selectedFood.price}
+        
+        <Grid item container justifyContent="space-between" sx={{ mt: 0.5 }}>
+       <FormControl sx={{ m: 1 }} variant="standard">
+          <Input
+            id="priceInput"
+            startAdornment={<InputAdornment position="start">
+              <Typography color="text.primary">$</Typography></InputAdornment>}
+            defaultValue={selectedFood.price}
+            onChange={handlePriceChange}
+          />
+          <Button onClick={changePrice}>Submit</Button>
+        </FormControl>
+        </Grid>
+        
         </Typography>
     </Grid>
 </Grid>
