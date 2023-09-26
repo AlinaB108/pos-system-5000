@@ -1,12 +1,17 @@
 import React, {useState, useEffect } from 'react';
-import { Box, Checkbox, Grid, Button, Typography, Paper, accordionDetailsClasses, TextField, FormGroup, FormControlLabel, Switch } from '@mui/material';
+import { Grid, Button, Typography, Paper, TextField, FormGroup, FormControlLabel, Switch } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { UPDATE_MENU } from '../../utils/mutations';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import IconButton from '@mui/material/IconButton';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_MENU } from '../../utils/queries';
 
 const MenuList = ({ menuItems }) => {
   const [selectedFood, setSelectedFood] = useState({});
   const [newIngredient, setNewIngredient] = useState('');
   const [stock, setStock] = useState('In Stock');
+  const [newMenuItems, setNewMenuItems] = useState(menuItems)
   const [updateMenu, { error, data }] = useMutation(UPDATE_MENU);
 
 
@@ -14,6 +19,25 @@ const MenuList = ({ menuItems }) => {
     setNewIngredient(event.target.value)
     console.log("setting ingredient with input" + newIngredient)
   }
+
+  const removeIngredient = async(event)=>{
+    console.log(event.target.parentElement.parentElement.id)
+    // const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.parentElement.id);
+    // event.target.parentElement.parentElement.remove();
+    // try{
+    //   const { data } = await updateMenu({
+    //     variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
+    //   })
+      // setSelectedFood(selectedFood.item)
+      // const { loading, result } = useQuery(QUERY_ALL_MENU)
+      // const menu = result?.menuItems || [];
+      // setNewMenuItems(menu)
+    //   console.log(data);
+    // }catch(err){
+    //   console.log(err);
+    // }
+  };
+
   const addIngredient = async()=>{
     const updatedIngredients = selectedFood.ingredients
     updatedIngredients.push(newIngredient);
@@ -23,31 +47,35 @@ const MenuList = ({ menuItems }) => {
         variables: { 'item': selectedFood.item, 'ingredients': updatedIngredients },
       })
       console.log(data);
+
     }catch(err){
       console.log(err);
     }
   };
 
-  useEffect(async()=>{
-    if(stock==="In Stock"){
-      try{
-        let { data } = await updateMenu({
-          variables: { 'item': selectedFood.item, 'inStock': true },
-        })
-        console.log(data);
-      }catch(err){
-        console.log(err);
-      }
-    }else{
-      try{
-        let { data } = await updateMenu({
-          variables: { 'item': selectedFood.item, 'inStock': false },
-        })
-        console.log(data);
-      }catch(err){
-        console.log(err);
-      }
-    };
+  useEffect(()=>{
+    async function fetchData () {
+      if(stock==="In Stock"){
+        try{
+          let { data } = await updateMenu({
+            variables: { 'item': selectedFood.item, 'inStock': true },
+          })
+          console.log(data);
+        }catch(err){
+          console.log(err);
+        }
+      }else{
+        try{
+          let { data } = await updateMenu({
+            variables: { 'item': selectedFood.item, 'inStock': false },
+          })
+          console.log(data);
+        }catch(err){
+          console.log(err);
+        }
+      };
+    }
+    fetchData();
   }, [stock])
 
 
@@ -108,7 +136,7 @@ const MenuList = ({ menuItems }) => {
                   {selectedFood.item}
                 </Typography>
                 <FormGroup>
-                      <FormControlLabel control={<Switch color="error" 
+                      <FormControlLabel control={<Switch color="error"
                       onChange={()=>{
                         if(stock==='In Stock'){
                           console.log(stock)
@@ -123,10 +151,13 @@ const MenuList = ({ menuItems }) => {
                 </Typography>
                 <Typography color="#000" sx={{ p:2 }} height="fit-content">
                   {selectedFood.ingredients.map(ingredient => {
-                    return <div backgroundColor="#100" key={ingredient._id}>
+                    return (
+                    <Grid item container justifyContent='space-between' alignItems="center" id={ingredient} sx={{borderBottom: '1px solid', borderColor: '#D3D3D3'}} >
                       {ingredient}
-                      <hr></hr>
-                    </div>
+                      <Button onClick={removeIngredient} className='deleteBtn'>
+                        <DeleteOutlineIcon sx={{ color: 'primary.main' }}  />
+                      </Button>
+                    </Grid>)
                   })}
                   <TextField fullWidth focused variant="filled" label="Add ingredient here:" onChange={handleIngredient} />
                 </Typography>
