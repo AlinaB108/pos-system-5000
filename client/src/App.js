@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import HomePage from './pages/Front/HomePage';
-// import HomeLogin from './pages/Front/HomeLogin';
+import Login from './pages/Front/HomeLogin';
 // import Signup from './pages/Front/HomeSignup';
 import NoMatch from './pages/Front/NoMatch';
 // FRONT END WEBSITE ROUTES ^^
@@ -56,6 +56,10 @@ function App() {
             <Route
               path="/"
               element={<HomePage />}
+            />
+            <Route
+              path="/login"
+              element={<Login />}
             />
 
             {/* BACKEND POS SYSTEM ROUTES vv */}

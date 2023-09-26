@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Grid, Button, Typography } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 const MenuList = ({ employees }) => {
@@ -21,7 +22,7 @@ const MenuList = ({ employees }) => {
   };
 
   return (
-    <Grid container justifyContent="space-between" spacing={4} sx={{ mt:4}}>
+    <Grid container justifyContent="space-between" spacing={4} sx={{ mt: 4 }}>
       {/* First container */}
       <Grid item xs={6}>
         <Grid style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%' }}>
@@ -32,10 +33,10 @@ const MenuList = ({ employees }) => {
                   <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                     {employee.firstName} {employee.lastName}
                   </Typography>
-                  <Typography variant="h6" textAlign='flex-start' sx={{ p:1 }}>
+                  <Typography variant="h6" textAlign='flex-start' sx={{ p: 1 }}>
                     Roles:
                   </Typography>
-                  <Typography color="#000" sx={{ pl:1, pr:1 }} height="fit-content">
+                  <Typography color="#000" sx={{ pl: 1, pr: 1 }} height="fit-content">
                     {employee.roles.map(role => (
                       <div backgroundColor="#100" key={role._id}>
                         {role.name}
@@ -53,11 +54,11 @@ const MenuList = ({ employees }) => {
       {/* Second container */}
       <Grid container justifyContent="center" item xs={6}>
         <Grid sx={{ width: '100%' }}>
-          <Grid sx={{ backgroundColor: '#fff', borderRadius:'5px', p:2 }}>
+          <Grid sx={{ backgroundColor: '#fff', borderRadius: '5px', p: 2 }}>
             <Typography textAlign="center">
               Control Pad for Selected Employee
             </Typography>
-            <Grid container justifyContent="center" sx={{ p:1 }}> 
+            <Grid container justifyContent="center" sx={{ p: 1 }}>
               <Button variant="contained" color="primary" onClick={handleAddRoleClick}>
                 Button 1
               </Button>
@@ -67,60 +68,65 @@ const MenuList = ({ employees }) => {
             </Grid>
           </Grid>
 
-        {selectedEmployee._id ? (
-          <Grid container justifyContent="space-between" sx={{ pt: '15px' }}>
-            <Grid xs={3} sx={{ p: '1px', backgroundColor: '#fff', maxHeight: '20vh', overflowY: 'auto', borderRadius: '5px' }}>
-              <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#d4e1f1", borderRadius: '5px' }}>
-                {selectedEmployee.firstName} {selectedEmployee.lastName}
-              </Typography>
-              <Typography variant="h6" textAlign='flex-start' sx={{ p: 1 }}>
-                Roles:
-              </Typography>
-              <Typography sx={{ pl: 1, pr: 1 }} height="fit-content">
-                {selectedEmployee.roles.map(role => {
-                  return <div backgroundColor="#100" key={role._id}>
-                    {role.name}
-                  </div>
-                })}
-              </Typography>
+          {selectedEmployee._id ? (
+            <Grid container justifyContent="space-between" sx={{ pt: '15px' }}>
+              <Grid xs={3} sx={{ p: '1px', backgroundColor: '#fff', maxHeight: '20vh', overflowY: 'auto', borderRadius: '5px' }}>
+                <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#d4e1f1", borderRadius: '5px' }}>
+                  {selectedEmployee.firstName} {selectedEmployee.lastName}
+                </Typography>
+                <Typography variant="h6" textAlign='flex-start' sx={{ p: 1 }}>
+                  Roles:
+                </Typography>
+                <Typography sx={{ pl: 1, pr: 1 }} height="fit-content">
+                  {selectedEmployee.roles.map(role => {
+                    return <div backgroundColor="#100" key={role._id}>
+                      {role.name}
+                    </div>
+                  })}
+                </Typography>
+              </Grid>
+              <Grid xs={9} sx={{ px: 3 }}>
+                <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#d4e1f1", borderRadius: "5px" }}>
+                  Tables:
+                </Typography>
+                <Typography
+                  sx={{
+                    pl: 1, pr: 1, display: 'flex', flexWrap: 'wrap', maxHeight: '43vh', overflowY: 'auto', '::-webkit-scrollbar': {
+                      width: '0.4em',
+                    },
+                    '::-webkit-scrollbar-thumb': {
+                      backgroundColor: 'rgba(0,0,0,0)',
+                    },
+                  }}>
+                  {selectedEmployee.tables.map(table => (
+                    <Grid 
+                      key={table._id}
+                      sx={{
+                        flex: '0 0 calc(50% - 16px)', m: '8px', maxWidth: '50%', height: 'fit-content', backgroundColor: "#fff", borderRadius: '25px', overflowY: 'auto',
+                        '::-webkit-scrollbar': {
+                          width: '0',
+                        },
+                        '::-webkit-scrollbar-thumb': {
+                          backgroundColor: 'rgba(0,0,0,0)',
+                        },
+                      }}>
+                      <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                        {table.tableNum}
+                      </Typography>
+                      {table.order.map(order => (
+                        <Grid item container justifyContent='space-between' alignItems="center" id={order.id} sx={{ p: 1, borderBottom: '1px solid', borderColor: '#D3D3D3' }} >
+                          {order.item}
+                          <Button onClick={{}} className='deleteBtn'>
+                            <DeleteOutlineIcon sx={{ color: 'primary.main' }} />
+                          </Button>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  ))}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid xs={9} sx={{ px:3}}>
-              <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#d4e1f1", borderRadius: "5px" }}>
-                Tables:
-              </Typography>
-              <Typography
-                sx={{ pl: 1, pr: 1, display: 'flex', flexWrap: 'wrap', maxHeight: '43vh', overflowY: 'auto', '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-                  '::-webkit-scrollbar-thumb': {
-                    backgroundColor: 'rgba(0,0,0,0)',
-                  },
-                }}>
-                {selectedEmployee.tables.map(table => (
-                  <Grid
-                    key={table._id}
-                    sx={{ flex: '0 0 calc(50% - 16px)', m: '8px', maxWidth: '50%', height: '20vh', backgroundColor: "#fff", borderRadius: '25px', overflowY: 'auto',
-                      '::-webkit-scrollbar': {
-                        width: '0',
-                      },
-                      '::-webkit-scrollbar-thumb': {
-                        backgroundColor: 'rgba(0,0,0,0)',
-                      },
-                    }}>
-                    <Typography variant="h6" textAlign='center' sx={{ backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
-                      {table.tableNum}
-                    </Typography>
-                    {table.order.map(order => (
-                      <div key={order._id}>
-                        <Typography sx={{ pt: 1, pl: 2 }}>{order.item}</Typography>
-                      </div>
-                    ))}
-                  </Grid>
-                ))}
-              </Typography>
-            </Grid>
-          </Grid>
-        ) : null}
+          ) : null}
         </Grid>
       </Grid>
 

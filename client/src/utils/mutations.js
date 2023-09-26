@@ -67,6 +67,14 @@ mutation Mutation($posId: Int!) {
   }
 }`
 
+// TODO: MAKE THIS LOGIN ROUTE WORK FOR HOME PAGE
+// Probably going to require a new document in the db for 
+// home route customer logins for payment and admin for pos
+// export const LOGIN = gql`
+// mutation Mutation($posId: Int!) {
+
+// }`
+
 export const UPDATE_MENU = gql`
 mutation Mutation($item: String!, $price: Float, $ingredients: [String], $inStock: Boolean, $quantity: Int, $category: [ID]) {
   updateMenu(item: $item, price: $price, ingredients: $ingredients, inStock: $inStock, quantity: $quantity, category: $category) {
