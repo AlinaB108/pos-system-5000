@@ -4,80 +4,83 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_MENU } from '../../utils/mutations';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import IconButton from '@mui/material/IconButton';
-import { useQuery } from '@apollo/client';
-import { QUERY_ALL_MENU } from '../../utils/queries';
+import CheckIcon from '@mui/icons-material/Check';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const MenuList = ({ menuItems }) => {
   const [selectedFood, setSelectedFood] = useState({});
-  const [newIngredient, setNewIngredient] = useState('');
-  const [stock, setStock] = useState('In Stock');
-  const [newMenuItems, setNewMenuItems] = useState(menuItems)
+  const [stockStatus, setStockStatus] = useState();
   const [updateMenu, { error, data }] = useMutation(UPDATE_MENU);
+  const [newIngredient, setNewIngredient] = useState('');
 
+  // updates stock status whenever a new food item is selected
+  useEffect(()=>{
+    console.log(selectedFood.inStock)
+    setStockStatus(selectedFood.inStock)
+  }, [selectedFood])
 
-  const handleIngredient = (event) => {
-    setNewIngredient(event.target.value)
-    console.log("setting ingredient with input" + newIngredient)
-  }
+  // sets new stock status for item and updates DB
+  const handleStockChange = async(event, newStock) => {
+    if (newStock) {
+      try {
+      let { data } = await updateMenu({
+          variables: { item: selectedFood.item, inStock: true },
+      });
+      console.log(data);
+      } catch (err) {
+      console.log(err);
+      }
+    } else {
+      try {
+      let { data } = await updateMenu({
+          variables: { item: selectedFood.item, inStock: false },
+      });
+      console.log(data);
+      } catch (err) {
+      console.log(err);
+      }
+    }
+    setStockStatus(newStock);
+  };
 
-  const removeIngredient = async(event)=>{
-    console.log(event.target.parentElement.parentElement.id)
-    // const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.parentElement.id);
-    // event.target.parentElement.parentElement.remove();
-    // try{
-    //   const { data } = await updateMenu({
-    //     variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
-    //   })
-      // setSelectedFood(selectedFood.item)
+  // updates ingredient based on typed input
+    const handleIngredient = (event) => {
+        setNewIngredient(event.target.value);
+        console.log("setting ingredient with input" + newIngredient);
+    };
+
+    // Sends new ingredient to DB
+    const addIngredient = async () => {
+        const updatedIngredients = selectedFood.ingredients;
+        updatedIngredients.push(newIngredient);
+        try {
+            const { data } = await updateMenu({
+                variables: { item: selectedFood.item, ingredients: updatedIngredients },
+            });
+            } catch (err) {
+            console.log(err);
+        }
+    };
+
+    // Removes ingredient from DB and page
+    const removeIngredient = async (event) => {
+      console.log(event.target.parentElement.parentElement.id);
+      // const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.parentElement.id);
+      // event.target.parentElement.parentElement.remove();
+      // try{
+      //   const { data } = await updateMenu({
+      //     variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
+      //   })
       // const { loading, result } = useQuery(QUERY_ALL_MENU)
       // const menu = result?.menuItems || [];
       // setNewMenuItems(menu)
-    //   console.log(data);
-    // }catch(err){
-    //   console.log(err);
-    // }
+      //   console.log(data);
+      // }catch(err){
+      //   console.log(err);
+      // }
   };
-
-  const addIngredient = async()=>{
-    const updatedIngredients = selectedFood.ingredients
-    updatedIngredients.push(newIngredient);
-    console.log(updatedIngredients);
-    try{
-      const { data } = await updateMenu({
-        variables: { 'item': selectedFood.item, 'ingredients': updatedIngredients },
-      })
-      console.log(data);
-
-    }catch(err){
-      console.log(err);
-    }
-  };
-
-  useEffect(()=>{
-    async function fetchData () {
-      if(stock==="In Stock"){
-        try{
-          let { data } = await updateMenu({
-            variables: { 'item': selectedFood.item, 'inStock': true },
-          })
-          console.log(data);
-        }catch(err){
-          console.log(err);
-        }
-      }else{
-        try{
-          let { data } = await updateMenu({
-            variables: { 'item': selectedFood.item, 'inStock': false },
-          })
-          console.log(data);
-        }catch(err){
-          console.log(err);
-        }
-      };
-    }
-    fetchData();
-  }, [stock])
-
 
   if (!menuItems.length) {
     return <h3>No Menu Items!</h3>;
@@ -98,51 +101,71 @@ const MenuList = ({ menuItems }) => {
 
       {/* Second container */}
       <Grid container justifyContent="center" item xs={6}>
+        {selectedFood._id ? (
+      <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: "65vh", px: 3 }}>
 
-        {/* Ingredients container */}
-        <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: '65vh', px:3 }}>
-          <Paper style={{ height: '100%' }}>
-            {selectedFood._id ? (
-              <Grid sx={{ borderRadius: '5px', overflow: 'hidden', width: '100%', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
-                <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-                  {selectedFood.item}
-                </Typography>
-                <FormGroup>
-                      <FormControlLabel control={<Switch color="error"
-                      onChange={()=>{
-                        if(stock==='In Stock'){
-                          console.log(stock)
-                          return setStock('Out of Stock')
-                        }else{
-                          return setStock('In Stock')
-                        }
-                      }}/>} label={stock} labelPlacement='top'/>
-                  </FormGroup>
-                <Typography variant="h6" textAlign='center' >
-                  Ingredients:
-                </Typography>
-                <Typography color="#000" sx={{ p:2 }} height="fit-content">
-                  {selectedFood.ingredients.map(ingredient => {
-                    return (
-                    <Grid item container justifyContent='space-between' alignItems="center" id={ingredient} sx={{borderBottom: '1px solid', borderColor: '#D3D3D3'}} >
-                      {ingredient}
-                      <Button onClick={removeIngredient} className='deleteBtn'>
-                        <DeleteOutlineIcon sx={{ color: 'primary.main' }}  />
-                      </Button>
-                    </Grid>)
-                  })}
-                  <Grid item container justifyContent='space-between' sx={{mt:0.5}} >
-                    <TextField focused variant="filled" label="Add ingredient:" onChange={handleIngredient} sx={{width:'70%'}} />
-                    <Button onClick={addIngredient}>Submit</Button>
-                  </Grid>
-                </Typography>
-                <Typography variant="h6" textAlign='flex-start' sx={{ backgroundColor: "#fce698", pl:2 }}>
-                ${selectedFood.price}
-                </Typography>
-              </Grid>
-            ) : null}
-          </Paper>
+<Grid sx={{ borderRadius: "5px", overflow: "hidden", width: "100%", height: "fit-content"}}
+    height="25vh" style={{ backgroundColor: "#fff" }}>
+    <Typography variant="h5" textAlign="center" sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
+    {selectedFood.item}
+    </Typography>
+    <ToggleButtonGroup
+        value={stockStatus}
+        onChange={handleStockChange}
+        aria-label="Item stock status"
+        exclusive
+        >
+          {console.log(stockStatus)}
+        <ToggleButton value={true} aria-label="In Stock">
+            <CheckIcon />
+        </ToggleButton>
+        <ToggleButton value={false} aria-label="Out of Stock">
+            <DoDisturbIcon color='error'/>
+        </ToggleButton>
+    </ToggleButtonGroup>
+        <Typography variant="h6" textAlign="center">
+        Ingredients:
+        </Typography>
+        <Typography color="#000" sx={{ p: 2 }} height="fit-content">
+        {selectedFood.ingredients.map((ingredient) => {
+            return (
+            <Grid
+                item
+                container
+                justifyContent="space-between"
+                alignItems="center"
+                id={ingredient}
+                sx={{ borderBottom: "1px solid", borderColor: "#D3D3D3" }}
+            >
+                {ingredient}
+                <Button onClick={removeIngredient} className="deleteBtn">
+                    <DeleteOutlineIcon sx={{ color: "primary.main" }} />
+                </Button>
+            </Grid>
+            );
+        })}
+        <Grid item container justifyContent="space-between" sx={{ mt: 0.5 }}>
+            <TextField
+            focused
+            variant="filled"
+            label="Add ingredient:"
+            onChange={handleIngredient}
+            sx={{ width: "70%" }}
+            />
+            <Button onClick={addIngredient}>Submit</Button>
         </Grid>
+        </Typography>
+        <Typography
+        variant="h6"
+        textAlign="flex-start"
+        sx={{ backgroundColor: "#fce698", pl: 2 }}
+        >
+        ${selectedFood.price}
+        </Typography>
+    </Grid>
+</Grid>
+
+        ): null}
       </Grid>
     </Grid>
   );
