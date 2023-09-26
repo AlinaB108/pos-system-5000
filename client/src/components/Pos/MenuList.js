@@ -4,15 +4,16 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_MENU } from '../../utils/mutations';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import IconButton from '@mui/material/IconButton';
-import { useQuery } from '@apollo/client';
-import { QUERY_ALL_MENU } from '../../utils/queries';
+import CheckIcon from '@mui/icons-material/Check';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const MenuList = ({ menuItems }) => {
   const [selectedFood, setSelectedFood] = useState({});
-  const [newIngredient, setNewIngredient] = useState('');
-  const [stock, setStock] = useState('In Stock');
-  const [newMenuItems, setNewMenuItems] = useState(menuItems)
+  const [stockStatus, setStockStatus] = useState();
   const [updateMenu, { error, data }] = useMutation(UPDATE_MENU);
+  const [newIngredient, setNewIngredient] = useState('');
 
 
   const handleIngredient = (event) => {
@@ -50,7 +51,9 @@ const MenuList = ({ menuItems }) => {
 
     } catch (err) {
       console.log(err);
+      }
     }
+    setStockStatus(newStock);
   };
 
   useEffect(() => {
@@ -73,11 +76,20 @@ const MenuList = ({ menuItems }) => {
         } catch (err) {
           console.log(err);
         }
-      };
-    }
-    fetchData();
-  }, [stock])
+    };
 
+    // Removes ingredient from DB and page
+    const removeIngredient = async (event) => {
+      const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.target.parentElement.parentElement.id);
+      try{
+        const { data } = await updateMenu({
+          variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
+        })
+        setSelectedFood(data.updateMenu)
+      }catch(err){
+        console.log(err);
+      }
+  };
 
   if (!menuItems.length) {
     return <h3>No Menu Items!</h3>;
@@ -95,7 +107,6 @@ const MenuList = ({ menuItems }) => {
           </Grid>
         ))}
       </Grid>
-
 
       {/* Second container */}
       <Grid container justifyContent="center" item xs={6}>
@@ -123,6 +134,16 @@ const MenuList = ({ menuItems }) => {
             </Button>
           </Grid>
         </Grid>
+        </Typography>
+        <Typography
+        variant="h6"
+        textAlign="flex-start"
+        sx={{ backgroundColor: "#fce698", pl: 2 }}
+        >
+        ${selectedFood.price}
+        </Typography>
+    </Grid>
+</Grid>
 
         {/* Ingredients container */}
         <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: '65vh', px: 3 }}>
