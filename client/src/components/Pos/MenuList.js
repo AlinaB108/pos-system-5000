@@ -17,7 +17,6 @@ const MenuList = ({ menuItems }) => {
 
   // updates stock status whenever a new food item is selected
   useEffect(()=>{
-    console.log(selectedFood.inStock)
     setStockStatus(selectedFood.inStock)
   }, [selectedFood])
 
@@ -28,7 +27,6 @@ const MenuList = ({ menuItems }) => {
       let { data } = await updateMenu({
           variables: { item: selectedFood.item, inStock: true },
       });
-      console.log(data);
       } catch (err) {
       console.log(err);
       }
@@ -37,7 +35,6 @@ const MenuList = ({ menuItems }) => {
       let { data } = await updateMenu({
           variables: { item: selectedFood.item, inStock: false },
       });
-      console.log(data);
       } catch (err) {
       console.log(err);
       }
@@ -48,7 +45,6 @@ const MenuList = ({ menuItems }) => {
   // updates ingredient based on typed input
     const handleIngredient = (event) => {
         setNewIngredient(event.target.value);
-        console.log("setting ingredient with input" + newIngredient);
     };
 
     // Sends new ingredient to DB
@@ -66,20 +62,15 @@ const MenuList = ({ menuItems }) => {
 
     // Removes ingredient from DB and page
     const removeIngredient = async (event) => {
-      console.log(event.target.parentElement.parentElement.id);
-      // const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.parentElement.id);
-      // event.target.parentElement.parentElement.remove();
-      // try{
-      //   const { data } = await updateMenu({
-      //     variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
-      //   })
-      // const { loading, result } = useQuery(QUERY_ALL_MENU)
-      // const menu = result?.menuItems || [];
-      // setNewMenuItems(menu)
-      //   console.log(data);
-      // }catch(err){
-      //   console.log(err);
-      // }
+      const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.target.parentElement.parentElement.id);
+      try{
+        const { data } = await updateMenu({
+          variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
+        })
+        setSelectedFood(data.updateMenu)
+      }catch(err){
+        console.log(err);
+      }
   };
 
   if (!menuItems.length) {
@@ -115,7 +106,6 @@ const MenuList = ({ menuItems }) => {
         aria-label="Item stock status"
         exclusive
         >
-          {console.log(stockStatus)}
         <ToggleButton value={true} aria-label="In Stock">
             <CheckIcon />
         </ToggleButton>
