@@ -86,38 +86,45 @@ const resolvers = {
     }
   },
   Mutation: {
+    updateMenu: async(_, args, context) => {
+      try{
+        if(context.employee){
+          const menu = await Menu.findOneAndUpdate({item: args.item}, args, {new: true}).populate({path: 'category'});
+          return menu;
+        }
+      }catch(err){
+        throw new Error('Not logged in!');
+      }
+    },
     updateTable: async(_, args, context) => {
       if(context.employee){
       const table = await Table.findOneAndUpdate({tableNum: args.tableNum}, args, {new: true }).populate({path: 'order', populate: {path: 'category'}});
 
       await Employee.findByIdAndUpdate(
-        context.employee._id, 
-        { $addToSet: {tables: table }}, 
+        context.employee._id,
+        { $addToSet: {tables: table }},
         {new: true});
 
-      return table; 
+      return table;
       }
     },
     addShift: async(_, args, context) => {
       if(context.employee){
         const shift = await Shift.create(args);
-        
+
         await Employee.findByIdAndUpdate(
-          context.employee._id, 
-          { $push: {shifts: shift }}, 
+          context.employee._id,
+          { $push: {shifts: shift }},
           {new: true});
-          
-        return shift ; 
+        return shift ;
       }
-      
       throw new AuthenticationError('Not logged in')
     },
     updateShift: async(_, args, context)=>{
       if(context.employee){
-        const updateShift = Shift.findByIdAndUpdate(args._id, args, {new: true });  
+        const updateShift = Shift.findByIdAndUpdate(args._id, args, {new: true });
       return updateShift
       }
-
       throw new AuthenticationError('Not logged in')
     },
     login: async (parent, { email, password }) => {
@@ -139,15 +146,14 @@ const resolvers = {
     },
     loginPOS: async (parent, { posID }) => {
       const employeePOS = await Employee.findOne({ posID: posID }).populate({
-        path: 'tables', 
+        path: 'tables',
         populate: {
-          path: 'order', 
+          path: 'order',
           model: 'Menu',
           populate: {
             path: 'category'
           }
         }}).populate({path: 'shifts'}).populate({path: 'roles'});
-      
       if (!employeePOS) {
         throw new AuthenticationError('Incorrect credentials');
       }

@@ -29,12 +29,12 @@ const typeDefs = gql`
     breakStart: String
     breakEnd: String
   }
-  
+
   type Menu {
     _id: ID
     item: String
-    price: Float 
-    ingredients: [String] 
+    price: Float
+    ingredients: [String]
     inStock: Boolean
     quantity: Int
     category: [Category]
@@ -65,15 +65,16 @@ const typeDefs = gql`
     employees: [Employee]
     menuItems: [Menu]
     tables: [Table]
-  
+
     # Find One
     employee(_id: ID!): Employee
     menuItem(_id: ID!): Menu
     table(_id: ID!): Table
     me: Employee
-  }  
+  }
 
   type Mutation {
+    updateMenu(item: String!, price: Float, ingredients: [String], inStock: Boolean, quantity: Int, category: [Category]): Menu
     updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
     addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String, currentShift: Boolean, clockedIn: Boolean): Shift
     updateShift(_id: ID!, currentShift: Boolean, clockedIn: Boolean, clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
