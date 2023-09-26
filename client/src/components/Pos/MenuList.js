@@ -1,11 +1,12 @@
-import React from 'react';
-import { Box, Checkbox, Grid, Button, Typography, Paper, accordionDetailsClasses, TextField } from '@mui/material';
+import React, {useState, useEffect } from 'react';
+import { Box, Checkbox, Grid, Button, Typography, Paper, accordionDetailsClasses, TextField, FormGroup, FormControlLabel, Switch } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { UPDATE_MENU } from '../../utils/mutations';
 
 const MenuList = ({ menuItems }) => {
-  const [selectedFood, setSelectedFood] = React.useState({});
-  const [newIngredient, setNewIngredient] = React.useState(''); 
+  const [selectedFood, setSelectedFood] = useState({});
+  const [newIngredient, setNewIngredient] = useState('');
+  const [stock, setStock] = useState('In Stock');
   const [updateMenu, { error, data }] = useMutation(UPDATE_MENU);
 
 
@@ -25,7 +26,29 @@ const MenuList = ({ menuItems }) => {
     }catch(err){
       console.log(err);
     }
-  }
+  };
+
+  useEffect(async()=>{
+    if(stock==="In Stock"){
+      try{
+        let { data } = await updateMenu({
+          variables: { 'item': selectedFood.item, 'inStock': true },
+        })
+        console.log(data);
+      }catch(err){
+        console.log(err);
+      }
+    }else{
+      try{
+        let { data } = await updateMenu({
+          variables: { 'item': selectedFood.item, 'inStock': false },
+        })
+        console.log(data);
+      }catch(err){
+        console.log(err);
+      }
+    };
+  }, [stock])
 
 
   if (!menuItems.length) {
@@ -84,6 +107,17 @@ const MenuList = ({ menuItems }) => {
                 <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                   {selectedFood.item}
                 </Typography>
+                <FormGroup>
+                      <FormControlLabel control={<Switch color="error" 
+                      onChange={()=>{
+                        if(stock==='In Stock'){
+                          console.log(stock)
+                          return setStock('Out of Stock')
+                        }else{
+                          return setStock('In Stock')
+                        }
+                      }}/>} label={stock} labelPlacement='top'/>
+                  </FormGroup>
                 <Typography variant="h6" textAlign='center' sx={{ p:1 }}>
                   Ingredients:
                 </Typography>
