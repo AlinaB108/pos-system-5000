@@ -7,8 +7,6 @@ import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "./SingleOrderNav";
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import IconButton from '@mui/material/IconButton';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 
 function SingleOrder({ tableOrder }) {
   // get existing food items for table to add to order log 
