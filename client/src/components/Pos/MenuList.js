@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Checkbox, Grid, Button, Typography, Paper } from '@mui/material';
+import { Box, Checkbox, Grid, Button, Typography, Paper, accordionDetailsClasses } from '@mui/material';
 
 
 const MenuList = ({ menuItems }) => {
@@ -11,100 +11,46 @@ const MenuList = ({ menuItems }) => {
   }
 
   return (
-    <Grid container justifyContent="center" spacing={4} sx={{ mt:4}}>
-      {/* First container */}
-      <Grid item xs={6}>
-        <Grid style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%' }}>
-          <Grid container justifyContent="center">
+    <Grid container justifyContent="center" spacing={2} sx={{mt: 1}}>
+      {/* First container with food items from menu to click on */}
+      <Grid item container justifyContent="center" xs={6} style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%'}}>
             {menuItems.map(item => (
-              <Grid container justifyContent="center" sx={{ mt: 2 }} item md={4} sm={9} key={item.id}>
-                <Grid>
-                  <Button onClick={() => setSelectedFood(item)}>
-                    <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden', width: '260px' }} height='25vh' style={{ backgroundColor: "#fff" }} >
-                      <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+              <Grid container justifyContent="center" sx={{ mt: 1 }} item md={4} sm={9} key={item.id}>
+                  <Button variant="menubtn" onClick={() => setSelectedFood(item)} textAlign='center' sx={{width: '90%', backgroundColor: "accent.main"}} >
                         {item.item}
-                      </Typography>
-                      <Box sx={{ pt:1 }}>
-                        <Typography color="#000" height="fit-content" lineHeight="3">
-                          ${item.price}
-                          {item.ingredients.map(ingredient => (
-                            <Grid key={ingredient._id}>
-                              <Typography sx={{listStyle: 'none'}}>{ingredient}</Typography>
-                            </Grid>
-                          ))}
-                        </Typography>
-                      </Box>
-                    </Box>
                   </Button>
-                </Grid>
               </Grid>
             ))}
-          </Grid>
-        </Grid>
       </Grid>
 
 
       {/* Second container */}
       <Grid container justifyContent="center" item xs={6}>
-        {/* Typography container - ughhhhh!!!!!!! */}
-        {/* <Grid item xs={12}> 
-              <Typography>Selected Item</Typography>
-            </Grid> */}
-        {/* <Typography backgroundColor="white">
-          Control Pad for Selected Employee
-        </Typography> */}
-          
+
         {/* 4 containers - actions */}
-        <Grid container item xs={12} md={12} lg={6} spacing={3}>
+        <Grid container item xs={12} md={12} lg={6} spacing={1} sx={{mb: 1}}>
           <Grid item xs={6} container alignItems="flex-end">
-              <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
-                onClick={() => {
-                  // Action stuff
-                  console.log('Button clicked');
-                }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                  <Typography>ADD Ingredient</Typography>
-                </Box>
-              </Paper>
+              <Button variant="numpad" sx={{height: "3rem"}}>
+                ADD Ingredient
+              </Button>
             </Grid>
           <Grid item xs={6} container alignItems="flex-end">
-            <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
-              onClick={() => {
-                // Action stuff
-                console.log('Button clicked');
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                <Typography>Remove Ingredient</Typography>
-              </Box>
-            </Paper>
+              <Button variant="numpad" sx={{height: "3rem"}}>
+                Remove Ingredient
+              </Button>
           </Grid>
           <Grid item xs={6} container alignItems="flex-start">
-            <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
-              onClick={() => {
-                // Action stuff
-                console.log('Button clicked');
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                <Typography>Item</Typography>
-              </Box>
-            </Paper>
+              <Button variant="numpad" sx={{height: "3rem"}}>
+                Out of stock
+              </Button>
           </Grid>
           <Grid item xs={6} container alignItems="flex-start">
-            <Paper sx={{ height: '50%', width: '100%', cursor: 'pointer', backgroundColor: "#7ca6f3" }}
-              onClick={() => {
-                // Action stuff
-                console.log('Button clicked');
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                <Typography>EDIT Price</Typography>
-              </Box>
-            </Paper>
+            <Button variant="numpad" sx={{height: "3rem"}}>
+                Edit Price
+              </Button>
           </Grid>
         </Grid>
+
         {/* Ingredients container */}
         <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: '65vh', px:3 }}>
           <Paper style={{ height: '100%' }}>
@@ -135,8 +81,6 @@ const MenuList = ({ menuItems }) => {
           </Paper>
         </Grid>
       </Grid>
-
-
     </Grid>
   );
 };

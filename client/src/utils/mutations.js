@@ -66,3 +66,19 @@ mutation Mutation($posId: Int!) {
     token
   }
 }`
+
+export const UPDATE_MENU = gql`
+mutation Mutation($item: String!, $price: Float, $ingredients: [String], $inStock: Boolean, $quantity: Int, $category: [ID]) {
+  updateMenu(item: $item, price: $price, ingredients: $ingredients, inStock: $inStock, quantity: $quantity, category: $category) {
+    _id
+    item
+    price
+    ingredients
+    inStock
+    quantity
+    category {
+      _id
+      name
+    }
+  }
+}`

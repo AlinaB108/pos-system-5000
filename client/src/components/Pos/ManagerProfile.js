@@ -19,7 +19,7 @@ function PosServerProfile() {
         </Button>
       </Box>
       <Box item xs={3} display="flex" container flexDirection="column" justifyContent="center" padding={1}>
-        <Button variant="contained" href="/pos/ordrs" size="large">
+        <Button variant="contained" href="/pos/orders" size="large">
           Manager
         </Button>
       </Box>

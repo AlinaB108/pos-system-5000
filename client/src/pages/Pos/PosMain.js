@@ -26,10 +26,8 @@ export default function PosMain() {
         </>
         )
     }
-        
-    
-    if ( Auth.loggedIn()) {
 
+    if ( Auth.loggedIn()) {
     return (
             <>
                 <PosNav profile ={profile} />
@@ -37,7 +35,4 @@ export default function PosMain() {
             </>
         );
     }
-    
-
-    
 };

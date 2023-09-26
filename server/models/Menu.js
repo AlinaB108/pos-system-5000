@@ -24,13 +24,13 @@ const menuSchema = new Schema({
         type: Number,
         required: true
     },
-    category: [{
+    category: {
         type: Schema.Types.ObjectId,
         ref: 'Category'
-    }],
+    },
 });
 
 const Menu = mongoose.model('Menu', menuSchema);
-module.exports = Menu; 
+module.exports = Menu;
 
 // MAKE CATEGORIES

@@ -11,11 +11,7 @@ const Orders = () => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div className="container">
-        <MenuList menuItems={menu}/>
-    </div>
-  );
+  return <MenuList menuItems={menu}/>;
 };
 
 export default Orders;
