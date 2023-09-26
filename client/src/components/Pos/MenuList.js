@@ -96,40 +96,12 @@ const MenuList = ({ menuItems }) => {
             ))}
       </Grid>
 
-
       {/* Second container */}
       <Grid container justifyContent="center" item xs={6}>
-
-        {/* 4 containers - actions */}
-        <Grid container item xs={12} md={12} lg={6} spacing={1} sx={{mb: 1}}>
-          <Grid item xs={6} container alignItems="flex-end">
-              <Button variant="numpad" sx={{height: "3rem"}} onClick={addIngredient}>
-                ADD Ingredient
-              </Button>
-            </Grid>
-          <Grid item xs={6} container alignItems="flex-end">
-              <Button variant="numpad" sx={{height: "3rem"}}>
-                Remove Ingredient
-              </Button>
-          </Grid>
-          <Grid item xs={6} container alignItems="flex-start">
-              <Button variant="numpad" sx={{height: "3rem"}}>
-                Out of stock
-              </Button>
-          </Grid>
-          <Grid item xs={6} container alignItems="flex-start">
-            <Button variant="numpad" sx={{height: "3rem"}}>
-                Edit Price
-              </Button>
-          </Grid>
-        </Grid>
 
         {/* Ingredients container */}
         <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: '65vh', px:3 }}>
           <Paper style={{ height: '100%' }}>
-            {/* <Typography textAlign="center" sx={{ p:2 }}>
-              List of Selectable Ingredients:
-            </Typography> */}
             {selectedFood._id ? (
               <Grid sx={{ borderRadius: '5px', overflow: 'hidden', width: '100%', height: 'fit-content' }} height='25vh' style={{ backgroundColor: "#fff" }}>
                 <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
@@ -146,7 +118,7 @@ const MenuList = ({ menuItems }) => {
                         }
                       }}/>} label={stock} labelPlacement='top'/>
                   </FormGroup>
-                <Typography variant="h6" textAlign='center' sx={{ p:1 }}>
+                <Typography variant="h6" textAlign='center' >
                   Ingredients:
                 </Typography>
                 <Typography color="#000" sx={{ p:2 }} height="fit-content">
@@ -159,7 +131,10 @@ const MenuList = ({ menuItems }) => {
                       </Button>
                     </Grid>)
                   })}
-                  <TextField fullWidth focused variant="filled" label="Add ingredient here:" onChange={handleIngredient} />
+                  <Grid item container justifyContent='space-between' sx={{mt:0.5}} >
+                    <TextField focused variant="filled" label="Add ingredient:" onChange={handleIngredient} sx={{width:'70%'}} />
+                    <Button onClick={addIngredient}>Submit</Button>
+                  </Grid>
                 </Typography>
                 <Typography variant="h6" textAlign='flex-start' sx={{ backgroundColor: "#fce698", pl:2 }}>
                 ${selectedFood.price}
