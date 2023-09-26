@@ -1,11 +1,33 @@
 import React from 'react';
-import { Box, Checkbox, Grid, Button, Typography, Paper, accordionDetailsClasses } from '@mui/material';
-
+import { Box, Checkbox, Grid, Button, Typography, Paper, accordionDetailsClasses, TextField } from '@mui/material';
+import { useMutation } from '@apollo/client';
+import { UPDATE_MENU } from '../../utils/mutations';
 
 const MenuList = ({ menuItems }) => {
-  const [selectedFood, setSelectedFood] = React.useState({})
+  const [selectedFood, setSelectedFood] = React.useState({});
+  const [newIngredient, setNewIngredient] = React.useState(''); 
+  const [updateMenu, { error, data }] = useMutation(UPDATE_MENU);
 
-  // const menu = menuItems;
+
+  const handleIngredient = (event) => {
+    setNewIngredient(event.target.value)
+    console.log("setting ingredient with input" + newIngredient)
+  }
+  const addIngredient = async()=>{
+    const updatedIngredients = selectedFood.ingredients
+    updatedIngredients.push(newIngredient);
+    console.log(updatedIngredients);
+    try{
+      const { data } = await updateMenu({
+        variables: { 'item': selectedFood.item, 'ingredients': updatedIngredients },
+      })
+      console.log(data);
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+
   if (!menuItems.length) {
     return <h3>No Menu Items!</h3>;
   }
@@ -30,7 +52,7 @@ const MenuList = ({ menuItems }) => {
         {/* 4 containers - actions */}
         <Grid container item xs={12} md={12} lg={6} spacing={1} sx={{mb: 1}}>
           <Grid item xs={6} container alignItems="flex-end">
-              <Button variant="numpad" sx={{height: "3rem"}}>
+              <Button variant="numpad" sx={{height: "3rem"}} onClick={addIngredient}>
                 ADD Ingredient
               </Button>
             </Grid>
@@ -72,6 +94,7 @@ const MenuList = ({ menuItems }) => {
                       <hr></hr>
                     </div>
                   })}
+                  <TextField fullWidth focused variant="filled" label="Add ingredient here:" onChange={handleIngredient} />
                 </Typography>
                 <Typography variant="h6" textAlign='flex-start' sx={{ backgroundColor: "#fce698", pl:2 }}>
                 ${selectedFood.price}
