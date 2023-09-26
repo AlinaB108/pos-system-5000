@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const Menu = require('./Menu')
 
 
 const tableSchema = new Schema({

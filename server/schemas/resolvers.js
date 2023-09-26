@@ -87,14 +87,11 @@ const resolvers = {
   },
   Mutation: {
     updateMenu: async(_, args, context) => {
-      try{
         if(context.employee){
           const menu = await Menu.findOneAndUpdate({item: args.item}, args, {new: true}).populate({path: 'category'});
           return menu;
         }
-      }catch(err){
-        throw new Error('Not logged in!');
-      }
+        throw new AuthenticationError('Not logged in')
     },
     updateTable: async(_, args, context) => {
       if(context.employee){

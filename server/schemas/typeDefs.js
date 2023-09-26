@@ -37,7 +37,7 @@ const typeDefs = gql`
     ingredients: [String]
     inStock: Boolean
     quantity: Int
-    category: [Category]
+    category: Category
   }
 
   type Table {
@@ -74,7 +74,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    updateMenu(item: String!, price: Float, ingredients: [String], inStock: Boolean, quantity: Int, category: [Category]): Menu
+    updateMenu(item: String!, price: Float, ingredients: [String], inStock: Boolean, quantity: Int, category: [ID]): Menu
     updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
     addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String, currentShift: Boolean, clockedIn: Boolean): Shift
     updateShift(_id: ID!, currentShift: Boolean, clockedIn: Boolean, clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift

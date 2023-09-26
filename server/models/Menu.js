@@ -24,10 +24,10 @@ const menuSchema = new Schema({
         type: Number,
         required: true
     },
-    category: [{
+    category: {
         type: Schema.Types.ObjectId,
         ref: 'Category'
-    }],
+    },
 });
 
 const Menu = mongoose.model('Menu', menuSchema);
