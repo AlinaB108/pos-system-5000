@@ -416,7 +416,7 @@ db.once('open', async () => {
       posID: 1000,
       roles: [roles[0]],
       tables: [],
-      shifts: [shifts[0], shifts[2]],
+      shifts: [],
     },
     {
       firstName: 'Jane',
@@ -426,7 +426,7 @@ db.once('open', async () => {
       posID: 1001,
       roles: [roles[2], roles[0]],
       tables: [tables[3]._id, tables[4]._id, tables[5]._id],
-      shifts: [shifts[0], shifts[3]]
+      shifts: []
     },
     {
       firstName: 'Chris',
@@ -434,7 +434,7 @@ db.once('open', async () => {
       email: 'chris@example.com',
       password: 'password789',
       posID: 1002,
-      roles: [roles[2], roles[0]],
+      roles: [roles[1], roles[0]],
       tables: [],
       shifts: []
     },
@@ -444,7 +444,7 @@ db.once('open', async () => {
           email: 'andrew@example.com',
           password: 'password1234',
           posID: 1003,
-          roles: [roles[2], roles[0]],
+          roles: [roles[1], roles[0]],
           tables: [],
           shifts: []
       },
@@ -454,7 +454,7 @@ db.once('open', async () => {
           email: 'savannah@example.com',
           password: 'password2345',
           posID: 1004,
-          roles: [roles[2], roles[0]],
+          roles: [roles[1], roles[0]],
           tables: [],
           shifts: []
       },
@@ -464,7 +464,7 @@ db.once('open', async () => {
           email: 'alina@example.com',
           password: 'password4562',
           posID: 1005,
-          roles: [roles[2], roles[0]],
+          roles: [roles[1], roles[0]],
           tables: [],
           shifts: []
       },
@@ -474,7 +474,7 @@ db.once('open', async () => {
           email: 'tony@example.com',
           password: 'password123523',
           posID: 1006,
-          roles: [roles[2], roles[0]],
+          roles: [roles[1], roles[0]],
           tables: [],
           shifts: []
       },
