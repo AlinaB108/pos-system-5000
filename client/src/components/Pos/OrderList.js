@@ -7,16 +7,30 @@ const OrderList = ({ tables }) => {
   }
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" sx={{ mt: 2, maxHeight: "60vh", overflowY: "auto", 
+      '::-webkit-scrollbar': {
+      width: '2em',
+      },
+      '::-webkit-scrollbar-thumb': {
+      backgroundColor: '#7ca6f3',
+      borderRadius: '10px'
+      } 
+      }}>
     {tables.map(table => (
-      <Grid container justifyContent="center" sx={{ mt: 2 }} item xs={12} md={3} sm={6} key={table.tableNum}>
+      <Grid container justifyContent="center" item xs={12} lg={2.5} md={3} sm={6} key={table.tableNum} >
         <Grid>
           <Button>
-            <Box sx={{ mt: 4, borderRadius: '25px', overflow: 'hidden', width: '300px' }} height='25vh' style={{ backgroundColor: "#fff" }}>
+            <Grid sx={{ mt: 4, borderRadius: '25px', overflow: 'hidden', width: '280px', height: '25vh', backgroundColor: '#fff' }}>
               <Typography variant="h6" textAlign='center' sx={{ p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                 Table {table.tableNum}
               </Typography>
-              <Box sx={{ pt: 1, maxHeight: '25vh', overflowY: 'auto' }}> {/* Adjust maxHeight as needed */}
+              <Grid sx={{ pt: 1, maxHeight: '25vh', overflowY: 'auto',
+              '::-webkit-scrollbar': {
+              width: '1em',
+              },
+              '::-webkit-scrollbar-thumb': {
+              backgroundColor: 'rgba (0, 0, 0)',
+              borderRadius: '10px'} }}>
                 <Typography color="#000" height="fit-content" lineHeight="2.5">
                   {table.order.map(item => (
                     <div key={item._id}>
@@ -24,8 +38,8 @@ const OrderList = ({ tables }) => {
                     </div>
                   ))}
                 </Typography>
-              </Box>
-            </Box>
+              </Grid>
+            </Grid>
           </Button>
         </Grid>
       </Grid>
