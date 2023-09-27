@@ -96,7 +96,7 @@ function SingleOrder({ tableOrder }) {
     }
     // filter menu items for only the items that match the selected category
     const currentItems = menuItems.filter((item) => {
-      return item.category[0].name === catName;
+      return item.category.name === catName;
     });
 
     // return the filtered array of items to render on the page
