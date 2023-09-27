@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const Menu = require('./Menu')
 
 
 const tableSchema = new Schema({
@@ -32,4 +31,4 @@ const tableSchema = new Schema({
 });
 
 const Table = mongoose.model('Table', tableSchema);
-module.exports = Table; 
+module.exports = Table;

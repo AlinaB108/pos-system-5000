@@ -80,8 +80,8 @@ function PosServerProfile({ profile }) {
                 return (
                   <Grid container justifyContent="center" alignItems="center" item xs={6} sm={6} md={4} key={item._id}>
                     <Button href={`/pos/order/${item._id}`}>
-                      <Box sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' width='50vw' style={{ backgroundColor: "#fff" }}>
-                        <Typography variant="h6" sx={{ textAlign: 'center', pt: 2, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
+                      <Box textAlign="center" sx={{ m: 2, borderRadius: '25px', overflow: 'hidden' }} height='25vh' width='50vw' style={{ backgroundColor: "#fff" }}>
+                        <Typography variant="h6" sx={{ textAlign: 'center', p: 1, backgroundColor: "#fce698", borderRadius: '25px 25px 0 0' }}>
                           Table {item.tableNum}
                         </Typography>
                         <Typography sx={{ p: 2 }} color="#000">
@@ -102,7 +102,7 @@ function PosServerProfile({ profile }) {
       {/* Second Container */}
       <Grid item xs={12} sm={6} sx={{ pl: 2 }}>
         <Grid container justifyContent="center" alignItems="stretch" height='fit-content'>
-          <Paper sx={{ marginRight: '20px' }}>
+          <Paper sx={{ mr: '20px' }}>
             <Typography variant="h5" sx={{ p: 2, backgroundColor: "#d4e1f1", textAlign: 'center' }}>
               New Table
             </Typography>
@@ -111,11 +111,11 @@ function PosServerProfile({ profile }) {
               <Input onClick={() => setSelectedInput('Table Number')} value={tableNumber} fullWidth sx={{ textAlign: 'center' }} readOnly />
               <Typography sx={{ p: 2 }}>Guest Count</Typography>
               <Input onClick={() => setSelectedInput('Guest Count')} value={guestCount} fullWidth sx={{ textAlign: 'center' }} readOnly />
-              <Button variant="outlined" color="primary" sx={{ p: 2 }} onClick={() => handleNewTable()}>NEW ORDER</Button>
+              <Button variant="dobtn" alignItems="center" sx={{ p: 2, ml:'25%', mt: 4 }} onClick={() => handleNewTable()}>NEW ORDER</Button>
             </Grid>
           </Paper>
           {/* Keypad */}
-          <Grid item xs={6} sm={6} sx={{ margin: 'auto' }}>
+          <Grid item xs={12} md={5} lg={6} sx={{ margin: 'auto' }}>
             <Paper sx={{ marginRight: '20px' }}>
               <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
                 Input
@@ -150,7 +150,7 @@ function PosServerProfile({ profile }) {
                     <Button variant="numpad" size="large" onClick={() => append(9)}>9</Button>
                   </Grid>
                   <Grid item xs={4}>
-                    <Button variant="outlined" color="secondary" onClick={clearInputs}>Clear</Button>
+                    <Button variant="dontbtn" sx={{ width:'100%', height:'100%'}} onClick={clearInputs}>Clear</Button>
                   </Grid>
                   <Grid item xs={4}>
                     <Button variant="numpad" size="large" onClick={() => append(0)}>0</Button>

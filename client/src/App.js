@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import HomePage from './pages/Front/HomePage';
-// import HomeLogin from './pages/Front/HomeLogin';
+import Login from './pages/Front/HomeLogin';
 // import Signup from './pages/Front/HomeSignup';
 import NoMatch from './pages/Front/NoMatch';
 // FRONT END WEBSITE ROUTES ^^
@@ -17,6 +17,9 @@ import NoMatch from './pages/Front/NoMatch';
 // POS APPLICATION ROUTES vv
 import Shift from './pages/Pos/Shift';
 import Orders from './pages/Pos/Orders';
+import Employees from './pages/Pos/Employees';
+import Menu from './pages/Pos/Menu';
+import Ordrs from './pages/Pos/Ordrs';
 import Profile from './pages/Pos/Profile';
 // import ServerProfile from './pages/ServerProfile/ServerProfile';
 import PosMain from './pages/Pos/PosMain';
@@ -54,11 +57,19 @@ function App() {
               path="/"
               element={<HomePage />}
             />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
 
             {/* BACKEND POS SYSTEM ROUTES vv */}
             <Route
               path="/pos"
               element={<PosMain />}>
+                <Route
+                  path="/pos/shift"
+                  element={<Shift />}
+                />
                 <Route
                   path="/pos/profile"
                   index
@@ -73,8 +84,16 @@ function App() {
                   element={<Orders />}
                 />
                 <Route
-                  path="/pos/shift"
-                  element={<Shift />}
+                  path="/pos/employees"
+                  element={<Employees />}
+                />
+                <Route
+                  path="/pos/menu"
+                  element={<Menu />}
+                />
+                <Route
+                  path="/pos/ordrs"
+                  element={<Ordrs />}
                 />
             </Route>            
             {/* 404 ROUTE vv */}

@@ -7,10 +7,8 @@ import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "./SingleOrderNav";
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import IconButton from '@mui/material/IconButton';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 
-function SingleOrder({tableOrder}) {
+function SingleOrder({ tableOrder }) {
   // get existing food items for table to add to order log 
 
 
@@ -19,7 +17,7 @@ function SingleOrder({tableOrder}) {
   // Set initial value of order to existing items in order for table
   const [FoodStuff, setFoodStuff] = useState(existingOrder);
   const [value, setValue] = useState(0);
-  
+
   let totalPrice = 0
   FoodStuff.map((item) => {
     totalPrice += item.price
@@ -27,26 +25,26 @@ function SingleOrder({tableOrder}) {
 
   useEffect(() => {
     FoodStuff.map((item) => {
-    totalPrice += item.price
-  });
+      totalPrice += item.price
+    });
   }, FoodStuff)
 
-const DeleteOrderItem = (e) => {
-let itemUUID = e.target.parentElement.id  
-let deleteButtons = document.getElementsByClassName('deleteBtn')
-console.log(e.target.parentElement.id);
-for ( let d of deleteButtons) {
-  d.addEventListener('Click', (e) => {
-    itemUUID.remove()
-  })
-}
-      console.log(e.target);
-      let result = FoodStuff.filter((item) => {
-       return  item.uuid !== itemUUID
+  const DeleteOrderItem = (e) => {
+    let itemUUID = e.target.parentElement.id
+    let deleteButtons = document.getElementsByClassName('deleteBtn')
+    console.log(e.target.parentElement.id);
+    for (let d of deleteButtons) {
+      d.addEventListener('Click', (e) => {
+        itemUUID.remove()
       })
-      console.log(result);
-      setFoodStuff(result)
-    };
+    }
+    console.log(e.target);
+    let result = FoodStuff.filter((item) => {
+      return item.uuid !== itemUUID
+    })
+    console.log(result);
+    setFoodStuff(result)
+  };
 
   const uuid = () => {
     return Math.floor((Math.random() * 1000000000)).toString('12')
@@ -98,13 +96,13 @@ for ( let d of deleteButtons) {
     }
     // filter menu items for only the items that match the selected category
     const currentItems = menuItems.filter((item) => {
-      return item.category[0].name === catName;
+      return item.category.name === catName;
     });
 
     // return the filtered array of items to render on the page
     return currentItems;
   }
-console.log(FoodStuff);
+  console.log(FoodStuff);
 
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
@@ -114,34 +112,34 @@ console.log(FoodStuff);
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
             Table {tableOrder.tableNum}
           </Typography>
-          <Grid item xs={12} sx={{ px: 2, pt:2 }}>
-              {
-                FoodStuff.map((item) => {
-                  return (
-                    item.uuid? 
-                 ( <Grid  item container xs={12} id={item.uuid} key = {item.uuid} sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
-                  {console.log(item)}
-                  {console.log(item.uuid)}
-                    <Typography xs={9} sx={{px: 1}}> {item.item}</Typography>
+          <Grid item xs={12} sx={{ px: 2, pt: 2 }}>
+            {
+              FoodStuff.map((item) => {
+                return (
+                  item.uuid ?
+                    (<Grid item container xs={12} id={item.uuid} key={item.uuid} sx={{ justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid', borderColor: '#D3D3D3' }}>
+                      {console.log(item)}
+                      {console.log(item.uuid)}
+                      <Typography xs={9} sx={{ px: 1 }}> {item.item}</Typography>
                       <IconButton onClick={(e) => DeleteOrderItem(e)} className='deleteBtn'>
-                        <DeleteOutlineRoundedIcon  sx={{color: 'primary.main'}}/>
+                        <DeleteOutlineRoundedIcon sx={{ color: 'primary.main' }} />
                       </IconButton>
-                  </Grid>) : (
-                     <Grid className='deleteBtn' item container xs={12}sx={{justifyContent: 'space-between', alignItems: 'center',  borderBottom: '1px solid', borderColor: '#D3D3D3'}}>
-                     <Typography xs={9} sx={{px: 1}}> {item.item}</Typography>
-                   </Grid>
-                  )
-                  )
-                })
-              }
+                    </Grid>) : (
+                      <Grid className='deleteBtn' item container xs={12} sx={{ justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid', borderColor: '#D3D3D3' }}>
+                        <Typography xs={9} sx={{ px: 1 }}> {item.item}</Typography>
+                      </Grid>
+                    )
+                )
+              })
+            }
           </Grid>
-          <Grid item container xs={12} sx={{ p: 2, justifyContent: 'space-between', backgroundColor:'accent.main'  }}>
-              <Typography xs ={6} sx = {{color: 'primary.main', fontWeight: 'bold' }}>
-                Total Price:
-              </Typography>
-              <Typography xs ={6} sx = {{color: 'primary.main', fontWeight: 'bold' }}>
-                {totalPrice.toFixed(2)}
-              </Typography>
+          <Grid item container xs={12} sx={{ p: 2, justifyContent: 'space-between', backgroundColor: 'accent.main' }}>
+            <Typography xs={6} sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+              Total Price:
+            </Typography>
+            <Typography xs={6} sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+              {totalPrice.toFixed(2)}
+            </Typography>
           </Grid>
         </Paper>
       </Grid>
@@ -153,7 +151,7 @@ console.log(FoodStuff);
           {/* Categories to choose from rendered on tabs */}
           <Grid item xs={12} sm={4} sx={{ p: 1 }}>
             <Tabs
-              textColor= 'text.darkBlue'
+              textColor='text.darkBlue'
               value={value}
               onChange={handleChange}
               variant="scrollable"
@@ -166,33 +164,41 @@ console.log(FoodStuff);
                 className={value === 0 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(0)}
                 label="Beverages"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
-                  background: 'rgba(181, 203, 230, 1)',
-                  } }}
+                sx={{
+                  backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover": {
+                    background: 'rgba(181, 203, 230, 1)',
+                  }
+                }}
               />
               <Tab
                 className={value === 1 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(1)}
                 label="Appetizers"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
-                  background: 'rgba(181, 203, 230, 1)',
-                  } }}
+                sx={{
+                  backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover": {
+                    background: 'rgba(181, 203, 230, 1)',
+                  }
+                }}
               />
               <Tab
                 className={value === 2 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(2)}
                 label="Entrees"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
-                  background: 'rgba(181, 203, 230, 1)',
-                  } }}
+                sx={{
+                  backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover": {
+                    background: 'rgba(181, 203, 230, 1)',
+                  }
+                }}
               />
               <Tab
                 className={value === 3 ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(3)}
                 label="Desserts"
-                sx={{ backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover":{
-                  background: 'rgba(181, 203, 230, 1)',
-                  } }}
+                sx={{
+                  backgroundColor: "#d4e1f1", border: "0.5px solid #fff", "&:hover": {
+                    background: 'rgba(181, 203, 230, 1)',
+                  }
+                }}
               />
             </Tabs>
           </Grid>
@@ -202,7 +208,7 @@ console.log(FoodStuff);
             <Grid container justifyContent="center" alignItems="center">
               {filterCategory().map((item, index) => (
                 <Button variant='menubtn' key={index} onClick={() => {
-                  setFoodStuff([...FoodStuff, {...item, uuid : uuid()}]);
+                  setFoodStuff([...FoodStuff, { ...item, uuid: uuid() }]);
                 }}
                   sx={{ p: 2, m: 0.5, minWidth: '100px', minHeight: '80px', textAlign: 'center' }}>
                   {item.item}
@@ -215,7 +221,7 @@ console.log(FoodStuff);
 
       {/* Render the footer to allow for sending order and checking out the table */}
       <Grid item position='fixed' bottom={0}>
-        <SingleOrderNav tableNum = {tableOrder.tableNum} order = {FoodStuff} />
+        <SingleOrderNav tableNum={tableOrder.tableNum} order={FoodStuff} />
       </Grid>
     </Grid>
   );

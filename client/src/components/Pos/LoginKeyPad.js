@@ -31,7 +31,7 @@ const PosLoginKeyPad = () => {
       Auth.login(data.loginPOS.token);
     } catch (e) {
       console.error(e);
-    }                 
+    }
   };
 
 

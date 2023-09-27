@@ -3,7 +3,7 @@ import { Typography, Grid } from '@mui/material';
 
 function Contact() {
   return (
-    <Grid container justifyContent="center" sx={{ mb:4 }}>
+    <Grid container justifyContent="center" sx={{ mb:4 }} id="Contact">
       <Grid container justifyContent="center" alignItems="center">
         <Grid>
           <Typography variant="h3" sx={{ mt:8, mb:1 }}>

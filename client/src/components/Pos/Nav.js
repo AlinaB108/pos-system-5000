@@ -25,7 +25,7 @@ function PosNav({profile}) {
           </Button>
         </Grid>
   
-        <Box sx={{ justifyContent: 'center', mx: 'auto' }}>
+        <Box sx={{ justifyContent: 'center', mx: 'auto', textAlign: 'center' }}>
           <Typography variant="h5">
             Welcome {profile.firstName}! You are a {profile.roles[0].name} today!
           </Typography>
@@ -39,31 +39,19 @@ function PosNav({profile}) {
           sx={{py: 2, px: 2 }}  
         >
           <Grid item xs={6} sm={2}>
-            <Button
-              size="large"
-              style={{ width: '100%', backgroundColor: '#f2f4f3', color: 'black' }}
-              href="/pos/orders"
-            >
+            <Button href="/pos/orders" variant="orders">
               All Orders
             </Button>
           </Grid>
           <Grid item xs={6} sm={2}>
-            <Button
-              size="large"
-              style={{ width: '100%', backgroundColor: '#2fa6f3', color: 'black' }}
-              href="/pos/profile"
-            >
+            <Button href="/pos/profile" variant="home">
               Home
             </Button>
           </Grid>
 
       {/* Row 2 */}
         <Grid item xs={6} sm={2}>
-          <Button
-            size="large"
-            style={{ width: '100%', backgroundColor: '#fce698', color: 'black' }}
-            href="/pos/shift"
-          >
+          <Button href="/pos/shift" variant="shift">
             Shift
           </Button>
         </Grid>
