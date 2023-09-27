@@ -1,9 +1,8 @@
 import React, {useState, useEffect } from 'react';
-import { Grid, Button, Typography, Paper, TextField, FormGroup, FormControlLabel, Switch } from '@mui/material';
+import { Grid, Button, Typography, TextField } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { UPDATE_MENU } from '../../utils/mutations';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import IconButton from '@mui/material/IconButton';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -19,6 +18,13 @@ const MenuList = ({ menuItems }) => {
   const [newIngredient, setNewIngredient] = useState('');
   const [price, setPrice] = useState(0)
 
+  const styles = {
+    input: {
+      '::placeholder': {
+        color: 'black'
+      }
+    },
+  };
   // updates stock status whenever a new food item is selected
   useEffect(()=>{
     setStockStatus(selectedFood.inStock)
@@ -70,7 +76,7 @@ const MenuList = ({ menuItems }) => {
 
     // Removes ingredient from DB and page
     const removeIngredient = async (event) => {
-      const deletedIngredientArr = selectedFood.ingredients.filter(item => item != event.target.parentElement.parentElement.id);
+      const deletedIngredientArr = selectedFood.ingredients.filter(item => item !== event.target.parentElement.parentElement.id);
       try{
         const { data } = await updateMenu({
           variables: { 'item': selectedFood.item, 'ingredients': deletedIngredientArr },
@@ -92,6 +98,9 @@ const MenuList = ({ menuItems }) => {
         const { data } = await updateMenu({
           variables: { 'item': selectedFood.item, 'price': parseFloat(price) },
         })
+        const priceEl = document.getElementById('priceInput');
+        priceEl.value = '';
+        priceEl.placeholder = data.updateMenu.price
       }catch(err){
         console.log(err);
       }
@@ -110,8 +119,6 @@ const MenuList = ({ menuItems }) => {
               <Grid container justifyContent="center" sx={{ mt: 1 }} item md={4} sm={9} key={item.id}>
                   <Button variant="menubtn" onClick={() => {
                     setSelectedFood(item);
-                    const priceEl = document.getElementById('priceInput');
-                    priceEl.value = item.price;
                     }} textAlign='center' sx={{width: '90%', backgroundColor: "accent.main"}} >
                         {item.item}
                   </Button>
@@ -192,8 +199,8 @@ const MenuList = ({ menuItems }) => {
                       startAdornment={<InputAdornment position="start">
                         <Typography color="text.primary">$</Typography></InputAdornment>}
                       placeholder={selectedFood.price}
-                      defaultValue={selectedFood.price}
                       onChange={handlePriceChange}
+                      style={styles.input}
                     />
                 </FormControl>
                 <Button onClick={changePrice}>Change price</Button>
