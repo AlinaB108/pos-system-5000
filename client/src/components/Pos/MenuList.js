@@ -103,12 +103,21 @@ const MenuList = ({ menuItems }) => {
   }
 
   return (
-    <Grid container justifyContent="space-between" sx={{mt: 1}}>
+    <Grid container justifyContent="space-between" sx={{mt: 4}}>
       {/* First container with food items from menu to click on */}
-      <Grid item container justifyContent="center" xs={6} style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%'}}>
+      <Grid item container justifyContent="center" xs={6} style={{ maxHeight: '65vh', width: '100%'}}
+        sx={{
+        pl: 1, pr: 1, overflowY: 'auto', '::-webkit-scrollbar': {
+        width: '1em',
+        },
+        '::-webkit-scrollbar-thumb': {
+        backgroundColor: '#7ca6f3',
+        borderRadius: '10px'
+        },
+        }}>
             {menuItems.map(item => (
               <Grid container justifyContent="center" sx={{ mt: 1 }} item md={4} sm={9} key={item.id}>
-                  <Button variant="menubtn" onClick={() => {
+                  <Button variant="menubtn2" onClick={() => {
                     setSelectedFood(item);
                     const priceEl = document.getElementById('priceInput');
                     priceEl.value = item.price;
@@ -125,7 +134,7 @@ const MenuList = ({ menuItems }) => {
         {selectedFood._id ? (
           <Grid item container xs={12} sx={{ backgroundColor: "#fff", borderRadius: '5px', width: "100%", height: "fit-content" }}>
             {/* Heading with menu item name */}
-              <Typography variant="h5" sx={{textAlign:"center", backgroundColor: "#d4e1f1", borderRadius: '5px', width: '100%'}} >
+              <Typography variant="h5" sx={{textAlign:"center", backgroundColor: "#d4e1f1", borderRadius: '5px', width: '100%', p:1}} >
                 {selectedFood.item}
               </Typography>
               {/* In/Out of stock toggle */}
