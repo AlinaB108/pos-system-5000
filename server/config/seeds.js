@@ -437,6 +437,46 @@ db.once('open', async () => {
             tables: [],
             shifts: []
         },
+        {
+          firstName: 'Andrew',
+          lastName: 'Wilson',
+          email: 'andrew@example.com',
+          password: 'password1234',
+          posID: 1003,
+          roles: [roles[2], roles[0]],
+          tables: [],
+          shifts: []
+      },
+      {
+          firstName: 'Savannah',
+          lastName: 'Shifflet',
+          email: 'savannah@example.com',
+          password: 'password2345',
+          posID: 1004,
+          roles: [roles[2], roles[0]],
+          tables: [],
+          shifts: []
+      },
+      {
+          firstName: 'Alina',
+          lastName: 'Badillo',
+          email: 'alina@example.com',
+          password: 'password4562',
+          posID: 1005,
+          roles: [roles[2], roles[0]],
+          tables: [],
+          shifts: []
+      },
+      {
+          firstName: 'Tony',
+          lastName: 'Macaroni',
+          email: 'tony@example.com',
+          password: 'password123523',
+          posID: 1006,
+          roles: [roles[2], roles[0]],
+          tables: [],
+          shifts: []
+      },
         ]);
 
         console.log('Employees Seeded');
