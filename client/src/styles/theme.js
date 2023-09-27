@@ -88,6 +88,20 @@ const theme = createTheme({
                 },
                 },
                 {
+                props: { variant: "menubtn2", color: "primary" },
+                style: {
+                    background: "#FCE698",
+                    color: "#000",
+                    width: "30%",
+                    height: "4.6rem",
+                        // fontFamily: 'nunito',
+                        // fontWeight: 'bold',
+                    "&:hover": {
+                    background: "rgba(246, 219, 123, 1)",
+                    },
+                    },
+                    },
+                {
                 props: { variant: "dobtn", color: "primary" },
                 style: {
                     background: "#49cd5f",
