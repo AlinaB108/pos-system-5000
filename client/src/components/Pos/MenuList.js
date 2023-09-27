@@ -60,6 +60,9 @@ const MenuList = ({ menuItems }) => {
                 variables: { item: selectedFood.item, ingredients: updatedIngredients },
             });
             setNewIngredient('')
+            const ingredientEl = document.getElementById('addIngredientEl')
+            console.log(ingredientEl);
+            ingredientEl.value = '';
             } catch (err) {
             console.log(err);
         }
@@ -100,95 +103,104 @@ const MenuList = ({ menuItems }) => {
   }
 
   return (
-    <Grid container justifyContent="center" spacing={2} sx={{mt: 1}}>
+    <Grid container justifyContent="space-between" sx={{mt: 1}}>
       {/* First container with food items from menu to click on */}
       <Grid item container justifyContent="center" xs={6} style={{ maxHeight: '65vh', overflowY: 'auto', width: '100%'}}>
             {menuItems.map(item => (
               <Grid container justifyContent="center" sx={{ mt: 1 }} item md={4} sm={9} key={item.id}>
-                  <Button variant="menubtn" onClick={() => {setPrice(item.price); setSelectedFood(item)}} textAlign='center' sx={{width: '90%', backgroundColor: "accent.main"}} >
+                  <Button variant="menubtn" onClick={() => {
+                    setSelectedFood(item);
+                    const priceEl = document.getElementById('priceInput');
+                    priceEl.value = item.price;
+                    }} textAlign='center' sx={{width: '90%', backgroundColor: "accent.main"}} >
                         {item.item}
                   </Button>
               </Grid>
             ))}
       </Grid>
 
-      {/* Second container */}
-      <Grid container justifyContent="center" item xs={6}>
+      {/* Second container where menu item appears */}
+      <Grid container justifyContent="center" item xs={6} sx={{px:'1%'}}>
+        {/* If there is an item selected, generate panel to right side */}
         {selectedFood._id ? (
-      <Grid item xs={12} md={12} lg={6} sx={{ maxHeight: "65vh", px: 3 }}>
+          <Grid item container xs={12} sx={{ backgroundColor: "#fff", borderRadius: '5px', width: "100%", height: "fit-content" }}>
+            {/* Heading with menu item name */}
+              <Typography variant="h5" sx={{textAlign:"center", backgroundColor: "#d4e1f1", borderRadius: '5px', width: '100%'}} >
+                {selectedFood.item}
+              </Typography>
+              {/* In/Out of stock toggle */}
+              <Grid item container xs={12} justifyContent='space-around' sx={{py: '1%'}}>
+                <Grid item>
+                  <Typography variant="h6" textAlign="center">In Stock: </Typography>
+                </Grid>
+                <Grid item>
+                  <ToggleButtonGroup
+                      value={stockStatus}
+                      onChange={handleStockChange}
+                      aria-label="Item stock status"
+                      exclusive
+                      >
+                      <ToggleButton value={true} aria-label="In Stock">
+                          <CheckIcon color='success' />
+                      </ToggleButton>
+                      <ToggleButton value={false} aria-label="Out of Stock">
+                          <DoDisturbIcon color='error'/>
+                      </ToggleButton>
+                    </ToggleButtonGroup>
+                  </Grid>
+              </Grid>
+              {/* Ingredient list */}
+              <Grid item container>
+                <Typography variant="h6" textAlign="center" sx={{width: '100%'}}>
+                Ingredients:
+                </Typography>
+                {selectedFood.ingredients.map((ingredient) => {
+                    return (
+                    <Grid
+                        item
+                        container
+                        justifyContent="space-between"
+                        alignItems="center"
+                        id={ingredient}
+                        sx={{ borderBottom: "1px solid", borderColor: "#D3D3D3", mx:'1%' }}
+                    >
+                        {ingredient}
+                        <Button onClick={removeIngredient} className="deleteBtn">
+                            <DeleteOutlineIcon sx={{ color: "primary.main" }} />
+                        </Button>
+                    </Grid>
+                    );
+                })}
+                <Grid item container justifyContent="space-between" sx={{ mt: 0.5, mx:'1%' }}>
+                    <TextField
+                    focused
+                    variant="filled"
+                    label="Add ingredient:"
+                    onChange={handleIngredient}
+                    sx={{ width: "70%" }}
+                    id="addIngredientEl"
+                    />
+                    <Button onClick={addIngredient}>Submit</Button>
+                </Grid>
+              </Grid>
 
-<Grid sx={{ borderRadius: "5px", overflow: "hidden", width: "100%", height: "fit-content"}}
-    height="25vh" style={{ backgroundColor: "#fff" }}>
-    <Typography variant="h5" textAlign="center" sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-    {selectedFood.item}
-    </Typography>
-    <ToggleButtonGroup
-        value={stockStatus}
-        onChange={handleStockChange}
-        aria-label="Item stock status"
-        exclusive
-        >
-        <ToggleButton value={true} aria-label="In Stock">
-            <CheckIcon />
-        </ToggleButton>
-        <ToggleButton value={false} aria-label="Out of Stock">
-            <DoDisturbIcon color='error'/>
-        </ToggleButton>
-    </ToggleButtonGroup>
-        <Typography variant="h6" textAlign="center">
-        Ingredients:
-        </Typography>
-        <Typography color="#000" sx={{ p: 2 }} height="fit-content">
-        {selectedFood.ingredients.map((ingredient) => {
-            return (
-            <Grid
-                item
-                container
-                justifyContent="space-between"
-                alignItems="center"
-                id={ingredient}
-                sx={{ borderBottom: "1px solid", borderColor: "#D3D3D3" }}
-            >
-                {ingredient}
-                <Button onClick={removeIngredient} className="deleteBtn">
-                    <DeleteOutlineIcon sx={{ color: "primary.main" }} />
-                </Button>
-            </Grid>
-            );
-        })}
-        <Grid item container justifyContent="space-between" sx={{ mt: 0.5 }}>
-            <TextField
-            focused
-            variant="filled"
-            label="Add ingredient:"
-            onChange={handleIngredient}
-            sx={{ width: "70%" }}
-            />
-            <Button onClick={addIngredient}>Submit</Button>
+              {/* Price of menu item */}
+              <Grid item container justifyContent='space-between' sx={{ mt: 0.5, backgroundColor: "#fce698" }}>
+                <FormControl variant="standard" sx={{mx:'1%'}}>
+                    <Input
+                      id="priceInput"
+                      startAdornment={<InputAdornment position="start">
+                        <Typography color="text.primary">$</Typography></InputAdornment>}
+                      placeholder={selectedFood.price}
+                      defaultValue={selectedFood.price}
+                      onChange={handlePriceChange}
+                    />
+                </FormControl>
+                <Button onClick={changePrice}>Change price</Button>
+              </Grid>
         </Grid>
-        </Typography>
-        <Typography
-        variant="h6"
-        textAlign="flex-start"
-        sx={{ backgroundColor: "#fce698", pl: 2 }}
-        >
-        <Grid item container justifyContent="space-between" sx={{ mt: 0.5 }}>
-       <FormControl sx={{ m: 1 }} variant="standard">
-          <Input
-            id="priceInput"
-            startAdornment={<InputAdornment position="start">
-              <Typography color="text.primary">$</Typography></InputAdornment>}
-            defaultValue={selectedFood.price}
-            onChange={handlePriceChange}
-          />
-          <Button onClick={changePrice}>Submit</Button>
-        </FormControl>
-        </Grid>
-        </Typography>
-    </Grid>
-</Grid>
 
-        ): null}
+                ): null}
       </Grid>
     </Grid>
   );
