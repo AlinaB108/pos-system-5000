@@ -209,6 +209,9 @@ const MenuList = ({ menuItems }) => {
                         <Typography color="text.primary">$</Typography></InputAdornment>}
                       placeholder={selectedFood.price}
                       onChange={handlePriceChange}
+                      inputProps={{
+                        style: { color: "black", placeholderTextColor: "black" }, // Set the placeholder text color to black
+                      }}
                       style={styles.input}
                     />
                 </FormControl>
