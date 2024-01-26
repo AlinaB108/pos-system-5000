@@ -7,12 +7,20 @@ import App from './App';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './styles/theme';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('your-publishable-key'); // Replace with your actual Stripe publishable key
+
+
 ReactDOM.render(
   <React.StrictMode>
+    <Elements stripe={stripePromise}>
   <ThemeProvider theme = {theme}>
   <CssBaseline/>
-      <App />
-  </ThemeProvider>
+        <App />
+        </ThemeProvider>
+      </Elements>,
   </React.StrictMode>,
   document.getElementById('root')
 )

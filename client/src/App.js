@@ -19,12 +19,9 @@ import Shift from './pages/Pos/Shift';
 import Orders from './pages/Pos/Orders';
 import Employees from './pages/Pos/Employees';
 import Menu from './pages/Pos/Menu';
-import Ordrs from './pages/Pos/Ordrs';
 import Profile from './pages/Pos/Profile';
-// import ServerProfile from './pages/ServerProfile/ServerProfile';
 import PosMain from './pages/Pos/PosMain';
 import Table from './pages/Pos/Table';
-// import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,59 +46,55 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          <Routes>
+        <Routes>
 
 
-            {/* FRONTEND WEBSITE ROUTES vv */}
-            <Route
-              path="/"
-              element={<HomePage />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
+          {/* FRONTEND WEBSITE ROUTES vv */}
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
-            {/* BACKEND POS SYSTEM ROUTES vv */}
+          {/* BACKEND POS SYSTEM ROUTES vv */}
+          <Route
+            path="/pos"
+            element={<PosMain />}>
             <Route
-              path="/pos"
-              element={<PosMain />}>
-                <Route
-                  path="/pos/shift"
-                  element={<Shift />}
-                />
-                <Route
-                  path="/pos/profile"
-                  index
-                  element={<Profile />}
-                  />
-                <Route
-                  path="/pos/order/:_id"
-                  element={<Table />}
-                />
-                <Route
-                  path="/pos/orders"
-                  element={<Orders />}
-                />
-                <Route
-                  path="/pos/employees"
-                  element={<Employees />}
-                />
-                <Route
-                  path="/pos/menu"
-                  element={<Menu />}
-                />
-                <Route
-                  path="/pos/ordrs"
-                  element={<Ordrs />}
-                />
-            </Route>            
-            {/* 404 ROUTE vv */}
-            <Route
-              path="*"
-              element={<NoMatch />}
+              path="/pos/shift"
+              element={<Shift />}
             />
-          </Routes>
+            <Route
+              path="/pos/profile"
+              index
+              element={<Profile />}
+            />
+            <Route
+              path="/pos/order/:_id"
+              element={<Table />}
+            />
+            <Route
+              path="/pos/orders"
+              element={<Orders />}
+            />
+            <Route
+              path="/pos/employees"
+              element={<Employees />}
+            />
+            <Route
+              path="/pos/menu"
+              element={<Menu />}
+            />
+          </Route>
+          {/* 404 ROUTE vv */}
+          <Route
+            path="*"
+            element={<NoMatch />}
+          />
+        </Routes>
       </Router>
     </ApolloProvider>
   );

@@ -9,7 +9,8 @@ import {
     Input,
 } from "@mui/material";
 import { UPDATE_TABLE } from '../../utils/mutations'
-import React from 'react';
+import React, { useState } from 'react';
+import PaymentModal from "./PaymentModal.js";
 
 const style = {
     position: 'absolute',
@@ -29,6 +30,27 @@ function SingleOrderNav({ tableNum, order }) {
     let orderList = []
     orderList = order.map((item) => item.item).join('\n');
     let totalPrice = 0
+
+    const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+
+    const handlePaymentButtonClick = () => {
+        // Open the payment modal when the button is clicked
+        setPaymentModalOpen(true);
+    };
+
+    const handlePaymentSuccess = () => {
+        // Handle any actions after a successful payment
+        console.log('Payment successful');
+        // You might want to close the modal here as well
+        setPaymentModalOpen(false);
+    };
+
+    const handlePaymentModalClose = () => {
+        // Close the payment modal when needed
+        setPaymentModalOpen(false);
+    };
+
+
     order.map((item) => {
         totalPrice += item.price
 
@@ -63,6 +85,11 @@ function SingleOrderNav({ tableNum, order }) {
     }
     return (
         <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
+            <PaymentModal
+                isOpen={isPaymentModalOpen}
+                onClose={handlePaymentModalClose}
+                onPaymentSuccess={handlePaymentSuccess}
+            />
             <Grid item display='flex' justifyContent='space-between' bottom={'0'}>
                 <Button onClick={() => { handleOpenSubmit(); handleSendOrder() }}>
                     Send Order
@@ -104,7 +131,7 @@ function SingleOrderNav({ tableNum, order }) {
                         <Input type="text" name="tip" placeholder={'Tip Amount?'}>
                         </Input>
                         <Grid container justifyContent="center" alignItems="center" sx={{ pt: 1 }}>
-                            <Button variant="dobtn">
+                            <Button variant="dobtn" onClick={handlePaymentButtonClick}>
                                 Submit Payment
                             </Button>
                             <Button variant="dontbtn" href='../profile/' onClick={handleOrderClose}>
