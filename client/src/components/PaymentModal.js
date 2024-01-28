@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import {
   Typography, Tabs, Tab, Button, Grid, Paper, TableRow, Box
 } from "@mui/material";
-const stripePromise = loadStripe('pk_test_51OcloAA1E5eaO9iGpyEKeknWFQC1wNcvlNAUgesTpdtMLNIr2AA9n0RlElzUCaIBOiGshPkZxCXifT78HYeYTnFf00p0U5DdPk');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const PaymentModal = ({ isOpen, onClose, onPaymentSuccess }) => {
   const [loading, setLoading] = useState(false);

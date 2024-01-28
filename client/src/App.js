@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
 import HomePage from './pages/Front/HomePage';
 import Login from './pages/Front/HomeLogin';
@@ -17,7 +15,6 @@ import PosMain from './pages/Pos/PosMain';
 import Table from './pages/Pos/Table';
 
 // Replace 'your-publishable-key' with your actual Stripe publishable key
-const stripePromise = loadStripe('pk_test_51OcloAA1E5eaO9iGpyEKeknWFQC1wNcvlNAUgesTpdtMLNIr2AA9n0RlElzUCaIBOiGshPkZxCXifT78HYeYTnFf00p0U5DdPk');
 
 // Create Apollo Client setup
 const httpLink = createHttpLink({
@@ -50,7 +47,6 @@ function App() {
 
           {/* Backend POS System Routes */}
           <Route path="/pos" element={<PosMain />}>
-            {/* Wrap the POS components with Elements for Stripe */}
               <Route path="/pos/shift" element={<Shift />} />
 
               <Route path="/pos/profile" index element={<Profile />} />
