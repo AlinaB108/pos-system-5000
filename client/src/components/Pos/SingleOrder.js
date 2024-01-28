@@ -221,6 +221,7 @@ function SingleOrder({ tableOrder }) {
 
       {/* Render the footer to allow for sending order and checking out the table */}
       <Grid item position='fixed' bottom={0}>
+
         <SingleOrderNav tableNum={tableOrder.tableNum} order={FoodStuff} />
       </Grid>
     </Grid>

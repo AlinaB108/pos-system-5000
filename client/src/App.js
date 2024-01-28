@@ -1,31 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import HomePage from './pages/Front/HomePage';
 import Login from './pages/Front/HomeLogin';
-// import Signup from './pages/Front/HomeSignup';
 import NoMatch from './pages/Front/NoMatch';
-// FRONT END WEBSITE ROUTES ^^
-
-// POS APPLICATION ROUTES vv
 import Shift from './pages/Pos/Shift';
 import Orders from './pages/Pos/Orders';
 import Employees from './pages/Pos/Employees';
 import Menu from './pages/Pos/Menu';
-import Ordrs from './pages/Pos/Ordrs';
 import Profile from './pages/Pos/Profile';
-// import ServerProfile from './pages/ServerProfile/ServerProfile';
 import PosMain from './pages/Pos/PosMain';
 import Table from './pages/Pos/Table';
-// import Nav from './components/Nav';
 
+// Replace 'your-publishable-key' with your actual Stripe publishable key
+const stripePromise = loadStripe('pk_test_51OcloAA1E5eaO9iGpyEKeknWFQC1wNcvlNAUgesTpdtMLNIr2AA9n0RlElzUCaIBOiGshPkZxCXifT78HYeYTnFf00p0U5DdPk');
+
+// Create Apollo Client setup
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -49,59 +43,30 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          <Routes>
+        <Routes>
+          {/* Frontend Website Routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
 
+          {/* Backend POS System Routes */}
+          <Route path="/pos" element={<PosMain />}>
+            {/* Wrap the POS components with Elements for Stripe */}
+              <Route path="/pos/shift" element={<Shift />} />
 
-            {/* FRONTEND WEBSITE ROUTES vv */}
-            <Route
-              path="/"
-              element={<HomePage />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
+              <Route path="/pos/profile" index element={<Profile />} />
 
-            {/* BACKEND POS SYSTEM ROUTES vv */}
-            <Route
-              path="/pos"
-              element={<PosMain />}>
-                <Route
-                  path="/pos/shift"
-                  element={<Shift />}
-                />
-                <Route
-                  path="/pos/profile"
-                  index
-                  element={<Profile />}
-                  />
-                <Route
-                  path="/pos/order/:_id"
-                  element={<Table />}
-                />
-                <Route
-                  path="/pos/orders"
-                  element={<Orders />}
-                />
-                <Route
-                  path="/pos/employees"
-                  element={<Employees />}
-                />
-                <Route
-                  path="/pos/menu"
-                  element={<Menu />}
-                />
-                <Route
-                  path="/pos/ordrs"
-                  element={<Ordrs />}
-                />
-            </Route>            
-            {/* 404 ROUTE vv */}
-            <Route
-              path="*"
-              element={<NoMatch />}
-            />
-          </Routes>
+              <Route path="/pos/order/:_id" element={<Table />} />
+
+              <Route path="/pos/orders" element={<Orders />} />
+
+              <Route path="/pos/employees" element={<Employees />} />
+              
+              <Route path="/pos/menu" element={<Menu />} />
+          </Route>
+
+          {/* 404 Route */}
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
       </Router>
     </ApolloProvider>
   );
