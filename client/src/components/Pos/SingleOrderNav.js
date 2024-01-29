@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
 import { Button, Grid, AppBar, Typography, Box, Modal, Input } from "@mui/material";
 import { UPDATE_TABLE } from '../../utils/mutations';
-import PaymentModal from '../PaymentModal';
 
 const style = {
   position: 'absolute',
@@ -20,7 +19,7 @@ const style = {
 function SingleOrderNav({ tableNum, order }) {
   const [sendOrder, { error }] = useMutation(UPDATE_TABLE);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const idArray = [];
   let orderList = order.map((item) => item.item).join('\n');
   let totalPrice = 0;
@@ -56,23 +55,6 @@ function SingleOrderNav({ tableNum, order }) {
 
   return (
     <AppBar position="static" style={{ backgroundColor: '#d4e1f1', width: '100vw' }}>
-      <PaymentModal
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 9999,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        }} />
       {/* Wrap your components with Elements from @stripe/react-stripe-js */}
       <Grid item display='flex' justifyContent='space-between' bottom={'0'}>
         <Button onClick={() => { handleOpenSubmit(); handleSendOrder() }}>
@@ -95,9 +77,6 @@ function SingleOrderNav({ tableNum, order }) {
         </Modal>
         <Button onClick={() => handleOpenCheck()}>
           Checkout Table
-        </Button>
-        <Button variant="dobtn" onClick={() => setIsModalOpen(prevIsModalOpen => !prevIsModalOpen)}>
-          Submit Payment
         </Button>
         <Modal
           open={open2}
