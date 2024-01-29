@@ -5,12 +5,7 @@ import App from './App';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './styles/theme';
 
-// Import Stripe related dependencies
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
-// Replace 'your-publishable-key' with your actual Stripe publishable key
-const stripePromise = loadStripe('pk_test_51OcloAA1E5eaO9iGpyEKeknWFQC1wNcvlNAUgesTpdtMLNIr2AA9n0RlElzUCaIBOiGshPkZxCXifT78HYeYTnFf00p0U5DdPk');
 
 ReactDOM.render(
 

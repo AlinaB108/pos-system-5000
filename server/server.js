@@ -4,7 +4,7 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const stripe = require('stripe')('sk_test_51OcloAA1E5eaO9iGvYqFBReJ0O4fORJY5rLZ7dPuiflmfypJ6C2NIewyfQVgi7iVyfeQ8OqYerkmqArazlax3xmX001nI8HcPg');
+const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_KEY);
  // Replace with your actual Stripe secret key
 
 const PORT = process.env.PORT || 3001;

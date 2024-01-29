@@ -7,12 +7,15 @@ import { QUERY_ALL_MENU } from "../../utils/queries";
 import SingleOrderNav from "./SingleOrderNav";
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import IconButton from '@mui/material/IconButton';
+import PaymentModal from '../PaymentModal';
 
 function SingleOrder({ tableOrder }) {
+  const [modalDisplay, setModalDisplay] = useState('none');
   // get existing food items for table to add to order log 
 
 
   const existingOrder = tableOrder.order;
+  const tableNumber = tableOrder.tableNum;
 
   // Set initial value of order to existing items in order for table
   const [FoodStuff, setFoodStuff] = useState(existingOrder);
@@ -102,15 +105,19 @@ function SingleOrder({ tableOrder }) {
     // return the filtered array of items to render on the page
     return currentItems;
   }
-  console.log(FoodStuff);
 
   return (
     <Grid container justifyContent="center" sx={{ mt: 4 }}>
+      <PaymentModal
+        display={modalDisplay}
+        orderTotal={totalPrice}
+        items={FoodStuff}
+      />
       {/* First Container */}
       <Grid item xs={12} sm={5} sx={{ px: 5, mb: "5%" }} height="fit-content">
         <Paper>
           <Typography variant="h5" textAlign='center' sx={{ p: 2, backgroundColor: "#d4e1f1" }}>
-            Table {tableOrder.tableNum}
+            Table {tableNumber}
           </Typography>
           <Grid item xs={12} sx={{ px: 2, pt: 2 }}>
             {
@@ -151,7 +158,6 @@ function SingleOrder({ tableOrder }) {
           {/* Categories to choose from rendered on tabs */}
           <Grid item xs={12} sm={4} sx={{ p: 1 }}>
             <Tabs
-              textColor='text.darkBlue'
               value={value}
               onChange={handleChange}
               variant="scrollable"
@@ -221,8 +227,14 @@ function SingleOrder({ tableOrder }) {
 
       {/* Render the footer to allow for sending order and checking out the table */}
       <Grid item position='fixed' bottom={0}>
-
-        <SingleOrderNav tableNum={tableOrder.tableNum} order={FoodStuff} />
+        <Button
+          variant="dobtn"
+          onClick={() => setModalDisplay(prevDisplay => prevDisplay === 'none' ? 'block' : 'none')}
+          style={{ backgroundColor: modalDisplay === 'block' ? 'red' : 'green' }}
+        >
+          {modalDisplay === 'block' ? 'Cancel' : 'Submit Payment'}
+        </Button>
+        <SingleOrderNav tableNum={tableNumber} order={FoodStuff} />
       </Grid>
     </Grid>
   );
