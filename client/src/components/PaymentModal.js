@@ -34,7 +34,7 @@ const PaymentModal = ({ display, orderTotal, items, onClose, onPaymentSuccess, }
   
     const transactionInfo = {
       total: total,
-      items: items,
+      items: [items],
     };
 
     const paymentInfo = {
