@@ -34,7 +34,7 @@ const PaymentModal = ({ display, orderTotal, items, onClose, onPaymentSuccess, }
   
     const transactionInfo = {
       total: total,
-      items: items,
+      items: [items],
     };
 
     const paymentInfo = {
@@ -44,10 +44,10 @@ const PaymentModal = ({ display, orderTotal, items, onClose, onPaymentSuccess, }
       cvv: cvv,
     }
   
-    console.log(transactionInfo);
+    console.log(transactionInfo, paymentInfo);
   
     try {
-      // Create a Payment Intent on your server
+      // Create a on your server
       const response = await fetch('/create-payment-intent', {
         method: 'POST',
         headers: {
